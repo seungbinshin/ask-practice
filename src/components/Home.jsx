@@ -1,6 +1,6 @@
 import { generateMockSet } from '../data/questions'
 
-export default function Home({ onIndividual, onMock, onStudy }) {
+export default function Home({ onIndividual, onMock, onStudy, onLearn }) {
   const handleMock = () => {
     const set = generateMockSet()
     onMock(set)
@@ -18,12 +18,22 @@ export default function Home({ onIndividual, onMock, onStudy }) {
 
       <div className="w-full flex flex-col gap-4 max-w-xs">
         <button
+          onClick={onLearn}
+          className="tap-target w-full py-4 px-6 bg-hynix-accent border border-blue-800 rounded-xl text-lg font-medium hover:bg-blue-900 active:scale-[0.98] transition-all"
+        >
+          <div className="text-left">
+            <div className="font-semibold">지식 학습</div>
+            <div className="text-sm text-blue-300 mt-1">10개 카테고리 · AE 핵심 지식 베이스</div>
+          </div>
+        </button>
+
+        <button
           onClick={onStudy}
           className="tap-target w-full py-4 px-6 bg-hynix-card border border-gray-700 rounded-xl text-lg font-medium hover:bg-hynix-accent active:scale-[0.98] transition-all"
         >
           <div className="text-left">
             <div className="font-semibold">답변 준비</div>
-            <div className="text-sm text-gray-400 mt-1">41개 질문 + 답변 골격 미리 학습</div>
+            <div className="text-sm text-gray-400 mt-1">80개 질문 + 답변 골격 미리 학습</div>
           </div>
         </button>
 

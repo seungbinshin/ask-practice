@@ -1,6 +1,6 @@
 import { generateMockSet } from '../data/questions'
 
-export default function Home({ onIndividual, onMock }) {
+export default function Home({ onIndividual, onMock, onStudy }) {
   const handleMock = () => {
     const set = generateMockSet()
     onMock(set)
@@ -17,6 +17,16 @@ export default function Home({ onIndividual, onMock }) {
       </div>
 
       <div className="w-full flex flex-col gap-4 max-w-xs">
+        <button
+          onClick={onStudy}
+          className="tap-target w-full py-4 px-6 bg-hynix-card border border-gray-700 rounded-xl text-lg font-medium hover:bg-hynix-accent active:scale-[0.98] transition-all"
+        >
+          <div className="text-left">
+            <div className="font-semibold">답변 준비</div>
+            <div className="text-sm text-gray-400 mt-1">41개 질문 + 답변 골격 미리 학습</div>
+          </div>
+        </button>
+
         <button
           onClick={onIndividual}
           className="tap-target w-full py-4 px-6 bg-hynix-card border border-gray-700 rounded-xl text-lg font-medium hover:bg-hynix-accent active:scale-[0.98] transition-all"

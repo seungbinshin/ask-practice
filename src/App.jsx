@@ -5,6 +5,7 @@ import PrepTimer from './components/PrepTimer'
 import AnswerRecorder from './components/AnswerRecorder'
 import Result from './components/Result'
 import MockResult from './components/MockResult'
+import StudyMode from './components/StudyMode'
 
 export default function App() {
   const [screen, setScreen] = useState('home')
@@ -67,11 +68,18 @@ export default function App() {
     setScreen('select')
   }, [])
 
+  const goStudy = useCallback(() => {
+    setScreen('study')
+  }, [])
+
   return (
     <div className="min-h-screen bg-hynix-dark text-white">
       <div className="max-w-lg mx-auto px-4 py-6">
         {screen === 'home' && (
-          <Home onIndividual={goSelect} onMock={startMock} />
+          <Home onIndividual={goSelect} onMock={startMock} onStudy={goStudy} />
+        )}
+        {screen === 'study' && (
+          <StudyMode onBack={goHome} />
         )}
         {screen === 'select' && (
           <QuestionSelect onSelect={startIndividual} onBack={goHome} />

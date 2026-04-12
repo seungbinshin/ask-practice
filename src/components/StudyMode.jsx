@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { questions } from '../data/questions'
+import { modelAnswers } from '../data/modelAnswers'
 
 const allQuestions = [
   ...questions.part1.intro.pool.map(q => ({ ...q, category: '1분 소개', part: 1 })),
@@ -58,6 +59,18 @@ export default function StudyMode({ onBack }) {
           ))}
         </ul>
       </div>
+
+      {/* Model Answer Toggle */}
+      {modelAnswers[q.id] && (
+        <details className="bg-hynix-card border border-gray-700 rounded-xl p-4 mb-8">
+          <summary className="text-sm font-semibold text-hynix-red cursor-pointer select-none">
+            예시 답변 보기
+          </summary>
+          <p className="text-sm text-gray-300 leading-relaxed mt-3 whitespace-pre-line">
+            {modelAnswers[q.id]}
+          </p>
+        </details>
+      )}
 
       {/* Navigation */}
       <div className="flex gap-3">

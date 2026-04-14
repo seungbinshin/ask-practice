@@ -35,6 +35,24 @@ export const questions = {
           question: 'SK하이닉스에 지원한 동기와 본인을 한마디로 표현해주세요.',
           keywords: ['PE(단품 안정화) vs AE(고객 시스템 인증/검증)', 'Creator 전환 → AE 역할 확대', '#소통으로기회를만드는엔지니어', '#기술사이가능성을찾아서'],
           guideNotes: 'AE 선택 이유(PE vs AE 차이) → SK하이닉스 선택 이유(Creator 전환, 고객 접점) → 한마디 표현(해시태그 활용)'
+        },
+        {
+          id: 'intro-6',
+          question: '본인의 단점은 무엇이며, 어떻게 극복하고 있는가?',
+          keywords: ['진짜 단점을 솔직하게 (가짜 겸손 X)', '극복 과정 + 구체적 행동 변화', '업무에 미치는 영향을 인지하고 있음', '성장 중인 모습 보여주기'],
+          guideNotes: '진짜 단점 제시(치명적이지 않지만 솔직한 것) → 왜 단점인지 자각(구체 상황) → 극복 행동(시스템/습관 변화) → 현재 진행형("완전히 고쳤다"가 아닌 "개선 중"이 자연스러움)'
+        },
+        {
+          id: 'intro-7',
+          question: '본인은 리더형인가 팔로워형인가? 그 성향이 AE 직무에 어떤 강점이 되는가?',
+          keywords: ['이분법 함정 피하기 (상황에 따라 유연)', '구체적 경험으로 뒷받침', 'AE 직무와의 연결 (고객/내부 사이 역할)', '주도성과 협업 균형'],
+          guideNotes: '이분법 거부(상황별 유연) → 주도 경험(컨퍼런스 기획 리더십) → 팔로워 경험(설계팀에서 선배 지시 따르며 학습) → AE 연결(고객 앞에서는 주도적 기술 제안, 사내에서는 설계팀/PE와 협업하는 조율자)'
+        },
+        {
+          id: 'intro-8',
+          question: 'HW 설계(RTL, 검증) 경험이 많은데 왜 설계가 아닌 AE에 지원했나요?',
+          keywords: ['설계 경험이 AE에서 강점이 되는 이유', 'AI 가속기에서 메모리 병목 체감 → 시스템 관점', '고객 접점에서 기술로 문제 해결하는 역할에 매력', 'Full Stack AI Memory Creator 시대의 AE'],
+          guideNotes: '설계 경험 가치 인정 → 전환 계기(시스템 전체를 보는 역할에 매력, MPU-VPU mismatch에서 시스템 관점 중요성 체감) → AE의 본질(기술을 아는 사람이 고객 접점에 있어야 진짜 문제 해결) → 설계 역량이 AE에서 차별화 요소(회로 수준 문제를 시스템 레벨로 연결)'
         }
       ]
     },
@@ -85,6 +103,12 @@ export const questions = {
           question: '주도적으로 문제를 발견하고 해결한 경험이 있다면 말씀해주세요.',
           keywords: ['MPU-VPU throughput mismatch 발견', '연산 속도 vs 메모리 대역폭 균형점 수식 도출', '32-lane parallelism 활용 row-level latency hiding', '설계에 반영하여 병목 해소'],
           guideNotes: '발견(연산-대역폭 불균형) → 분석(수식으로 균형점 도출) → 해결(구조 반영) → 의미(시스템 전체 관점 중요성 체감)'
+        },
+        {
+          id: 'exp-8',
+          question: '직무와 관련하여 어떤 툴이나 기술을 다뤄봤는지 설명해주세요.',
+          keywords: ['Verilog/SystemVerilog RTL 설계 + 검증', 'C++ 시뮬레이션 라이브러리 (사이클 정확)', 'Python/Streamlit 자동화 도구 개발', 'EDA 툴 (합성, 타이밍 분석, 파형 뷰어)'],
+          guideNotes: 'RTL 설계(Verilog, 합성/P&R 플로우) → C++ 모델링(시스템 시뮬레이션 라이브러리 7.08배 속도향상) → Python 자동화(Streamlit ULP 커버리지 도구) → EDA 환경(합성, STA, 파형 분석) → AE 연결(FPGA 검증, 자동화 도구 개발, 시스템 레벨 분석 역량)'
         }
       ]
     },
@@ -135,6 +159,24 @@ export const questions = {
           question: '본인이 확신하는 기술적 판단과 팀의 다수 의견이 다를 때, 어떻게 하시겠습니까?',
           keywords: ['데이터/실험으로 근거 제시', 'PPA 최적화 경험: 기존 방식 한계 → 직접 실험으로 증명', '설득 안 되면 팀 결정 따르되 기록', '결과로 증명하는 자세'],
           guideNotes: '근거 정리(데이터, 시뮬레이션) → 팀에 공유/설명 → 사례 연결(7가지 구조 실험으로 증명) → 안 되면 팀 결정 존중하되 소규모 검증 제안'
+        },
+        {
+          id: 'team-8',
+          question: '검증 과정에서 동료가 테스트 결과 일부를 누락하거나 조작해서 일정에 맞추려는 것을 발견했습니다. 해당 동료와는 관계가 좋고, 프로젝트 일정도 매우 촉박한 상황입니다. 어떻게 하시겠습니까?',
+          keywords: ['윤리 > 팀 분위기: 데이터 무결성은 고객 신뢰의 근간', '1:1 대화로 자발적 시정 기회 부여', '함께 해결책(일정 조정/범위 축소) 모색', '그래도 거부 시 상위 보고 — 팀을 지키는 것은 문제를 바로잡는 것'],
+          guideNotes: '발견 즉시 동료에게 1:1 접근 → 위험성 설명(고객 신뢰, 품질 리스크) → 함께 바로잡을 방법 제안(일정 재협의, 범위 축소) → 자발적 시정 기회 → 거부 시 상위 보고 → "덮는 것이 아니라 바로잡는 것이 팀을 지키는 것"'
+        },
+        {
+          id: 'team-9',
+          question: '고객사 미팅에서, 자사 제품에 아직 해결되지 않은 기술적 한계를 본인만 알고 있습니다. 고객의 사용 조건에서 문제가 될 수 있지만, 영업팀은 이번 분기에 반드시 수주해야 한다고 압박합니다. 어떻게 하시겠습니까?',
+          keywords: ['단기 매출 vs 장기 고객 신뢰 트레이드오프', '리스크를 정량화하여 조건부 공유', '영업팀에 먼저 내부 공유 → 함께 대응 전략 수립', '"이 조건에서는 검증 완료, 이 조건은 추가 검증 필요" 투명한 소통'],
+          guideNotes: '무조건 폭로도 무조건 숨기기도 오답 → 리스크 정량화(어떤 조건에서 문제?) → 영업팀에 먼저 내부 공유 → 고객에게 투명하게 조건부 커뮤니케이션("검증 완료 범위 vs 추가 검증 필요 범위") → 대안/workaround 함께 제시 → 장기 신뢰가 단기 매출보다 가치'
+        },
+        {
+          id: 'team-10',
+          question: 'AE로서 고객 이슈를 분석한 결과, 설계팀의 변경이 필요하다고 판단했습니다. 그런데 설계팀은 "스펙 내 정상 동작"이라는 입장이고, 고객은 "해결 안 되면 다음 발주를 재검토하겠다"고 합니다. 양쪽 모두 기술적으로 일리가 있을 때 어떻게 하시겠습니까?',
+          keywords: ['AE는 고객 대변인도 설계팀 대변인도 아닌 "기술적 중재자"', '고객 사용 조건에서의 마진 데이터로 양쪽 설득', '단기 workaround + 장기 설계 개선 분리 제안', '비즈니스 임팩트를 기술 조직에 번역하는 소통력'],
+          guideNotes: '양쪽 입장 모두 경청(스펙 내 정상 맞지만 고객 조건에서 마진 부족 가능) → 고객 환경 데이터 수집/재현 → 정량적 마진 분석으로 양쪽에 공유 → 단기(workaround 제안)와 장기(설계 반영 건의) 분리 → 양쪽 모두 win 구조 → AE의 본질: 기술적 가교'
         }
       ]
     }
@@ -250,7 +292,15 @@ export const questions = {
       { id: 'tech-85', question: 'AE가 실무에서 사용하는 주요 측정/분석/시뮬레이션 도구를 분류하고 각각의 용도를 설명하시오.', keywords: ['벤치마크: Intel MLC, STREAM, memtest86', '시뮬레이션: HSPICE, HyperLynx, Sigrity', '계측: 오실로스코프, BERT, Logic Analyzer', '로그: PMU Training log, BIOS 시리얼 로그'], guideNotes: '벤치마크(memtest86: 패턴 테스트→HW 결함 / Intel MLC: 대역폭·지연 측정 / STREAM: 대역폭 / AIDA64: 종합) → 시뮬(HSPICE: 회로 레벨 / HyperLynx: PCB SI / Sigrity PowerSI: PDN 임피던스) → 계측(Keysight DCA-X/BERT: Eye·BER / Logic Analyzer: 프로토콜 디버깅) → 로그(PMU Training: Pass/Fail·마진 / BIOS 시리얼: POST 순서·에러) → 흐름(이슈→벤치마크 현상 확인→로그 원인 추정→계측 물리 확인→시뮬 개선안 검증)' },
       { id: 'tech-86', question: '고객이 "BER(Bit Error Rate) 이슈가 있다"고 보고했을 때, AE로서 어떤 장비와 절차로 원인을 분석하겠는가?', keywords: ['1단계: memtest86/BIOS 로그로 에러 패턴', '2단계: 오실로스코프로 Eye diagram', '3단계: BERT로 BER 정량 측정', '4단계: 원인별 대응 (ODT/Vref/PCB)'], guideNotes: '1 현상(memtest86: 주소/패턴/DQ별 분류) → 2 로그(BIOS/PMU Training: 마진 부족 단계?) → 3 물리(오실로스코프 Eye→JEDEC Mask 대비 / BERT: BER 정량, 10^-12 이하 정상) → 4 원인(Timing→Training 재수행 / 전압→Vref 재조정 / SI→ODT 변경·PCB 확인 / DRAM→교체 테스트) → 5 조치(MRS 조정, BIOS 업데이트, DIMM RMA)' },
       { id: 'tech-87', question: 'JEDEC DDR5 표준(JESD79-5)이 AE 업무에 어떻게 활용되는지 설명하시오. LPDDR(JESD209), HBM(JESD235) 표준과의 차이점은?', keywords: ['JESD79-5: DDR5 타이밍/전기 스펙 정의', 'AE: 표준 기반 Pass/Fail 판정, 분쟁 해결 근거', 'JESD209: LPDDR (저전력 모드 상세)', 'JESD235: HBM (TSV/와이드 인터페이스)'], guideNotes: 'JESD79-5(DDR5: 타이밍, AC/DC 스펙, 동작 모드, MRS, Eye Mask) → AE 활용(1: 측정값 JEDEC 내 판정, 2: 고객 분쟁 시 표준 근거, 3: XMP/EXPO vs JEDEC 구분, 4: 스펙 개정 영향 분석) → JESD209(LPDDR5/5X: DPD/PASR, PoP 스펙, DVFSC) → JESD235(HBM3/3E: TSV, 1024-bit, 열 특성) → SK하이닉스는 JEDEC 이사회 멤버→표준 제정 직접 참여' },
-      { id: 'tech-88', question: 'DDR5 모듈 PCB에서 Stack-up 설계와 임피던스 제어가 SI에 미치는 영향을 설명하시오. PCB 결함(void, delamination)이 발생하면 어떤 문제가 생기는가?', keywords: ['Stack-up: 층수·유전체·동박→특성 임피던스 결정', '임피던스 제어: DDR5 DQ 40Ω, 불일치 시 반사', 'Void: 유전체 내 기포→국부 임피던스 변화', 'Delamination: 층간 박리→Eye 열화'], guideNotes: 'Stack-up(PCB 층수/유전체/동박→특성 임피던스 결정) → 임피던스 제어(DDR5 DQ ~40Ω, 연속성 깨지면 반사→Eye 열화) → 설계(신호층 인접 GND, 유전체 두께로 임피던스 조절, via stub 최소화) → Void(기포→국부 임피던스 불연속→반사·크로스토크→간헐적 BER) → Delamination(층간 박리→두께 변화→임피던스 편차→특정 DQ Eye 열화) → AE(TDR 측정으로 프로파일 확인, 반복 불량 시 단면 분석 요청)' }
+      { id: 'tech-88', question: 'DDR5 모듈 PCB에서 Stack-up 설계와 임피던스 제어가 SI에 미치는 영향을 설명하시오. PCB 결함(void, delamination)이 발생하면 어떤 문제가 생기는가?', keywords: ['Stack-up: 층수·유전체·동박→특성 임피던스 결정', '임피던스 제어: DDR5 DQ 40Ω, 불일치 시 반사', 'Void: 유전체 내 기포→국부 임피던스 변화', 'Delamination: 층간 박리→Eye 열화'], guideNotes: 'Stack-up(PCB 층수/유전체/동박→특성 임피던스 결정) → 임피던스 제어(DDR5 DQ ~40Ω, 연속성 깨지면 반사→Eye 열화) → 설계(신호층 인접 GND, 유전체 두께로 임피던스 조절, via stub 최소화) → Void(기포→국부 임피던스 불연속→반사·크로스토크→간헐적 BER) → Delamination(층간 박리→두께 변화→임피던스 편차→특정 DQ Eye 열화) → AE(TDR 측정으로 프로파일 확인, 반복 불량 시 단면 분석 요청)' },
+
+      // ── 기출 질문 반영 추가 ──
+      { id: 'tech-89', question: 'NAND Flash의 프로그램/읽기/소거 동작 원리를 설명하시오. Floating Gate(또는 CTF) 구조에서 전자가 어떻게 저장되는가?', keywords: ['Floating Gate/CTF에 전자 트래핑 → Vth 변화로 데이터 저장', '프로그램: FN Tunneling으로 전자 주입 → Vth 상승', '읽기: WL에 기준전압 인가 → 전류 흐름 유무로 판별', '소거: 블록 단위, FN Tunneling으로 전자 방출 → Vth 하강'], guideNotes: '구조(Control Gate - Oxide - Floating Gate/CTF - Tunnel Oxide - Channel) → 프로그램(WL 고전압→FN Tunneling→전자가 FG에 갇힘→Vth 상승) → 읽기(WL에 Vread 인가→Vth < Vread면 전류 흐름=1, 안 흐름=0) → 소거(기판에 고전압→전자 방출→Vth 원복, 블록 단위) → CTF vs FG(CTF: 전하트랩 필름, 3D NAND에 적합) → AE 연결(NAND SSD 제품도 AE 검증 대상, 기본 원리 이해 필수)' },
+      { id: 'tech-90', question: 'DRAM Sense Amplifier에서 Overdrive 방식이란 무엇이고 왜 사용하는가?', keywords: ['Sense Amp 초기 구동 시 높은 전압(VDD+α) 인가', '미세 전압차를 빠르게 증폭하기 위한 기법', 'BL-/BL 차이가 매우 작을 때(수십mV) 감지 속도 확보', '이후 정상 VDD로 복귀'], guideNotes: 'Sense Amp 동작(BL과 /BL의 미세 전압차를 감지/증폭) → 문제(미세공정→셀 커패시턴스↓→전압차 극히 작음, ~수십mV) → Overdrive 방식(초기에 VDD보다 높은 전압 인가→Sense Amp의 교차결합 PMOS/NMOS를 강하게 구동→빠른 증폭) → 이후 정상 VDD로 복귀(과전압 지속 시 산화막 스트레스) → 효과(tRCD/tRAS 단축→성능 향상) → AE 관점(마진 테스트에서 Overdrive 조건이 동작 안정성에 영향)' },
+
+      // ── SK하이닉스 뉴스룸 기사 반영 ──
+      { id: 'tech-91', question: 'MCR DIMM(Multiplexer Combined Ranks DIMM)이란 무엇이고, 기존 서버용 DRAM 대비 어떤 혁신인가? SK하이닉스의 전략적 의미를 설명하시오.', keywords: ['2개 Rank 동시 작동 + 데이터 버퍼로 128B 통합 전송', '8Gbps+ 달성 (기존 4.8Gbps 대비 80%↑), 세계 최고속 서버 DRAM', 'Intel(CPU) + Renesas(데이터 버퍼) + SK하이닉스(모듈) 글로벌 협업', '단품 속도가 아닌 모듈 아키텍처 혁신으로 성능 도약'], guideNotes: '기존 한계(DDR5 단품 속도 향상 세대당 ~800Mbps, CPU 발전 속도를 따라잡기 어려움) → MCR DIMM 혁신(단품 속도가 아닌 모듈 구조 변경: 2개 Rank 동시 작동→데이터 버퍼가 64B+64B=128B 통합 전송→실효 속도 2배) → 성능(8Gbps+, 기존 대비 80%↑) → 글로벌 협업(Intel+Renesas+SK하이닉스) → 전략적 의미(서버 메모리 시장 기술 리더십, CPU-메모리 병목 해소) → AE 관점(새로운 아키텍처→기존 없는 테스트 환경 구축, 데이터 버퍼 포함 시스템 레벨 검증 필요)' },
+      { id: 'tech-92', question: 'GDDR7에서 도입된 PAM3(Pulse Amplitude Modulation 3-level) 신호 방식이란 무엇이고, 기존 NRZ 대비 장단점은? AE가 PAM3 검증에서 주의할 점은?', keywords: ['NRZ: 2레벨(0,1), PAM3: 3레벨(0,1,2) → 클럭당 1.58비트 전송', 'GDDR7: 32Gbps+ 달성, 기존 GDDR6 대비 대역폭 2배', 'Eye diagram이 3단으로 분리 → 마진 축소, 노이즈 취약', 'DFE/CTLE 등 이퀄라이제이션 중요도 증가'], guideNotes: 'NRZ(Non-Return-to-Zero: 0과 1 두 레벨, 클럭당 1비트) → PAM3(3레벨: -1,0,+1 사용, 클럭당 log₂3≈1.58비트, PAM4 대비 구현 복잡도와 마진의 균형점) → GDDR7에서 채택(32Gbps+, GPU AI 가속기용) → 장점(같은 주파수에서 더 높은 데이터레이트) → 단점(Eye가 3단으로 분리→각 Eye 높이 축소, SNR 요구↑, 이퀄라이제이션 필수) → AE 검증 과제(PAM3 Eye diagram 분석, 3레벨 각각의 마진 확인, DFE/CTLE 최적화, 기존 NRZ 장비/방법론 업데이트 필요)' }
     ]
   }
 }

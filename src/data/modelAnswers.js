@@ -493,4 +493,87 @@ export const modelAnswers = {
 • 강점: HBM 기술 선도(2년+), cHBM으로 맞춤형 전환, 고객 밀착 지원 문화, Full Stack AI Memory 비전
 • 시장 경쟁 심화: 경쟁사 HBM4 추격, 1c 공정 과감 적용 등 기술 격차 축소 시도 중
 • 과제: EUV 투자 확대, cHBM 고객 확보 가속, 차세대 패키징 기술 확보`,
+
+  // ── AE 심화: 모듈 부품·호스트·FPGA·GDDR·LPDDR·Qualification ──
+  'tech-76': `• RCD(Registering Clock Driver): CA/CK 신호를 호스트로부터 수신→버퍼링→각 DRAM에 재구동, 호스트 부하 경감
+• DB(Data Buffer): DQ/DQS 신호를 호스트↔DRAM 사이에서 중계, 신호 재생성으로 Eye 마진 확보
+• DDR4 vs DDR5: DDR4는 RCD만 RDIMM에, DB는 LRDIMM에만 / DDR5는 RCD+DB 모두 RDIMM에 탑재
+• 이유: DDR5 고속화(4800~8800MT/s)로 SI 마진 감소→DB 없이는 다수 DRAM 직접 구동 불가
+• DDR5 RCD 특징: 서브채널 A/B를 독립적으로 관리, AE는 RCD FW 버전과 BIOS 호환성 확인 필수`,
+
+  'tech-77': `• DDR4: 메인보드 VRM이 1.2V를 긴 PCB 트레이스로 DIMM에 공급 → IR drop·노이즈 문제
+• DDR5: 12V를 DIMM 커넥터까지 전달 → On-DIMM PMIC가 1.1V로 변환 → 전달 거리 최소화
+• 전압 레일: VDD(1.1V, 코어 로직), VDDQ(1.1V, I/O 드라이버), VPP(1.8V, 워드라인 부스트)
+• PMIC 장점: 전압 정밀도↑, IR drop↓, 전력 효율↑ / 과제: DIMM 위 발열, EMI 관리
+• AE 관점: PMIC 호환성 이슈(DIMM-메인보드 간), 전압 마진 테스트, EMI 규격 확인`,
+
+  'tech-78': `• DDR4 SPD: I2C EEPROM(512B), 타이밍·전압·제조사 정보 저장하는 단순 저장소
+• DDR5 SPD Hub: I3C 기반 허브 디바이스, EEPROM(1KB+) + 온도 센서(TS) + 이벤트 알림 통합
+• I3C 장점: I2C 대비 고속, In-Band Interrupt→온도 임계치 초과 시 호스트에 즉시 알림
+• AE 활용: 모듈 식별, JEDEC/XMP 타이밍 프로파일 확인, SPD Write Protection 관리
+• 디버깅: 모듈 미인식·속도 이상 시 SPD 내용 읽어 BIOS 해석과 일치 여부 검증`,
+
+  'tech-79': `• IMC 역할: 명령 스케줄링(R/W/ACT/PRE 순서), 주소 매핑, Refresh 관리, ECC 처리, Power State 제어
+• PHY 역할: CA/DQ/DQS 물리 신호 송수신, DLL 기반 타이밍, Tx/Rx 이퀄라이저, 임피던스 캘리브레이션
+• IMC-PHY 연결: DFI(DDR PHY Interface) 표준 인터페이스
+• Training 분담: PHY=DLL 지연 스윕·DQS-CK 정렬·Vref 스윕 실행 / IMC=시퀀스 제어·Pass/Fail 판정·최적값 저장
+• AE 관점: Training 실패 시 DRAM 측(MRS 조정) vs 호스트 측(BIOS 업데이트) 원인 구분이 디버깅 핵심`,
+
+  'tech-80': `• Pre-Si: 고객 SoC 테이프아웃 전, FPGA에 메모리 컨트롤러+PHY 구현→DRAM과 직접 통신→프로토콜 검증
+• Post-Si: 실제 칩 나온 후 시스템 환경에서 최종 검증
+• FPGA 장점: RTL 수정 가능→파라미터 튜닝 자유, 테이프아웃 불필요→빠른 반복, 다양한 테스트 패턴
+• AE 시나리오: (1)신규 DDR5 속도 등급 선행 검증, (2)고객 이슈를 FPGA에서 격리 디버깅, (3)RCD/DB FW 호환성 사전 검증
+• BIST(Built-In Self-Test): FPGA 내장 자가진단 로직으로 자동 Pass/Fail 판정`,
+
+  'tech-81': `• GDDR6: NRZ 시그널링, 14~18Gbps, x16/x32 인터페이스, 범용 GPU/게이밍
+• GDDR6X: PAM4(4레벨→2비트/심볼), 21~24Gbps, RTX 3090/4090 등 하이엔드 GPU
+• GDDR7: PAM3(3레벨→1.5비트/심볼), 32Gbps+, Eye height PAM4 대비 50% 개선
+• GDDR vs HBM: 비용 효율적+On-board 직접 실장(모듈 없음) vs 극한 대역폭+2.5D 패키징(고가)
+• AE 특수성: On-board→PCB SI 검증이 곧 AE 업무, 고객 보드 설계 단계부터 참여, PAM 시그널링은 Eye 마진 작아 이퀄라이저 최적화 중요`,
+
+  'tech-82': `• Self-Refresh: 외부 클럭 없이 데이터 유지, 전체 어레이 Refresh
+• PASR(Partial Array Self-Refresh): 사용 영역만 Refresh, 나머지 전력 차단→Self-Refresh 대비 50%+ 절감
+• DPD(Deep Power Down): 모든 내부 전력 차단→데이터 소실→최저 전력→복귀 시 완전 재초기화
+• DVFSC: LPDDR5X 고유, 워크로드에 따라 주파수·전압 실시간 변환→전력 최적화
+• 모바일: 배터리 수명의 30%+ 메모리 관련, 차량: 주차 대기 SR/시동 시 빠른 복귀 → AE는 시나리오별 최적 모드 조합 제안`,
+
+  'tech-83': `• Grade 0: -40~150°C (엔진룸/파워트레인) — 메모리 칩에는 거의 사용 안 함
+• Grade 1: -40~125°C (일반 차량 전장, ADAS) — 차량용 DRAM 주 타깃
+• Grade 2: -40~105°C (차체 전자장치)
+• Grade 3: -40~85°C (실내/인포테인먼트)
+• 인증 요구: 1000시간+ 스트레스(HTOL/TC/THB), Zero-defect(ppm 관리), PPAP(양산 승인)
+• ASIL 연계: ASIL A~D(D 최고), ADAS/자율주행→ASIL-B~D, ECC 필수, 고장 검출 커버리지 요구
+• SK하이닉스 LPDDR5X ASIL-D 인증 완료 → 자율주행 공급 가능`,
+
+  'tech-84': `• ES(Engineering Sample): 개발 초기, 기능 검증 목적, 스펙 일부 미달 가능
+  → AE: 기본 동작 확인, 잠재 이슈 조기 발견, Technical Bulletin으로 제한사항 안내
+• QS(Qualification Sample): 양산 공정·품질 동등, 고객 정식 인증용
+  → AE: 온도/전압/스트레스 종합 Qualification, Qualification Report 작성·제출
+• MP(Mass Production): 인증 완료→양산 납품→Design Win 확보
+  → AE: 양산 초기 모니터링, PCN/ECN 관리
+• FAE 협업: FAE(고객 접점 샘플 전달·결과 수집) ↔ 본사 AE(분석·판정)`,
+
+  'tech-85': `• 벤치마크: memtest86(HW 결함 검출), Intel MLC(대역폭/지연 측정), STREAM(대역폭), AIDA64(종합)
+• 시뮬: HSPICE(회로 레벨), ADS(RF/고속 신호), HyperLynx(PCB SI), Sigrity PowerSI(PDN 임피던스)
+• 계측: 오실로스코프(Eye diagram), BERT(BER 정량, 10^-12 기준), Logic Analyzer(프로토콜 디버깅)
+• 로그: PMU Training log(단계별 마진), BIOS 시리얼 로그(POST 에러), Intel RMT(비트별 마진)
+• AE 흐름: 이슈→벤치마크(현상 확인)→로그(원인 추정)→계측(물리 확인)→시뮬(개선안 검증)`,
+
+  'tech-86': `• 1단계 현상 파악: memtest86로 에러 패턴 분류 (주소별? DQ별? Rank별? 고정 vs 랜덤?)
+• 2단계 로그 분석: BIOS 시리얼/PMU Training log → 어떤 Training 단계에서 마진 부족?
+• 3단계 물리 측정: 오실로스코프로 Eye diagram (JEDEC Mask 대비 마진), BERT로 BER 정량 (10^-12 이하 정상)
+• 4단계 원인 분류: Timing→Training 재수행 / 전압→Vref 재조정 / SI→ODT 변경·PCB 확인 / DRAM→교체 테스트
+• 5단계 조치: MRS 설정 조정, BIOS 업데이트 권고, 필요 시 DIMM RMA 진행`,
+
+  'tech-87': `• JESD79-5(DDR5): 타이밍 파라미터, AC/DC 전기 스펙, 동작 모드, MRS, Eye Mask 등 포괄 정의
+• JESD209(LPDDR5/5X): 저전력 모드(DPD/PASR), PoP 스펙, DVFSC 등 모바일 특화
+• JESD235(HBM3/3E): TSV 스펙, 1024-bit 인터페이스, 열 특성, 인터포저 요구사항
+• AE 활용: (1)측정값 JEDEC 내 판정, (2)고객 분쟁 시 표준 근거, (3)XMP/EXPO vs JEDEC 범위 구분, (4)스펙 개정 영향 분석
+• SK하이닉스는 JEDEC 이사회 멤버 → 표준 제정 직접 참여, AE 현장 경험이 차기 표준에 반영 가능`,
+
+  'tech-88': `• Stack-up: PCB 층수/유전체/동박 두께 설계 → 신호층과 GND 기준층 배치가 특성 임피던스 결정
+• 임피던스 제어: DDR5 DQ ~40Ω 목표, 임피던스 연속성 깨지면 반사 → Eye 열화
+• 설계 핵심: 신호층 인접 GND 기준층, 유전체 두께로 임피던스 조절, via stub 최소화
+• Void: 유전체 내 기포 → 국부 임피던스 불연속 → 반사·크로스토크 → 간헐적 BER 상승
+• Delamination: 층간 박리 → 유전체 두께 변화 → 특정 DQ 라인 Eye 열화 → AE는 TDR 측정·단면 분석 요청`,
 }

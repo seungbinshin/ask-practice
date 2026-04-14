@@ -84,7 +84,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-hynix-dark text-white">
-      <div className="max-w-lg mx-auto px-4 py-6">
+      <div className="max-w-2xl mx-auto px-4 py-6">
         {screen === 'home' && (
           <Home onIndividual={goSelect} onMock={startMock} onStudy={goStudy} onLearn={goLearn} onFlash={goFlash} />
         )}

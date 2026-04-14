@@ -7,6 +7,7 @@ import Result from './components/Result'
 import MockResult from './components/MockResult'
 import StudyMode from './components/StudyMode'
 import LearnMode from './components/LearnMode'
+import FlashCards from './components/FlashCards'
 
 export default function App() {
   const [screen, setScreen] = useState('home')
@@ -77,14 +78,21 @@ export default function App() {
     setScreen('learn')
   }, [])
 
+  const goFlash = useCallback(() => {
+    setScreen('flash')
+  }, [])
+
   return (
     <div className="min-h-screen bg-hynix-dark text-white">
       <div className="max-w-lg mx-auto px-4 py-6">
         {screen === 'home' && (
-          <Home onIndividual={goSelect} onMock={startMock} onStudy={goStudy} onLearn={goLearn} />
+          <Home onIndividual={goSelect} onMock={startMock} onStudy={goStudy} onLearn={goLearn} onFlash={goFlash} />
         )}
         {screen === 'learn' && (
           <LearnMode onBack={goHome} />
+        )}
+        {screen === 'flash' && (
+          <FlashCards onBack={goHome} />
         )}
         {screen === 'study' && (
           <StudyMode onBack={goHome} />

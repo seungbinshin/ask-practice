@@ -253,9 +253,9 @@ export const studyContent = [
     ]
   },
   {
-    id: 'ae-system-advanced',
-    title: 'AE 심화: 모듈 부품·호스트·GDDR·Qualification',
-    icon: '🔧',
+    id: 'ddr5-module-ecosystem',
+    title: 'DDR5 모듈 에코시스템',
+    icon: '🧩',
     sections: [
       {
         title: 'DDR5 모듈 부품 소자 (RCD, DB, PMIC, SPD Hub)',
@@ -264,18 +264,40 @@ export const studyContent = [
       {
         title: '호스트 측 Memory Controller & PHY 기초',
         content: `AE가 고객 시스템을 이해하려면 호스트 측의 메모리 서브시스템도 알아야 한다. 메모리 서브시스템은 크게 IMC(Memory Controller)와 PHY(Physical Interface)로 나뉜다.\n\n(1) IMC (Integrated Memory Controller)\nCPU 내부에 통합된 메모리 컨트롤러로, 다음을 담당한다:\n- 명령 스케줄링: READ/WRITE/ACTIVATE/PRECHARGE 명령의 발행 순서 결정\n- 주소 매핑: 물리 주소를 채널/랭크/뱅크그룹/뱅크/행/열 주소로 변환\n- Refresh 관리: tREFI에 맞춰 주기적 Refresh 명령 발행\n- ECC 처리: 시스템 ECC 인코딩/디코딩\n- Power State 제어: Power-Down, Self-Refresh 진입/탈출 관리\n\nIntel은 IMC를 CPU 다이에 직접 통합하며, 서버 플랫폼에 따라 채널 수와 DDR5 속도 지원이 다르다. AMD는 UMC(Unified Memory Controller)를 I/O 다이(IOD)에 배치한다.\n\n(2) DRAM PHY\n물리적 신호를 송수신하는 아날로그/디지털 혼합 회로로, 다음을 담당한다:\n- DLL(Delay-Locked Loop) 기반 타이밍 생성\n- Tx(송신) 드라이버: CA/DQ/DQS 신호 출력\n- Rx(수신) 수신기: DQ/DQS 신호 수신 및 데이터 복원\n- 이퀄라이저: CTLE(Continuous Time Linear Equalizer), DFE(Decision Feedback Equalizer)\n- 임피던스 캘리브레이션: ZQ Calibration 실행\n\nIMC와 PHY 사이는 DFI(DDR PHY Interface) 표준으로 연결된다. DFI는 Cadence와 Synopsys 등 PHY IP 벤더가 제공하는 PHY와 다양한 SoC의 메모리 컨트롤러를 연결하기 위한 표준 인터페이스이다.\n\n(3) Memory Training에서의 역할 분담\nBIOS POST 과정에서 진행되는 Memory Training은 IMC와 PHY가 협력하여 수행한다:\n- PHY: DLL 지연 스윕, DQS-CK 정렬(Write Leveling), Vref 스윕 등 물리적 조정을 실행\n- IMC: Training 시퀀스를 제어하고, 각 단계의 Pass/Fail을 판정하며, 최적값을 레지스터에 저장\n\nIntel 플랫폼에서는 MRC(Memory Reference Code)라는 펌웨어가 Training 전체를 관장한다. MRC는 BIOS에 내장되어 있으며, 메모리 초기화, Training, 최적화를 수행한다.\n\nAE 관점에서 IMC/PHY 이해가 중요한 이유: Training 실패나 안정성 문제가 발생했을 때, 문제가 DRAM 측인지 호스트 측인지를 구분해야 한다. PMU Training 로그를 읽으면 어떤 Training 단계에서 마진이 부족한지 확인할 수 있고, 이를 바탕으로 DRAM 설정(MRS) 조정이 필요한지, 호스트 BIOS 업데이트가 필요한지 판단한다.`
-      },
-      {
-        title: 'FPGA 기반 메모리 검증 심화',
-        content: `JD에서 명시하는 "FPGA나 컨트롤러를 활용한 하드웨어 솔루션"은 AE의 응용 Solution 개발 업무에 해당한다.\n\n(1) Pre-Silicon Validation vs Post-Silicon Validation\nPre-Silicon(Pre-Si) Validation은 고객의 SoC가 테이프아웃(설계 확정 후 제조 의뢰)되기 전에, FPGA에 메모리 컨트롤러와 PHY를 구현하여 DRAM과 직접 통신하며 프로토콜 준수 여부를 검증하는 것이다. Post-Silicon(Post-Si) Validation은 실제 칩이 나온 후 시스템 환경에서 수행하는 최종 검증이다.\n\nAE가 FPGA를 사용하는 이유:\n- 고객 SoC가 아직 없는 상태에서 신규 DRAM 제품의 호환성을 선행 검증\n- RTL 수정이 가능하므로 다양한 파라미터(타이밍, ODT, Vref 등)를 자유롭게 튜닝\n- 테이프아웃 없이 빠른 반복 검증이 가능\n- 고객 보드에서만 재현되는 이슈를 FPGA 환경에서 격리하여 디버깅\n\n(2) FPGA 기반 검증 환경 구성\n- FPGA 보드: Xilinx(AMD) Alveo 시리즈 또는 Intel(Altera) Stratix/Agilex 시리즈\n- Memory Controller IP: FPGA 벤더 제공 DDR5 컨트롤러 IP 또는 자체 개발\n- PHY IP: FPGA 내장 Hard PHY 또는 Soft PHY\n- 테스트 패턴 생성기: FPGA 내부에 구현하여 Walking 1/0, PRBS, Checkerboard 등 패턴 생성\n- BIST(Built-In Self-Test): FPGA 로직에 자가진단 기능을 내장하여 자동 Pass/Fail 판정\n\n(3) 외부 계측 장비 연계\n- Protocol Analyzer (예: Tektronix TLA, Keysight U4164): DRAM 버스의 명령/데이터 시퀀스를 캡처하여 프로토콜 위반 여부 확인\n- 오실로스코프: Eye diagram 측정으로 SI 마진 확인\n- Logic Analyzer: 디지털 신호의 타이밍 관계 분석\n\n(4) AE 실무 시나리오\n시나리오 1: SK하이닉스가 새로운 DDR5 속도 등급(예: DDR5-7200)을 개발하면, 고객 SoC가 아직 없으므로 FPGA에 DDR5 컨트롤러를 구현하여 해당 속도에서의 동작을 선행 검증한다.\n시나리오 2: 고객이 "특정 워크로드에서만 에러 발생"을 보고하면, FPGA로 해당 접근 패턴을 재현하여 DRAM 측 원인인지 검증한다.\n시나리오 3: 신규 RCD/DB 펌웨어와의 호환성을 FPGA 환경에서 사전 검증하여 고객에게 검증 완료된 조합을 권장한다.`
-      },
+      }
+    ]
+  },
+  {
+    id: 'customer-memory',
+    title: '고객별 메모리 제품 (GDDR·LPDDR·차량)',
+    icon: '🎯',
+    sections: [
       {
         title: 'GDDR 계열 기초 (GDDR6/6X/7)',
         content: `JD에서 "그래픽카드" 고객을 명시하고 있으므로, GDDR(Graphics DDR) 계열에 대한 이해가 필요하다.\n\n(1) GDDR vs DDR/LPDDR/HBM 포지셔닝\nGDDR은 그래픽 처리에 최적화된 고대역폭 메모리이다. DDR이 범용 컴퓨팅용, LPDDR이 모바일 저전력용, HBM이 극한 대역폭용이라면, GDDR은 "합리적 비용에 높은 대역폭"을 제공하는 포지션이다.\n\n핵심 차이점: GDDR은 모듈 형태가 아니라 GPU PCB에 직접 BGA로 실장(Soldered-on)된다. 따라서 DIMM이 존재하지 않고, AE의 지원 범위가 "고객의 그래픽카드/가속기 보드 설계 단계"부터 시작된다.\n\n(2) GDDR6 (2018~)\n- 시그널링: NRZ (Non-Return-to-Zero), 전통적 2레벨 신호\n- 속도: 14~18 Gbps/pin\n- 인터페이스: x16 또는 x32 (칩당)\n- 주요 용도: 범용 GPU(게이밍, 워크스테이션), 게임 콘솔\n\n(3) GDDR6X (2020~, NVIDIA 주도)\n- 시그널링: PAM4 (Pulse Amplitude Modulation 4-level)\n  - NRZ가 1비트/심볼인 반면, PAM4는 2비트/심볼 → 같은 보드레이트에서 2배 데이터 전송\n  - 대신 Eye height가 1/3로 줄어들어 SNR(신호 대 잡음비) 마진이 크게 감소\n- 속도: 21~24 Gbps/pin\n- 주요 용도: NVIDIA RTX 3090/4090 등 하이엔드 GPU\n- 마이크론이 독점 공급 중\n\n(4) GDDR7 (2024~)\n- 시그널링: PAM3 (3레벨: +1, 0, -1)\n  - PAM4의 4레벨 대비 레벨 간 간격이 넓어져 SNR 마진이 개선\n  - PAM4 대비 약 50% Eye height 개선, NRZ 대비 1.5배 데이터 전송\n- 속도: 32~40+ Gbps/pin\n- 주요 용도: 차세대 GPU, AI 추론 카드\n- JEDEC JESD250 표준\n\n(5) AE 관점에서 GDDR의 특수성\n- On-board 실장이므로 모듈 교체가 불가 → 고객 보드 설계 단계에서의 SI 검증이 핵심\n- GPU 벤더(NVIDIA, AMD)와의 직접 기술 협업이 필요\n- PAM4/PAM3 시그널링은 Eye 마진이 NRZ보다 훨씬 작으므로, PCB 설계 품질과 이퀄라이저 최적화가 더욱 중요\n- AI 추론 시장에서 GDDR은 HBM의 비용 효율적 대안으로 수요 증가 중 (예: NVIDIA RTX 기반 추론 서버)`
       },
       {
-        title: 'LPDDR 모바일·차량 심화 & Qualification 단계',
-        content: `(1) LPDDR5/5X 저전력 모드 심화\nLPDDR은 모바일 기기의 배터리 수명에 직결되므로, 다양한 저전력 모드가 정의되어 있다.\n\n- Active: 데이터 읽기/쓰기 중. 전력 최대.\n- Idle: 명령 대기 상태. CKE HIGH 유지.\n- Power-Down: CKE LOW로 내부 클럭 중지. 빠른 복귀(~수십 ns).\n- Self-Refresh (SR): 외부 클럭 없이 DRAM 자체 Refresh. 데이터 유지. 복귀 시간 ~수 us.\n- Partial Array Self-Refresh (PASR): Self-Refresh 시 활성 영역을 지정. 사용하지 않는 뱅크/세그먼트의 Refresh를 중단하여 전력 50% 이상 절감. 모바일 OS가 메모리 사용량에 따라 동적으로 PASR 영역을 제어.\n- Deep Power Down (DPD): 모든 내부 전력 차단. 데이터 완전 소실. 최저 전력. 복귀 시 완전 재초기화(Training 포함) 필요. 장시간 미사용 시 진입.\n\nLPDDR5X 고유 기능:\n- DVFSC (Dynamic Voltage Frequency Scaling Clock): 워크로드에 따라 동작 주파수와 전압을 실시간으로 변경. 고성능이 필요한 순간에만 풀 스피드로 동작하고, 유휴 시 저속/저전압으로 전환.\n- WCK (Write Clock): 별도의 쓰기 클럭으로 데이터 전송 타이밍 관리.\n\n(2) LPDDR 패키지 특성\n- PoP (Package-on-Package): AP(Application Processor) 위에 LPDDR 패키지를 적층하는 구조. 기판 면적 절약이 핵심. Qualcomm Snapdragon, MediaTek Dimensity, Apple A/M 시리즈 칩셋에서 사용.\n- FBGA 직접 실장: 고성능 노트북/태블릿에서는 메인보드에 직접 솔더링.\n\n(3) 차량용 AEC-Q100 심화\nAEC-Q100은 차량용 집적회로의 신뢰성 인증 표준이다.\n\n온도 등급:\n- Grade 0: -40°C ~ +150°C (엔진룸, 파워트레인)\n- Grade 1: -40°C ~ +125°C (일반 차량 전장, ADAS)\n- Grade 2: -40°C ~ +105°C (차체 전자장치)\n- Grade 3: -40°C ~ +85°C (실내, 인포테인먼트)\n\n차량용 DRAM(주로 LPDDR4X/5)은 Grade 1~2를 타깃하며, 다음이 요구된다:\n- 1000시간 이상 스트레스 테스트 (HTOL, TC, THB 등)\n- Zero-defect 목표, ppm 단위 불량률 관리\n- PPAP (Production Part Approval Process): 양산 승인 프로세스\n- ISO 26262 ASIL 연계: ASIL(Automotive Safety Integrity Level) A~D 중 D가 최고 안전 등급. ADAS/자율주행은 ASIL-B~D를 요구하며, ECC 탑재와 고장 검출 커버리지가 필수.\n\nSK하이닉스는 LPDDR5X에서 ASIL-D 인증을 완료하여 자율주행 시스템에 공급 가능.\n\n(4) Qualification 단계: ES → QS → MP\n- ES (Engineering Sample): 개발 초기 샘플. 기능 검증 목적. 스펙 일부 미달 가능. AE는 기본 동작을 확인하고, 잠재 이슈를 조기에 발견하며, 고객에게 Technical Bulletin으로 제한사항을 안내한다.\n- QS (Qualification Sample): 양산 공정·품질과 동등한 샘플. 고객이 정식 인증 테스트에 사용. AE는 고객 시스템 환경에서 온도·전압·스트레스 종합 Qualification을 수행하고, Qualification Report를 작성·제출한다.\n- MP (Mass Production): 인증 완료 후 양산 납품. Design Win 확보. AE는 양산 초기 모니터링, PCN(Product Change Notification)/ECN(Engineering Change Notification) 관리를 담당한다.\n\n해외 FAE와의 협업: FAE가 고객 접점에서 샘플 전달과 결과 수집을 담당하고, 본사 AE가 분석과 최종 판정을 수행한다.`
+        title: 'LPDDR 모바일 심화 (저전력 모드·패키지)',
+        content: `LPDDR은 모바일 기기의 배터리 수명에 직결되므로, 다양한 저전력 모드가 정의되어 있다.\n\n(1) LPDDR5/5X 저전력 모드\n- Active: 데이터 읽기/쓰기 중. 전력 최대.\n- Idle: 명령 대기 상태. CKE HIGH 유지.\n- Power-Down: CKE LOW로 내부 클럭 중지. 빠른 복귀(~수십 ns).\n- Self-Refresh (SR): 외부 클럭 없이 DRAM 자체 Refresh. 데이터 유지. 복귀 시간 ~수 us.\n- Partial Array Self-Refresh (PASR): Self-Refresh 시 활성 영역을 지정. 사용하지 않는 뱅크/세그먼트의 Refresh를 중단하여 전력 50% 이상 절감. 모바일 OS가 메모리 사용량에 따라 동적으로 PASR 영역을 제어.\n- Deep Power Down (DPD): 모든 내부 전력 차단. 데이터 완전 소실. 최저 전력. 복귀 시 완전 재초기화(Training 포함) 필요. 장시간 미사용 시 진입.\n\nLPDDR5X 고유 기능:\n- DVFSC (Dynamic Voltage Frequency Scaling Clock): 워크로드에 따라 동작 주파수와 전압을 실시간으로 변경. 고성능이 필요한 순간에만 풀 스피드로 동작하고, 유휴 시 저속/저전압으로 전환.\n- WCK (Write Clock): 별도의 쓰기 클럭으로 데이터 전송 타이밍 관리.\n\n(2) LPDDR 패키지 특성\n- PoP (Package-on-Package): AP(Application Processor) 위에 LPDDR 패키지를 적층하는 구조. 기판 면적 절약이 핵심. Qualcomm Snapdragon, MediaTek Dimensity, Apple A/M 시리즈 칩셋에서 사용.\n- FBGA 직접 실장: 고성능 노트북/태블릿에서는 메인보드에 직접 솔더링.\n\nAE 역할: 고객 전력 시나리오(상시 대기 vs 간헐적 고성능)에 맞춰 PASR/DPD/DVFSC 최적 조합을 제안한다. 모바일 배터리 수명의 30% 이상이 메모리 전력과 관련되므로, 저전력 모드 설정이 배터리 성능을 좌우한다.`
+      },
+      {
+        title: '차량용 AEC-Q100 심화',
+        content: `AEC-Q100은 차량용 집적회로의 신뢰성 인증 표준이다.\n\n(1) 온도 등급\n- Grade 0: -40°C ~ +150°C (엔진룸, 파워트레인) — 메모리 칩에는 거의 사용되지 않음\n- Grade 1: -40°C ~ +125°C (일반 차량 전장, ADAS) — 차량용 DRAM의 주 타깃\n- Grade 2: -40°C ~ +105°C (차체 전자장치)\n- Grade 3: -40°C ~ +85°C (실내, 인포테인먼트)\n\n(2) 인증 요구사항\n차량용 DRAM(주로 LPDDR4X/5)은 Grade 1~2를 타깃하며, 다음이 요구된다:\n- 1000시간 이상 스트레스 테스트 (HTOL: 고온 동작, TC: 온도 사이클, THB: 고온 고습)\n- Zero-defect 목표, ppm 단위 불량률 관리\n- PPAP (Production Part Approval Process): 양산 승인 프로세스\n- 일반 DIMM 대비 엄격한 스크리닝: 전수 검사, 번인(Burn-in) 테스트\n\n(3) ISO 26262 ASIL 연계\nASIL(Automotive Safety Integrity Level)은 A~D 등급으로, D가 최고 안전 등급이다.\n- ADAS/자율주행: ASIL-B~D 요구\n- ECC 탑재 필수, 고장 검출 커버리지(Diagnostic Coverage) 충족\n- FMEDA(Failure Modes, Effects, and Diagnostic Analysis) 보고서 제출\n\nSK하이닉스는 LPDDR5X에서 ASIL-D 인증을 완료하여 자율주행 시스템에 공급 가능.\n\nAE 역할: 차량용 고객에게 온도 마진 데이터 제공, 내구 시험 결과 보고, 일반 DIMM 대비 차량용의 엄격한 품질 차이를 설명. 차량용 고객은 인증 과정이 6~12개월 이상 소요되므로, AE가 초기 단계부터 긴밀히 참여해야 한다.`
+      }
+    ]
+  },
+  {
+    id: 'ae-workflow',
+    title: 'AE 실무 프로세스 (FPGA·Qualification·도구)',
+    icon: '🔧',
+    sections: [
+      {
+        title: 'FPGA 기반 메모리 검증 심화',
+        content: `JD에서 명시하는 "FPGA나 컨트롤러를 활용한 하드웨어 솔루션"은 AE의 응용 Solution 개발 업무에 해당한다.\n\n(1) Pre-Silicon Validation vs Post-Silicon Validation\nPre-Silicon(Pre-Si) Validation은 고객의 SoC가 테이프아웃(설계 확정 후 제조 의뢰)되기 전에, FPGA에 메모리 컨트롤러와 PHY를 구현하여 DRAM과 직접 통신하며 프로토콜 준수 여부를 검증하는 것이다. Post-Silicon(Post-Si) Validation은 실제 칩이 나온 후 시스템 환경에서 수행하는 최종 검증이다.\n\nAE가 FPGA를 사용하는 이유:\n- 고객 SoC가 아직 없는 상태에서 신규 DRAM 제품의 호환성을 선행 검증\n- RTL 수정이 가능하므로 다양한 파라미터(타이밍, ODT, Vref 등)를 자유롭게 튜닝\n- 테이프아웃 없이 빠른 반복 검증이 가능\n- 고객 보드에서만 재현되는 이슈를 FPGA 환경에서 격리하여 디버깅\n\n(2) FPGA 기반 검증 환경 구성\n- FPGA 보드: Xilinx(AMD) Alveo 시리즈 또는 Intel(Altera) Stratix/Agilex 시리즈\n- Memory Controller IP: FPGA 벤더 제공 DDR5 컨트롤러 IP 또는 자체 개발\n- PHY IP: FPGA 내장 Hard PHY 또는 Soft PHY\n- 테스트 패턴 생성기: FPGA 내부에 구현하여 Walking 1/0, PRBS, Checkerboard 등 패턴 생성\n- BIST(Built-In Self-Test): FPGA 로직에 자가진단 기능을 내장하여 자동 Pass/Fail 판정\n\n(3) 외부 계측 장비 연계\n- Protocol Analyzer (예: Tektronix TLA, Keysight U4164): DRAM 버스의 명령/데이터 시퀀스를 캡처하여 프로토콜 위반 여부 확인\n- 오실로스코프: Eye diagram 측정으로 SI 마진 확인\n- Logic Analyzer: 디지털 신호의 타이밍 관계 분석\n\n(4) AE 실무 시나리오\n시나리오 1: SK하이닉스가 새로운 DDR5 속도 등급(예: DDR5-7200)을 개발하면, 고객 SoC가 아직 없으므로 FPGA에 DDR5 컨트롤러를 구현하여 해당 속도에서의 동작을 선행 검증한다.\n시나리오 2: 고객이 "특정 워크로드에서만 에러 발생"을 보고하면, FPGA로 해당 접근 패턴을 재현하여 DRAM 측 원인인지 검증한다.\n시나리오 3: 신규 RCD/DB 펌웨어와의 호환성을 FPGA 환경에서 사전 검증하여 고객에게 검증 완료된 조합을 권장한다.`
+      },
+      {
+        title: 'Qualification 단계 (ES → QS → MP)',
+        content: `DRAM 신제품이 고객에게 납품되기까지 Engineering Sample → Qualification Sample → Mass Production의 3단계를 거친다.\n\n(1) ES (Engineering Sample)\n개발 초기 샘플로 기능 검증이 목적이다. 양산 공정과 다를 수 있으며, 스펙 일부가 미달할 수 있다.\nAE 역할: 기본 동작을 확인하고 잠재 이슈를 조기에 발견한다. 고객에게 Technical Bulletin으로 제한사항(예: 특정 속도 등급 미지원, 온도 범위 제한 등)을 안내한다.\n\n(2) QS (Qualification Sample)\n양산 공정·품질과 동등한 샘플로, 고객이 정식 인증 테스트에 사용한다. ES에서 발견된 이슈가 수정된 상태여야 한다.\nAE 역할: 고객 시스템 환경에서 온도(고온/저온 코너)·전압(마진 테스트)·스트레스(장기 동작) 종합 Qualification을 수행한다. Qualification Report를 작성하여 고객에게 제출한다.\n\n(3) MP (Mass Production)\n인증 완료 후 양산 납품이 확정된 단계로, Design Win이 확보된 상태이다.\nAE 역할: 양산 초기 모니터링(초기 불량률 추적), PCN(Product Change Notification: 공정/재료 변경 시 고객 사전 통보)/ECN(Engineering Change Notification: 설계 변경 통보) 관리.\n\n(4) 해외 FAE와의 협업\n- FAE(Field Application Engineer): 고객 접점에서 샘플 전달, 결과 수집, 1차 기술 인터페이스\n- 본사 AE: 분석, 판정, Qualification Report 작성, 응용 Solution 개발\n- 협업 흐름: FAE가 고객 요구 수집 → 본사 AE가 평가/분석 → 결과를 FAE 경유 고객 전달\n- 2026년 변화: 미주에 HBM 전담 기술 조직 신설 → 주요 AI 고객 대상 신속 대응 체계`
       },
       {
         title: 'AE 실무 도구 총정리 & JEDEC 표준',

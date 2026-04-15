@@ -1,0 +1,111 @@
+[ AE 실무 프로세스 (FPGA·Qualification·도구) ]
+==================================================
+
+--- 1. FPGA 기반 메모리 검증 심화 ---
+
+JD에서 명시하는 "FPGA나 컨트롤러를 활용한 하드웨어 솔루션"은 AE의 응용 Solution 개발 업무에 해당한다.
+
+(1) Pre-Silicon Validation vs Post-Silicon Validation
+Pre-Silicon(Pre-Si) Validation은 고객의 SoC가 테이프아웃(설계 확정 후 제조 의뢰)되기 전에, FPGA에 메모리 컨트롤러와 PHY를 구현하여 DRAM과 직접 통신하며 프로토콜 준수 여부를 검증하는 것이다. Post-Silicon(Post-Si) Validation은 실제 칩이 나온 후 시스템 환경에서 수행하는 최종 검증이다.
+
+AE가 FPGA를 사용하는 이유:
+- 고객 SoC가 아직 없는 상태에서 신규 DRAM 제품의 호환성을 선행 검증
+- RTL 수정이 가능하므로 다양한 파라미터(타이밍, ODT, Vref 등)를 자유롭게 튜닝
+- 테이프아웃 없이 빠른 반복 검증이 가능
+- 고객 보드에서만 재현되는 이슈를 FPGA 환경에서 격리하여 디버깅
+
+(2) FPGA 기반 검증 환경 구성
+- FPGA 보드: Xilinx(AMD) Alveo 시리즈 또는 Intel(Altera) Stratix/Agilex 시리즈
+- Memory Controller IP: FPGA 벤더 제공 DDR5 컨트롤러 IP 또는 자체 개발
+- PHY IP: FPGA 내장 Hard PHY 또는 Soft PHY
+- 테스트 패턴 생성기: FPGA 내부에 구현하여 Walking 1/0, PRBS, Checkerboard 등 패턴 생성
+- BIST(Built-In Self-Test): FPGA 로직에 자가진단 기능을 내장하여 자동 Pass/Fail 판정
+
+(3) 외부 계측 장비 연계
+- Protocol Analyzer (예: Tektronix TLA, Keysight U4164): DRAM 버스의 명령/데이터 시퀀스를 캡처하여 프로토콜 위반 여부 확인
+- 오실로스코프: Eye diagram 측정으로 SI 마진 확인
+- Logic Analyzer: 디지털 신호의 타이밍 관계 분석
+
+(4) AE 실무 시나리오
+시나리오 1: SK하이닉스가 새로운 DDR5 속도 등급(예: DDR5-7200)을 개발하면, 고객 SoC가 아직 없으므로 FPGA에 DDR5 컨트롤러를 구현하여 해당 속도에서의 동작을 선행 검증한다.
+시나리오 2: 고객이 "특정 워크로드에서만 에러 발생"을 보고하면, FPGA로 해당 접근 패턴을 재현하여 DRAM 측 원인인지 검증한다.
+시나리오 3: 신규 RCD/DB 펌웨어와의 호환성을 FPGA 환경에서 사전 검증하여 고객에게 검증 완료된 조합을 권장한다.
+
+
+--- 2. Qualification 단계 (ES → QS → MP) ---
+
+DRAM 신제품이 고객에게 납품되기까지 Engineering Sample → Qualification Sample → Mass Production의 3단계를 거친다.
+
+(1) ES (Engineering Sample)
+개발 초기 샘플로 기능 검증이 목적이다. 양산 공정과 다를 수 있으며, 스펙 일부가 미달할 수 있다.
+AE 역할: 기본 동작을 확인하고 잠재 이슈를 조기에 발견한다. 고객에게 Technical Bulletin으로 제한사항(예: 특정 속도 등급 미지원, 온도 범위 제한 등)을 안내한다.
+
+(2) QS (Qualification Sample)
+양산 공정·품질과 동등한 샘플로, 고객이 정식 인증 테스트에 사용한다. ES에서 발견된 이슈가 수정된 상태여야 한다.
+AE 역할: 고객 시스템 환경에서 온도(고온/저온 코너)·전압(마진 테스트)·스트레스(장기 동작) 종합 Qualification을 수행한다. Qualification Report를 작성하여 고객에게 제출한다.
+
+(3) MP (Mass Production)
+인증 완료 후 양산 납품이 확정된 단계로, Design Win이 확보된 상태이다.
+AE 역할: 양산 초기 모니터링(초기 불량률 추적), PCN(Product Change Notification: 공정/재료 변경 시 고객 사전 통보)/ECN(Engineering Change Notification: 설계 변경 통보) 관리.
+
+(4) 해외 FAE와의 협업
+- FAE(Field Application Engineer): 고객 접점에서 샘플 전달, 결과 수집, 1차 기술 인터페이스
+- 본사 AE: 분석, 판정, Qualification Report 작성, 응용 Solution 개발
+- 협업 흐름: FAE가 고객 요구 수집 → 본사 AE가 평가/분석 → 결과를 FAE 경유 고객 전달
+- 2026년 변화: 미주에 HBM 전담 기술 조직 신설 → 주요 AI 고객 대상 신속 대응 체계
+
+
+--- 3. AE 실무 도구 총정리 & JEDEC 표준 ---
+
+(1) AE 도구 분류
+
+[성능/안정성 벤치마크]
+- memtest86: OS 없이 부팅하여 메모리 셀 패턴 테스트. HW 결함(Stuck bit, Address fault) 검출의 1차 도구.
+- Intel MLC (Memory Latency Checker): 메모리 대역폭과 지연시간을 측정하는 벤치마크. 성능 병목 분석의 핵심 도구.
+- STREAM: 메모리 대역폭 벤치마크 (Copy, Scale, Add, Triad 4가지 패턴).
+- AIDA64: 종합 시스템 벤치마크. 메모리 대역폭/레이턴시 외에 캐시, CPU 성능도 측정.
+- SPEC CPU / MLPerf: 워크로드 수준의 성능 벤치마크. 메모리 서브시스템이 실제 애플리케이션 성능에 미치는 영향 측정.
+
+[SI/PI 시뮬레이션]
+- HSPICE (Synopsys): 회로 레벨 SPICE 시뮬레이션. DRAM I/O 모델 기반 채널 시뮬레이션.
+- ADS (Keysight): RF/고속 신호 시뮬레이션. S-파라미터 기반 채널 분석.
+- HyperLynx (Siemens): PCB SI 분석. DIMM/보드 레벨 반사·크로스토크 시뮬.
+- Sigrity PowerSI (Cadence): PDN(Power Delivery Network) 임피던스 분석. 디커플링 커패시터 배치 최적화.
+
+[계측 장비]
+- 오실로스코프 (Keysight/Tektronix): DQ/DQS 파형 측정, Eye diagram 캡처.
+- BERT (Bit Error Rate Tester, Keysight DCA-X 등): BER 정량 측정. 10^-12 이하가 정상 판정 기준.
+- Logic Analyzer (Tektronix TLA 등): 다채널 디지털 신호 캡처, 프로토콜 레벨 디버깅.
+- Protocol Analyzer (Keysight U4164 등): DRAM 버스 명령/데이터 시퀀스 캡처, 프로토콜 위반 탐지.
+
+[로그 분석]
+- PMU Training Log: Memory Training 각 단계의 Pass/Fail 결과와 마진 데이터. 어떤 DQ/Rank/서브채널에서 마진이 부족한지 확인.
+- BIOS 시리얼 로그: POST 과정의 상세 로그. 메모리 초기화·Training 시퀀스 진행 상황과 에러 코드 확인.
+- Intel RMT (Rank Margin Tool): 각 비트별 타이밍·전압 마진을 측정하는 Intel 플랫폼 전용 도구.
+
+(2) BER 이슈 대응 체인 (AE 실무 흐름)
+고객이 "BER 이슈가 있다"고 보고하면:
+1단계: memtest86/BIOS 로그로 에러 패턴 파악 (주소별? DQ별? 랜덤?)
+2단계: PMU Training 로그로 마진 부족 단계 확인
+3단계: 오실로스코프로 Eye diagram 측정 (JEDEC Eye Mask 대비 마진)
+4단계: BERT로 BER 정량 측정 (10^-12 기준)
+5단계: 원인 분류 후 대응 (Timing→Training 재수행 / 전압→Vref 조정 / SI→ODT 변경 / DRAM→교체·RMA)
+
+(3) JEDEC 표준과 AE 업무
+JEDEC(Joint Electron Device Engineering Council)은 메모리 업계의 국제 표준화 기구이다.
+
+주요 표준:
+- JESD79-5 (DDR5): 타이밍 파라미터, AC/DC 전기 스펙, 동작 모드, MRS 정의, Eye Mask 규격 등
+- JESD209 (LPDDR5/5X): 저전력 모드(DPD/PASR), PoP 패키지 스펙, DVFSC 등
+- JESD235 (HBM3/3E): TSV 스펙, 1024-bit 인터페이스, 열 특성, 인터포저 요구사항
+- JESD250 (GDDR7): PAM3 시그널링, 고속 그래픽 인터페이스
+
+AE 업무에서의 활용:
+- 표준 기반 Pass/Fail 판정: 측정값이 JEDEC 스펙 범위 내인지 판정
+- 고객 분쟁 해결: "JEDEC 스펙 범위 내이므로 정상"이라는 객관적 근거 제공
+- XMP/EXPO vs JEDEC 구분: 오버클럭 프로파일은 JEDEC 보장 범위 밖임을 설명
+- 표준 개정 영향 분석: 새 스펙 개정이 기존 제품에 미치는 영향 평가
+
+SK하이닉스는 JEDEC 이사회(Board of Directors) 멤버로서 표준 제정에 직접 참여한다. AE의 고객 현장 경험이 차기 표준에 반영될 수 있다는 점에서, AE는 JEDEC 표준의 소비자이자 기여자이다.
+
+

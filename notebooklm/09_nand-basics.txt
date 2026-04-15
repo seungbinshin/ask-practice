@@ -1,0 +1,82 @@
+[ NAND Flash 기초 ]
+==================================================
+
+--- 1. NAND Flash 셀 구조와 프로그램/이레이즈 ---
+
+NAND Flash는 비휘발성 메모리(Non-volatile Memory)로, 전원이 꺼져도 데이터가 유지된다. DRAM이 캐패시터에 전하를 저장하는 것과 달리, NAND는 트랜지스터의 플로팅 게이트(Floating Gate) 또는 전하 트랩 층(Charge Trap Layer)에 전자를 가두어 데이터를 저장한다.
+
+Floating Gate 방식: 전도성 폴리실리콘 플로팅 게이트가 터널 산화막과 게이트간 유전체 사이에 샌드위치 형태로 존재한다. 플로팅 게이트에 전자가 저장되면 트랜지스터의 문턱 전압(Vth)이 높아진다. Vth의 높고 낮음으로 데이터를 구분한다. 플로팅 게이트 방식은 미세화가 진행될수록 인접 셀 간 커플링(Cell-to-Cell Interference)이 심해지는 단점이 있다.
+
+CTF (Charge Trap Flash) 방식: 전도성 플로팅 게이트 대신 절연성 질화막(SiN)에 전하를 트랩하는 방식이다. 전하가 절연체에 국소적으로 갇히므로 인접 셀 간 간섭이 줄어든다. 3D NAND에서 주류 기술이다. SK하이닉스의 4D NAND도 CTF 기반이다.
+
+프로그램(Program, 쓰기) 동작: FN 터널링(Fowler-Nordheim Tunneling) 메커니즘을 사용한다. 컨트롤 게이트에 높은 양의 전압(약 15~20V)을 인가하면, 터널 산화막을 통해 기판에서 플로팅 게이트/전하 트랩으로 전자가 터널링한다. 전자가 주입되면 Vth가 상승한다. 프로그래밍 시 ISPP(Incremental Step Pulse Programming) 방식을 사용하여 전압을 점진적으로 높이면서 Vth를 정밀하게 조절한다.
+
+이레이즈(Erase, 지우기) 동작: 블록(Block) 단위로 수행된다(페이지 단위 불가). 기판(Well)에 높은 양의 전압(약 20V)을 인가하고 컨트롤 게이트를 0V로 유지한다. 전하 트랩/플로팅 게이트의 전자가 기판으로 빠져나간다(FN 터널링). 이레이즈 후 Vth는 낮아진다.
+
+이 프로그램/이레이즈 과정에서 터널 산화막에 스트레스가 가해져 산화막이 점차 열화된다. 이것이 NAND의 수명(Endurance)을 결정하는 근본 원인이다. P/E 사이클(Program/Erase Cycle)이 반복될수록 산화막의 트랩 사이트가 증가하여 전하 보존 능력이 감소한다.
+
+
+--- 2. SLC/MLC/TLC/QLC와 3D NAND ---
+
+NAND 셀당 저장 비트 수에 따라 SLC, MLC, TLC, QLC로 분류된다.
+
+SLC (Single Level Cell): 셀당 1비트. Vth 분포가 2개(0, 1). P/E 사이클 수명 약 100,000회. 읽기/쓰기 속도가 가장 빠르고 신뢰성이 최고이다. 그러나 비트당 비용이 가장 높아 엔터프라이즈 캐싱용으로 제한적으로 사용된다.
+
+MLC (Multi Level Cell): 셀당 2비트. Vth 분포가 4개(00, 01, 10, 11). P/E 사이클 약 10,000~30,000회. 읽기/쓰기가 SLC보다 느리고 에러율이 높지만 용량 대비 비용이 합리적이다.
+
+TLC (Triple Level Cell): 셀당 3비트. Vth 분포가 8개. P/E 사이클 약 1,000~3,000회. 현재 소비자용 SSD의 주류이다. Vth 분포 간 간격이 좁아 에러율이 높으므로 강력한 ECC가 필수이다.
+
+QLC (Quad Level Cell): 셀당 4비트. Vth 분포가 16개. P/E 사이클 약 500~1,000회. 대용량 저비용 저장이 필요한 아카이브/콜드 스토리지에 적합하다. Vth 분포 간 간격이 극히 좁아 읽기 간섭(Read Disturb), 데이터 보존(Retention) 문제가 더 심각하다.
+
+Pseudo-SLC (pSLC) 캐싱: TLC/QLC NAND의 일부 영역을 SLC 모드(셀당 1비트만 사용)로 운용하여 캐시로 사용하는 기술이다. 쓰기 속도가 SLC 수준으로 빨라지지만 용량이 1/3(TLC 대비) 또는 1/4(QLC 대비)로 줄어든다. 먼저 pSLC 캐시에 빠르게 쓴 후, 유휴 시간에 TLC/QLC 영역으로 데이터를 이동(Folding)시킨다. 캐시가 가득 차면 쓰기 속도가 급격히 떨어지는(Write Cliff) 현상이 발생한다.
+
+3D NAND: 2D(Planar) NAND의 미세화 한계(15nm 이하에서 셀 간 간섭, 신뢰성 문제)를 극복하기 위해 셀을 수직으로 적층하는 기술이다. 현재 200층 이상 적층이 양산 중이며, SK하이닉스는 238층 TLC를 양산하고 있다.
+
+3D NAND 제조의 핵심 도전: 고종횡비(High Aspect Ratio) 에칭이다. 매우 깊고 좁은 홀(채널 홀)을 수직으로 균일하게 뚫어야 한다. 200층 기준 홀의 깊이 대 직경 비율이 70:1 이상이다. 에칭이 불균일하면 상층과 하층의 셀 특성이 달라져 성능 편차가 발생한다.
+
+AE는 NAND 관련 고객에게 셀 타입별 특성을 설명하고, 워크로드에 적합한 SSD를 제안해야 한다. 쓰기가 많은 워크로드에는 TLC, 읽기 중심의 대용량 스토리지에는 QLC를 권장한다.
+
+
+--- 3. 웨어 레벨링, GC, TRIM, Over-Provisioning ---
+
+NAND Flash의 수명과 성능을 관리하기 위한 핵심 기술들을 다룬다. 이들은 SSD 컨트롤러의 FTL(Flash Translation Layer)에서 관리한다.
+
+웨어 레벨링 (Wear Leveling): NAND 셀의 P/E 사이클 수명이 제한적이므로, 모든 블록이 균등하게 마모되도록 관리하는 기술이다.
+- 동적 웨어 레벨링(Dynamic WL): 쓰기 요청이 올 때마다 P/E 횟수가 적은 블록에 우선 할당한다. 자주 변경되는(Hot) 데이터가 고르게 분산된다.
+- 정적 웨어 레벨링(Static WL): 거의 변경되지 않는(Cold) 데이터가 저마모 블록을 독점하는 것을 방지하기 위해, Cold 데이터를 고마모 블록으로, Hot 데이터를 저마모 블록으로 교환한다. 더 효과적이지만 추가적인 데이터 이동(Write Amplification)이 발생한다.
+
+가비지 컬렉션 (Garbage Collection, GC): NAND는 페이지(Page) 단위로 쓰고, 블록(Block) 단위로 지운다. 데이터가 수정되면 원래 위치의 데이터는 무효(Invalid)가 되고 새 위치에 쓰인다. 시간이 지나면 블록에 유효/무효 페이지가 혼재한다. GC는 유효 데이터를 다른 블록으로 복사한 후 원래 블록을 이레이즈하여 빈 블록을 확보하는 과정이다. GC 동안 SSD 성능이 저하될 수 있다.
+
+Write Amplification Factor (WAF): 호스트가 쓴 데이터량 대비 실제 NAND에 쓰인 데이터량의 비율이다. WAF = NAND에 쓰인 양 / 호스트가 쓴 양. 이상적으로 WAF = 1이지만, GC와 웨어 레벨링에 의해 실제 WAF > 1이다. WAF가 높을수록 NAND 수명이 빨리 소모된다.
+
+TRIM: OS가 삭제한 데이터의 물리적 위치를 SSD에 알려주는 명령이다. TRIM 없이는 SSD가 어떤 데이터가 삭제되었는지 모르므로, GC 시 이미 삭제된 데이터까지 복사하는 비효율이 발생한다. TRIM이 있으면 SSD가 삭제된 페이지를 무효로 표시하여 GC 효율이 향상된다.
+
+Over-Provisioning (OP): SSD의 총 NAND 용량 중 사용자에게 노출하지 않는 예비 공간이다. 예: 512GB NAND 중 480GB만 사용자 공간, 32GB(약 7%)가 OP. OP 공간은 GC, 웨어 레벨링, 배드 블록 대체, 성능 유지를 위해 사용된다. 엔터프라이즈 SSD는 OP를 28% 이상으로 설정하여 안정적 성능과 긴 수명을 확보한다.
+
+AE는 SSD 관련 고객에게 워크로드 패턴(순차/랜덤, 읽기/쓰기 비율)에 따른 최적 OP 비율과 GC 정책을 제안해야 한다.
+
+
+--- 4. NAND ECC, 인터페이스, UFS vs eMMC ---
+
+NAND Flash의 에러 정정, 인터페이스 기술, 그리고 모바일 스토리지 규격을 다룬다.
+
+ECC (Error Correction Code): NAND는 DRAM보다 에러율이 훨씬 높으므로 강력한 ECC가 필수이다.
+- BCH (Bose-Chaudhuri-Hocquenghem) 코드: 대수적 코드. 구현이 상대적으로 간단하고 지연이 짧다. SLC/MLC 시대에 주로 사용되었다. 정정 능력은 설계에 따라 수십 비트/1KB 수준이다.
+- LDPC (Low-Density Parity-Check) 코드: 반복적 디코딩(Iterative Decoding) 기반의 확률적 코드. BCH보다 정정 능력이 월등히 높다. TLC/QLC에서 필수이다. Soft Decision Decoding을 적용하면 정정 능력이 더 향상된다. Hard Decision은 Vth를 기준 전압으로 0/1만 판독하지만, Soft Decision은 여러 기준 전압으로 다중 읽기를 수행하여 확률 정보를 활용한다. LDPC Soft Decision의 단점은 읽기 지연이 늘어나는 것이다.
+
+RAID/XOR 보호: SSD 컨트롤러가 여러 NAND 다이의 데이터에 대해 XOR 패리티를 유지하여, 한 다이가 완전히 실패해도 데이터를 복구할 수 있다.
+
+NAND 인터페이스:
+- ONFI (Open NAND Flash Interface): Intel이 주도하는 표준. Toggle DDR과 경쟁. ONFI 5.1 기준 최대 2400MT/s.
+- Toggle Mode: 삼성, SK하이닉스 등이 주도. Toggle DDR 방식으로 데이터 전송. Toggle 5.0 기준 최대 2400MT/s.
+- 실질적으로 양측 모두 고속 인터페이스를 지원하며, SSD 컨트롤러가 양쪽을 모두 지원하는 경우가 많다.
+
+UFS (Universal Flash Storage) vs eMMC (embedded Multi-Media Card):
+
+eMMC: 모바일 기기용 임베디드 스토리지의 초기 표준이다. 병렬 인터페이스(8비트 버스). eMMC 5.1 기준 최대 400MB/s. 풀 듀플렉스 불가(Half Duplex). 저가형 스마트폰, IoT 기기에 사용된다.
+
+UFS: eMMC의 후속 표준. 직렬 인터페이스(MIPI M-PHY 기반, 차동 레인 쌍). 풀 듀플렉스 지원(동시 읽기/쓰기). UFS 4.0 기준 최대 4.2GB/s(2레인). 명령 큐잉(Command Queuing) 지원으로 랜덤 접근 성능이 우수하다. 플래그십 스마트폰, 자동차, 드론 등에 사용된다. SK하이닉스는 UFS 4.0 제품을 양산하고 있다.
+
+AE는 모바일/임베디드 고객에게 UFS vs eMMC의 성능/비용 트레이드오프를 설명하고, 애플리케이션 요구사항에 맞는 스토리지를 제안해야 한다.
+
+

@@ -1,0 +1,93 @@
+[ Memory Training & BIOS ]
+==================================================
+
+--- 1. BIOS POST 메모리 초기화 시퀀스 ---
+
+시스템 전원 투입 후 BIOS의 POST(Power-On Self-Test) 과정에서 메모리 초기화는 가장 중요하고 복잡한 단계이다. 이 과정이 완료되어야 시스템이 메모리를 사용할 수 있다.
+
+초기화 시퀀스는 대략 다음 순서로 진행된다.
+
+(1) SPD 읽기: I2C/I3C 인터페이스를 통해 각 DIMM의 SPD 데이터를 읽는다. DIMM 존재 여부, 용량, 타이밍, 전기적 특성 등을 파악한다. 이 정보를 기반으로 메모리 컨트롤러의 설정을 결정한다.
+
+(2) 전압 설정: DDR5의 경우 DIMM 위의 PMIC에 명령을 보내 VDD, VDDQ, VPP 전압을 설정한다.
+
+(3) DRAM 초기화 시퀀스: JEDEC에서 정의한 초기화 절차를 따른다. 전원 안정화 대기 → CKE LOW 유지 → 리셋 해제 → CKE HIGH → MRS 명령 시퀀스(MR 설정) → ZQ Calibration
+
+(4) MRS 설정: Mode Register에 동작 파라미터를 프로그래밍한다. Burst Length, CAS Latency, Write Recovery Time, DLL 설정, ODT 값, Additive Latency 등을 설정한다.
+
+(5) Memory Training (상세한 내용은 다음 섹션): Write Leveling → Read Training (DQS Gate Training → Read DQ Training) → Write Training → Vref Training → CA Training(DDR5)
+
+(6) Memory Test: 트레이닝 완료 후 기본적인 메모리 테스트를 수행한다. Walking 1/0 패턴, Address Pattern 등으로 기본 기능을 확인한다.
+
+(7) Memory Map 구성: 물리적 메모리 주소 공간을 설정한다. 인터리빙 모드(채널/랭크/뱅크 인터리빙), 메모리 맵 레이아웃 등을 구성한다.
+
+초기화 시퀀스에서 실패가 발생하면 시스템은 부팅되지 않는다. 실패 지점에 따라 진단이 달라진다.
+- SPD 읽기 실패: DIMM 인식 불가 → I2C 버스 문제 또는 DIMM 불량
+- MRS 설정 실패: 명령 전달 문제 → CA(Command/Address) 신호 SI 문제
+- Training 실패: 특정 Training 단계에서 마진 부족 → 해당 채널/DQ의 SI 문제
+
+AE는 고객 시스템에서 부팅 실패 시, BIOS의 시리얼 디버그 로그를 분석하여 어느 단계에서 실패했는지를 먼저 파악한다. 인텔 플랫폼의 경우 MRC(Memory Reference Code) 로그, AMD 플랫폼의 경우 ABL(AGESA Bootloader) 로그를 확인한다.
+
+
+--- 2. Memory Training 상세 (Write Leveling, Read/Write Training) ---
+
+Memory Training은 PVT(Process, Voltage, Temperature) 변동과 보드 라우팅 차이를 보상하기 위해 매 부팅 시 수행되는 자동 교정 과정이다.
+
+(1) Write Leveling: Fly-by 토폴로지로 인한 CK-DQS 스큐를 보상한다. 메모리 컨트롤러가 DQS를 보내면 DRAM이 CK와의 위상 관계를 피드백한다. DQS 지연을 조정하여 CK 상승 에지에 DQS가 정렬되도록 한다. 각 바이트 레인(DQS-DQ 그룹)에 대해 개별적으로 수행된다. 실패 원인: CK 또는 DQS 신호 품질 열화, 과도한 스큐
+
+(2) Read Gate Training (DQS Gate Training): DRAM에서 돌아오는 DQS 신호의 프리앰블을 정확히 감지하는 시점을 찾는다. DQS가 유효한 구간과 무효한 구간(floating)을 구분하여, 유효 구간에서만 DQS를 수신하도록 게이트 타이밍을 설정한다. 실패하면 잘못된 시점에 DQS를 캡처하여 데이터가 모두 오류가 된다.
+
+(3) Read DQ Training (Read DQ Per-bit Deskew): 각 DQ 비트의 수신 샘플링 포인트를 개별적으로 조정한다. 보드 라우팅 길이 차이로 인해 DQ 비트마다 DQS 대비 도착 시간이 다르므로, 각 비트의 지연을 미세 조정한다. 패스/페일 경계를 찾아 중앙값(Centering)으로 설정한다.
+
+(4) Write DQ Training (Write DQ Per-bit Deskew): 메모리 컨트롤러의 DQ 출력 지연을 비트별로 조정한다. DRAM 측에서 DQS 기준으로 각 DQ를 최적의 위치에서 캡처할 수 있도록 한다.
+
+(5) Vref Training (Read/Write Vref Training): 수신측의 기준 전압(Vref)을 최적화한다. Read Vref는 메모리 컨트롤러의 DQ 수신 기준 전압, Write Vref는 DRAM의 DQ 수신 기준 전압이다. 전압을 스위핑하면서 Eye의 수직 중앙을 찾는다.
+
+(6) CA Training (DDR5): DDR5는 Command/Address 신호도 트레이닝한다. DRAM이 수신한 CA 패턴을 DQ로 피드백하여 CA 신호의 타이밍을 교정한다.
+
+각 트레이닝 단계의 결과(Pass/Fail Boundary, 마진 크기)는 PMU(Physical Media Unit) 트레이닝 로그에 기록된다. AE는 이 로그를 분석하여 마진이 부족한 바이트/비트를 식별하고, 해당 채널의 SI 문제를 추적한다. 트레이닝 마진이 스펙의 50% 미만이면 잠재적 불안정 요인으로 간주한다.
+
+
+--- 3. Shmoo Plot과 마진 분석 ---
+
+Shmoo Plot은 2차원 파라미터 공간에서 패스/페일 영역을 시각화하는 도구이다. 메모리 검증에서 가장 강력한 마진 분석 방법 중 하나이다.
+
+기본 개념: X축과 Y축에 각각 하나의 파라미터(예: 타이밍 vs 전압)를 놓고, 각 좌표 조합에서 메모리 테스트를 수행하여 패스(P)와 페일(F)을 표시한다. 패스 영역이 넓을수록 마진이 크다.
+
+일반적인 Shmoo Plot 축 조합:
+- Timing vs Voltage: X축에 DQ-DQS 타이밍 오프셋, Y축에 Vref 전압. 가장 흔한 Eye 마진 분석.
+- Frequency vs Voltage: X축에 동작 주파수, Y축에 전압. 최대 동작 주파수를 찾는 데 사용.
+- Temperature vs Timing: X축에 온도, Y축에 타이밍 마진. 온도 의존성 분석.
+
+Shmoo Plot 읽는 법:
+- 패스 영역(Pass Region)의 중심이 동작점(Operating Point)이어야 한다. 동작점이 패스 영역의 가장자리에 있으면 마진이 부족하다.
+- 패스 영역의 모양이 대칭적이어야 한다. 비대칭이면 특정 방향의 마진이 부족하고, 원인 분석이 필요하다.
+- PVT 코너(Corner) 비교: 상온(25도), 고온(85도), 저온(0도 또는 -40도)에서의 Shmoo를 비교한다. 고온에서 패스 영역이 축소되는 것은 정상이지만, 급격히 줄어들면 문제이다.
+
+Shmoo Plot 측정 방법:
+- BIOS 레벨: BIOS의 트레이닝 코드를 수정하여 파라미터를 스위핑하면서 테스트한다. 가장 정확하지만 접근이 어렵다.
+- FPGA 기반: FPGA 메모리 컨트롤러를 사용하여 파라미터를 자유롭게 스위핑한다. ATE(Automatic Test Equipment) 수준의 유연성.
+- 소프트웨어 기반: memtest86 등의 도구로 특정 설정에서 패스/페일을 확인한다. 파라미터 스위핑은 제한적이지만 현장에서 접근 가능하다.
+
+PVT 코너 분석: P(Process, 공정 변동), V(Voltage, 전압 변동), T(Temperature, 온도 변동)의 최악 조건 조합에서 마진을 확인해야 한다. Worst Case = Slow Process + Low Voltage + High Temperature이다. 이 조건에서도 충분한 마진이 있어야 양산에서 안정적이다.
+
+AE는 Shmoo Plot을 활용하여 고객 시스템의 마진을 정량적으로 분석하고, 마진 부족 시 어떤 파라미터(ODT, Vref, 타이밍)를 조정해야 하는지 데이터 기반으로 제안한다.
+
+
+--- 4. 메모리 테스트 도구와 디버깅 방법론 ---
+
+메모리 관련 문제를 진단하기 위한 도구들과 그 활용법을 정리한다.
+
+Memtest86 / Memtest86+: 부팅 없이(OS 없이) 실행되는 독립형 메모리 테스트 도구이다. 다양한 패턴(Walking 1/0, Moving Inversions, Block Move, Random Pattern)으로 메모리를 테스트한다. 장점은 누구나 쉽게 사용할 수 있고 OS 의존성이 없다는 것이다. 단점은 테스트 패턴이 제한적이고, 특정 DRAM 결함에 대한 커버리지가 부족할 수 있다. 에러가 발생한 주소, 비트 위치, 패턴을 로깅하여 불량 칩을 특정하는 데 활용된다.
+
+Intel MLC (Memory Latency Checker): 메모리 대역폭과 지연시간을 측정하는 도구이다. 실제 워크로드 수준의 부하를 줄 수 있다. 특정 대역폭에서의 지연(Bandwidth-Latency Curve)을 측정하여 메모리 서브시스템의 성능을 평가한다. AE는 이 도구로 고객 시스템의 실효 대역폭이 이론 대역폭의 몇 %인지를 측정하여 성능 병목을 진단한다.
+
+PMU Training Log: 메모리 컨트롤러의 PHY(Physical Layer) 트레이닝 결과를 기록한 로그이다. 인텔 플랫폼은 MRC Training Log, AMD는 ABL PMU Log이다. 각 채널, 랭크, 바이트, 비트별 트레이닝 마진(Pass Window)이 기록된다. AE가 가장 많이 활용하는 데이터 중 하나이며, 마진이 부족한 비트를 식별하여 SI 문제의 원인을 추적한다.
+
+FPGA 기반 메모리 검증: Xilinx/Altera FPGA에 메모리 컨트롤러 IP를 구현하여 DRAM을 직접 테스트한다. 장점: 파라미터를 자유롭게 변경 가능, 모든 MRS 설정 접근 가능, Shmoo Plot 자동 생성 가능. DRAM 칩 수준의 상세한 특성 평가에 사용된다. 고객 이슈 재현이 어려울 때 FPGA 환경에서 조건을 정밀하게 재현하여 원인을 분석한다.
+
+OS 레벨 도구: Linux의 EDAC(Error Detection And Correction) 드라이버로 ECC 에러 로그를 모니터링한다. mcelog, rasdaemon 등이 대표적이다. CE(Correctable Error)와 UCE(Uncorrectable Error)의 빈도, 위치(채널/DIMM/랭크/뱅크/행/열)를 기록한다.
+
+디버깅 방법론: 증상 분류(부팅 실패 / 간헐적 에러 / 성능 저하) → 로그 분석(트레이닝 로그, ECC 로그, 시스템 이벤트 로그) → 문제 격리(채널/DIMM/랭크/칩 단위) → Shmoo 측정 → 근본 원인 분석(DRAM 불량 / SI 문제 / 설정 오류 / 열 문제). AE는 이 체계적 접근을 통해 고객 이슈를 효율적으로 해결해야 한다.
+
+

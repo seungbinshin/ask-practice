@@ -1,0 +1,66 @@
+[ DDR5 모듈 에코시스템 ]
+==================================================
+
+--- 1. DDR5 모듈 부품 소자 (RCD, DB, PMIC, SPD Hub) ---
+
+DDR5 RDIMM은 DRAM 칩 외에 4종의 핵심 부품 소자(Component)를 모듈에 탑재한다. 이들은 DDR4 시대에는 일부만 RDIMM에 있었으나, DDR5의 고속화(4800~8800MT/s)로 인해 모두 필수가 되었다.
+
+(1) RCD (Registering Clock Driver)
+CA(Command/Address)와 CK(Clock) 신호를 호스트로부터 수신하여 버퍼링한 뒤, 모듈 위의 각 DRAM 칩에 재구동(Re-drive)하는 소자이다. DDR4 RDIMM에도 RCD가 있었으나, DDR5에서는 두 개의 독립 서브채널(Sub-ch A, Sub-ch B)을 각각 관리해야 하므로 역할이 확대되었다. RCD는 또한 CA 트레이닝(CS/CA Training)의 기준점이 되어 호스트-RCD 간 타이밍을 맞추는 데 사용된다. 주요 공급업체로는 Renesas(IDT), Montage Technology, Rambus 등이 있다.
+
+(2) DB (Data Buffer)
+DQ(데이터)와 DQS(데이터 스트로브) 신호를 호스트와 DRAM 사이에서 중계하는 소자이다. DDR4에서는 LRDIMM(Load Reduced DIMM)에만 DB가 탑재되었으나, DDR5에서는 모든 RDIMM에 DB가 탑재된다. 이유는 DDR5의 높은 데이터 레이트에서 호스트가 직접 다수의 DRAM을 구동하면 SI(Signal Integrity) 마진이 심각하게 열화되기 때문이다. DB는 신호를 재생성(Re-time, Re-drive)하여 Eye 마진을 확보한다. DDR5 RDIMM에서는 통상 10개의 DB가 탑재된다(서브채널당 5개).
+
+(3) PMIC (Power Management IC)
+DDR4에서는 메인보드의 VRM(Voltage Regulator Module)이 1.2V를 직접 DIMM에 공급했다. DDR5에서는 12V를 DIMM 커넥터까지 전달하고, 모듈 위의 PMIC가 필요한 전압으로 변환한다.
+
+전압 레일 구조:
+- VDD (1.1V): DRAM 코어 로직 전원
+- VDDQ (1.1V): I/O 드라이버 전원 (DQ/DQS 출력)
+- VPP (1.8V): 워드라인 부스트 전압 (ACTIVATE 시 사용)
+
+On-DIMM PMIC의 장점은 전압 변환 지점이 DRAM에 가까워 IR drop이 최소화되고, 전압 정밀도가 향상되며, 메인보드 VRM 설계 부담이 줄어든다는 것이다. 반면 DIMM 위에 발열원이 추가되어 열 관리가 필요하고, PMIC 자체의 EMI(전자파 간섭) 관리가 과제이다.
+
+(4) SPD Hub (SPD5)
+DDR4의 SPD는 I2C 기반 EEPROM(512바이트)으로, 모듈의 타이밍·전압·제조사 정보를 저장하는 단순 저장소였다. DDR5의 SPD Hub는 I3C 기반 허브 디바이스로 진화하여 다음 기능을 통합한다:
+- EEPROM (1KB 이상): 기존 SPD 정보 + 확장 데이터
+- TS (Temperature Sensor): 모듈 온도 실시간 감시
+- 이벤트 알림: I3C In-Band Interrupt로 온도 임계치 초과 시 호스트에 즉시 알림
+
+AE 실무에서 SPD는 중요한 디버깅 도구이다. 고객 시스템에서 모듈이 인식되지 않거나 틀린 속도로 동작할 때, SPD 내용을 읽어 JEDEC 프로파일과 XMP/EXPO 프로파일을 확인하고, 호스트 BIOS가 SPD 정보를 올바르게 해석하는지 검증한다.
+
+
+--- 2. 호스트 측 Memory Controller & PHY 기초 ---
+
+AE가 고객 시스템을 이해하려면 호스트 측의 메모리 서브시스템도 알아야 한다. 메모리 서브시스템은 크게 IMC(Memory Controller)와 PHY(Physical Interface)로 나뉜다.
+
+(1) IMC (Integrated Memory Controller)
+CPU 내부에 통합된 메모리 컨트롤러로, 다음을 담당한다:
+- 명령 스케줄링: READ/WRITE/ACTIVATE/PRECHARGE 명령의 발행 순서 결정
+- 주소 매핑: 물리 주소를 채널/랭크/뱅크그룹/뱅크/행/열 주소로 변환
+- Refresh 관리: tREFI에 맞춰 주기적 Refresh 명령 발행
+- ECC 처리: 시스템 ECC 인코딩/디코딩
+- Power State 제어: Power-Down, Self-Refresh 진입/탈출 관리
+
+Intel은 IMC를 CPU 다이에 직접 통합하며, 서버 플랫폼에 따라 채널 수와 DDR5 속도 지원이 다르다. AMD는 UMC(Unified Memory Controller)를 I/O 다이(IOD)에 배치한다.
+
+(2) DRAM PHY
+물리적 신호를 송수신하는 아날로그/디지털 혼합 회로로, 다음을 담당한다:
+- DLL(Delay-Locked Loop) 기반 타이밍 생성
+- Tx(송신) 드라이버: CA/DQ/DQS 신호 출력
+- Rx(수신) 수신기: DQ/DQS 신호 수신 및 데이터 복원
+- 이퀄라이저: CTLE(Continuous Time Linear Equalizer), DFE(Decision Feedback Equalizer)
+- 임피던스 캘리브레이션: ZQ Calibration 실행
+
+IMC와 PHY 사이는 DFI(DDR PHY Interface) 표준으로 연결된다. DFI는 Cadence와 Synopsys 등 PHY IP 벤더가 제공하는 PHY와 다양한 SoC의 메모리 컨트롤러를 연결하기 위한 표준 인터페이스이다.
+
+(3) Memory Training에서의 역할 분담
+BIOS POST 과정에서 진행되는 Memory Training은 IMC와 PHY가 협력하여 수행한다:
+- PHY: DLL 지연 스윕, DQS-CK 정렬(Write Leveling), Vref 스윕 등 물리적 조정을 실행
+- IMC: Training 시퀀스를 제어하고, 각 단계의 Pass/Fail을 판정하며, 최적값을 레지스터에 저장
+
+Intel 플랫폼에서는 MRC(Memory Reference Code)라는 펌웨어가 Training 전체를 관장한다. MRC는 BIOS에 내장되어 있으며, 메모리 초기화, Training, 최적화를 수행한다.
+
+AE 관점에서 IMC/PHY 이해가 중요한 이유: Training 실패나 안정성 문제가 발생했을 때, 문제가 DRAM 측인지 호스트 측인지를 구분해야 한다. PMU Training 로그를 읽으면 어떤 Training 단계에서 마진이 부족한지 확인할 수 있고, 이를 바탕으로 DRAM 설정(MRS) 조정이 필요한지, 호스트 BIOS 업데이트가 필요한지 판단한다.
+
+

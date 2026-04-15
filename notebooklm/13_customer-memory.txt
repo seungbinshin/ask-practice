@@ -1,0 +1,92 @@
+[ 고객별 메모리 제품 (GDDR·LPDDR·차량) ]
+==================================================
+
+--- 1. GDDR 계열 기초 (GDDR6/6X/7) ---
+
+JD에서 "그래픽카드" 고객을 명시하고 있으므로, GDDR(Graphics DDR) 계열에 대한 이해가 필요하다.
+
+(1) GDDR vs DDR/LPDDR/HBM 포지셔닝
+GDDR은 그래픽 처리에 최적화된 고대역폭 메모리이다. DDR이 범용 컴퓨팅용, LPDDR이 모바일 저전력용, HBM이 극한 대역폭용이라면, GDDR은 "합리적 비용에 높은 대역폭"을 제공하는 포지션이다.
+
+핵심 차이점: GDDR은 모듈 형태가 아니라 GPU PCB에 직접 BGA로 실장(Soldered-on)된다. 따라서 DIMM이 존재하지 않고, AE의 지원 범위가 "고객의 그래픽카드/가속기 보드 설계 단계"부터 시작된다.
+
+(2) GDDR6 (2018~)
+- 시그널링: NRZ (Non-Return-to-Zero), 전통적 2레벨 신호
+- 속도: 14~18 Gbps/pin
+- 인터페이스: x16 또는 x32 (칩당)
+- 주요 용도: 범용 GPU(게이밍, 워크스테이션), 게임 콘솔
+
+(3) GDDR6X (2020~, NVIDIA 주도)
+- 시그널링: PAM4 (Pulse Amplitude Modulation 4-level)
+  - NRZ가 1비트/심볼인 반면, PAM4는 2비트/심볼 → 같은 보드레이트에서 2배 데이터 전송
+  - 대신 Eye height가 1/3로 줄어들어 SNR(신호 대 잡음비) 마진이 크게 감소
+- 속도: 21~24 Gbps/pin
+- 주요 용도: NVIDIA RTX 3090/4090 등 하이엔드 GPU
+- 마이크론이 독점 공급 중
+
+(4) GDDR7 (2024~)
+- 시그널링: PAM3 (3레벨: +1, 0, -1)
+  - PAM4의 4레벨 대비 레벨 간 간격이 넓어져 SNR 마진이 개선
+  - PAM4 대비 약 50% Eye height 개선, NRZ 대비 1.5배 데이터 전송
+- 속도: 32~40+ Gbps/pin
+- 주요 용도: 차세대 GPU, AI 추론 카드
+- JEDEC JESD250 표준
+
+(5) AE 관점에서 GDDR의 특수성
+- On-board 실장이므로 모듈 교체가 불가 → 고객 보드 설계 단계에서의 SI 검증이 핵심
+- GPU 벤더(NVIDIA, AMD)와의 직접 기술 협업이 필요
+- PAM4/PAM3 시그널링은 Eye 마진이 NRZ보다 훨씬 작으므로, PCB 설계 품질과 이퀄라이저 최적화가 더욱 중요
+- AI 추론 시장에서 GDDR은 HBM의 비용 효율적 대안으로 수요 증가 중 (예: NVIDIA RTX 기반 추론 서버)
+
+
+--- 2. LPDDR 모바일 심화 (저전력 모드·패키지) ---
+
+LPDDR은 모바일 기기의 배터리 수명에 직결되므로, 다양한 저전력 모드가 정의되어 있다.
+
+(1) LPDDR5/5X 저전력 모드
+- Active: 데이터 읽기/쓰기 중. 전력 최대.
+- Idle: 명령 대기 상태. CKE HIGH 유지.
+- Power-Down: CKE LOW로 내부 클럭 중지. 빠른 복귀(~수십 ns).
+- Self-Refresh (SR): 외부 클럭 없이 DRAM 자체 Refresh. 데이터 유지. 복귀 시간 ~수 us.
+- Partial Array Self-Refresh (PASR): Self-Refresh 시 활성 영역을 지정. 사용하지 않는 뱅크/세그먼트의 Refresh를 중단하여 전력 50% 이상 절감. 모바일 OS가 메모리 사용량에 따라 동적으로 PASR 영역을 제어.
+- Deep Power Down (DPD): 모든 내부 전력 차단. 데이터 완전 소실. 최저 전력. 복귀 시 완전 재초기화(Training 포함) 필요. 장시간 미사용 시 진입.
+
+LPDDR5X 고유 기능:
+- DVFSC (Dynamic Voltage Frequency Scaling Clock): 워크로드에 따라 동작 주파수와 전압을 실시간으로 변경. 고성능이 필요한 순간에만 풀 스피드로 동작하고, 유휴 시 저속/저전압으로 전환.
+- WCK (Write Clock): 별도의 쓰기 클럭으로 데이터 전송 타이밍 관리.
+
+(2) LPDDR 패키지 특성
+- PoP (Package-on-Package): AP(Application Processor) 위에 LPDDR 패키지를 적층하는 구조. 기판 면적 절약이 핵심. Qualcomm Snapdragon, MediaTek Dimensity, Apple A/M 시리즈 칩셋에서 사용.
+- FBGA 직접 실장: 고성능 노트북/태블릿에서는 메인보드에 직접 솔더링.
+
+AE 역할: 고객 전력 시나리오(상시 대기 vs 간헐적 고성능)에 맞춰 PASR/DPD/DVFSC 최적 조합을 제안한다. 모바일 배터리 수명의 30% 이상이 메모리 전력과 관련되므로, 저전력 모드 설정이 배터리 성능을 좌우한다.
+
+
+--- 3. 차량용 AEC-Q100 심화 ---
+
+AEC-Q100은 차량용 집적회로의 신뢰성 인증 표준이다.
+
+(1) 온도 등급
+- Grade 0: -40°C ~ +150°C (엔진룸, 파워트레인) — 메모리 칩에는 거의 사용되지 않음
+- Grade 1: -40°C ~ +125°C (일반 차량 전장, ADAS) — 차량용 DRAM의 주 타깃
+- Grade 2: -40°C ~ +105°C (차체 전자장치)
+- Grade 3: -40°C ~ +85°C (실내, 인포테인먼트)
+
+(2) 인증 요구사항
+차량용 DRAM(주로 LPDDR4X/5)은 Grade 1~2를 타깃하며, 다음이 요구된다:
+- 1000시간 이상 스트레스 테스트 (HTOL: 고온 동작, TC: 온도 사이클, THB: 고온 고습)
+- Zero-defect 목표, ppm 단위 불량률 관리
+- PPAP (Production Part Approval Process): 양산 승인 프로세스
+- 일반 DIMM 대비 엄격한 스크리닝: 전수 검사, 번인(Burn-in) 테스트
+
+(3) ISO 26262 ASIL 연계
+ASIL(Automotive Safety Integrity Level)은 A~D 등급으로, D가 최고 안전 등급이다.
+- ADAS/자율주행: ASIL-B~D 요구
+- ECC 탑재 필수, 고장 검출 커버리지(Diagnostic Coverage) 충족
+- FMEDA(Failure Modes, Effects, and Diagnostic Analysis) 보고서 제출
+
+SK하이닉스는 LPDDR5X에서 ASIL-D 인증을 완료하여 자율주행 시스템에 공급 가능.
+
+AE 역할: 차량용 고객에게 온도 마진 데이터 제공, 내구 시험 결과 보고, 일반 DIMM 대비 차량용의 엄격한 품질 차이를 설명. 차량용 고객은 인증 과정이 6~12개월 이상 소요되므로, AE가 초기 단계부터 긴밀히 참여해야 한다.
+
+

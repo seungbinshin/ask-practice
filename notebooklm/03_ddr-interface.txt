@@ -1,0 +1,91 @@
+[ DDR4/DDR5 인터페이스 ]
+==================================================
+
+--- 1. DDR4에서 DDR5로의 핵심 변화 ---
+
+DDR4에서 DDR5로의 전환은 단순한 속도 향상이 아니라 아키텍처 수준의 근본적 변화를 포함한다.
+
+전압 변화: DDR4는 VDD/VDDQ = 1.2V, DDR5는 1.1V이다. 전력 = C × V^2 × f 이므로, 전압 감소만으로 (1.1/1.2)^2 = 약 16%의 전력 절감 효과가 있다.
+
+프리페치(Prefetch) 변화: DDR4는 8n, DDR5는 16n이다. 프리페치란 한 번의 내부 접근에서 몇 비트를 동시에 읽어오는지를 의미한다. DDR4는 내부 클럭 한 사이클에 8비트를 프리페치하고 DDR(Double Data Rate)로 4클럭에 걸쳐 전송한다. DDR5는 16비트를 프리페치하고 8클럭에 걸쳐 전송한다. 버스트 길이(BL)도 DDR4의 BL8에서 DDR5의 BL16으로 증가했다. 물리적으로 프리페치가 2배 증가하면 내부 코어 클럭은 그대로 유지하면서 외부 인터페이스 속도를 2배 높일 수 있다.
+
+채널 구조 변화: DDR4는 채널당 64비트(ECC 포함 72비트) 단일 채널이다. DDR5는 채널당 32비트(ECC 포함 40비트) × 2개 서브채널 구조이다. 총 데이터 폭은 동일하지만, 독립적인 2개 서브채널로 나누어 버스트 효율을 높였다. 각 서브채널이 독립적인 ACTIVATE, READ, WRITE 명령을 처리할 수 있어 Fine-grained Access가 가능하다. 최소 접근 단위가 DDR4의 64B에서 DDR5의 32B로 줄어 캐시라인 효율이 향상된다.
+
+새로운 기능들:
+- On-die ECC: DRAM 칩 내부에서 128비트 데이터에 대해 SEC(Single Error Correction) ECC를 수행한다. 외부로 나가기 전에 단일 비트 에러를 자체 정정한다.
+- DFE (Decision Feedback Equalizer): 수신단에서 ISI(Inter-Symbol Interference)를 보상하는 이퀄라이저이다. 고속 신호에서 이전 비트의 잔류 영향을 제거한다.
+- On-DIMM PMIC: 전원 관리 IC가 메인보드가 아닌 DIMM 위에 탑재된다. VIN 12V에서 VDD 1.1V, VPP 1.8V 등을 DIMM 자체에서 변환한다.
+
+AE는 DDR4에서 DDR5로 전환하는 고객에게 이러한 아키텍처 변화의 의미를 설명하고, 보드 설계 변경사항(PMIC, 서브채널 라우팅 등)을 안내해야 한다.
+
+
+--- 2. MRS (Mode Register Set)와 ZQ Calibration ---
+
+MRS(Mode Register Set)는 DRAM의 내부 동작 모드를 설정하는 레지스터들이다. 초기화 시 BIOS/메모리 컨트롤러가 MRS 명령으로 설정하며, 동작 중에도 변경 가능한 항목이 있다.
+
+DDR5는 256개의 Mode Register(MR0~MR255)를 가지며, 주요 설정 항목은 다음과 같다.
+
+MR0: Burst Length(BL16/BL32), CAS Latency 설정
+MR1: DLL Enable, Driver Impedance(Ron = 34/40/48Ω), Additive Latency(AL)
+MR2: Read/Write Latency 설정
+MR3: Write CMD Latency, Fine Granularity Refresh 모드
+MR4: Temperature Sensor, Refresh Rate 설정
+MR5: Read DBI(Data Bus Inversion), Write DBI 설정
+MR6: tCCD_L, VrefDQ Training 값
+MR8: Read Preamble 설정(1tCK/2tCK/3tCK/4tCK)
+
+RTT(Termination) 관련 설정:
+- RTT_NOM: 일반 상태에서의 종단 저항 (MR1)
+- RTT_WR: WRITE 동작 시의 종단 저항 (MR2)
+- RTT_PARK: 비활성 랭크의 상시 종단 저항 (MR5)
+
+AE가 MRS를 조정하는 상황은 주로 시그널 인티그리티 문제 해결 시이다. 예를 들어 Eye 마진이 부족하면 드라이브 임피던스(Ron)를 조정하거나 RTT 값을 변경하여 반사를 최소화한다.
+
+ZQ Calibration은 PVT(Process, Voltage, Temperature) 변동에 따른 DRAM 출력 드라이버 및 ODT 임피던스 변화를 보정하는 기능이다. DRAM의 ZQ 핀에 외부 정밀 저항(240Ω, 1%)이 연결되어 있으며, 이를 기준으로 내부 Ron과 RTT를 교정한다.
+
+ZQCL (ZQ Calibration Long): 전체 교정, 초기화 시 수행, tZQCAL = 1us
+ZQCS (ZQ Calibration Short): 주기적 미세 조정, tZQCS = 128ns
+
+온도가 변하면 MOSFET의 이동도(Mobility)가 변하여 임피던스가 달라진다. ZQ Calibration 없이는 고온에서 드라이버 임피던스가 증가하여 신호 품질이 저하될 수 있다. AE는 고객 시스템에서 온도 변화에 따른 간헐적 에러가 발생할 때, ZQ Calibration 주기가 적절한지 확인해야 한다.
+
+XMP(Extreme Memory Profile, Intel) / EXPO(Extended Profiles for Overclocking, AMD)는 SPD에 저장된 오버클럭 프로파일로, JEDEC 표준보다 공격적인 타이밍/주파수 설정을 포함한다. AE는 오버클럭 프로파일 사용 시 안정성 검증 방법을 고객에게 안내해야 한다.
+
+
+--- 3. DDR5 Read Burst 파형 분석 ---
+
+DDR5의 데이터 전송 파형을 정확히 이해하면 시그널 인티그리티 문제를 분석할 수 있다.
+
+기본 클럭 관계: DDR5-4800 기준으로 CK(Clock) 주파수는 2400MHz이며, 주기 tCK = 0.416ns이다. DDR(Double Data Rate)이므로 상승 에지와 하강 에지 모두에서 데이터를 전송하여 실효 데이터 전송률은 4800MT/s가 된다.
+
+Read Burst 시퀀스: 메모리 컨트롤러가 READ 명령을 발행하면, tCL 클럭 후에 DRAM이 데이터를 출력한다.
+
+(1) Preamble: DQS(Data Strobe) 신호가 먼저 프리앰블 패턴을 출력한다. DDR5는 설정에 따라 1tCK, 2tCK, 3tCK, 4tCK 프리앰블을 지원한다. 프리앰블은 수신측이 DQS의 토글 시작을 인식하고 타이밍을 맞추는 역할을 한다. 프리앰블 동안 DQS는 미리 정해진 패턴(Toggle 또는 Static)을 출력한다.
+
+(2) Data Burst: DQS가 토글하면서 각 에지에 맞춰 DQ 핀에서 데이터가 출력된다. DDR5의 BL16이므로 16비트가 순차적으로 전송된다. 8번의 DQS 토글(상승 8 + 하강 8 = 16 데이터 비트) 동안 진행된다. DQ와 DQS의 관계는 Source Synchronous 방식이다. DRAM이 DQ와 DQS를 동시에 출력하며(Edge Aligned), 수신측(메모리 컨트롤러)에서 DQS를 지연시켜(90도 위상 이동) DQ의 중앙에서 샘플링한다.
+
+(3) Postamble: 데이터 버스트 후 DQS가 한 사이클 추가로 유지되어 마지막 데이터의 안정적 캡처를 보장한다.
+
+DBI (Data Bus Inversion): DDR5에서 지원하는 전력 절감 기능이다. 전송할 데이터에서 '0'의 수가 '1'보다 많으면 데이터를 반전시켜 전송하고, DBI 핀으로 반전 여부를 알린다. 이렇게 하면 SSN(Simultaneous Switching Noise)이 줄어들고, 종단 전류가 감소하여 전력이 절약된다.
+
+AE는 오실로스코프로 실제 파형을 관찰할 때, 프리앰블/포스트앰블 설정이 올바른지, DQ-DQS 타이밍 관계가 스펙 내인지 확인한다. 아이 다이어그램(Eye Diagram) 측정 시 프리앰블 영역을 제외하고 데이터 유효 구간만 분석해야 한다.
+
+
+--- 4. On-die ECC와 DFE 상세 ---
+
+On-die ECC와 DFE는 DDR5에서 도입된 핵심 신뢰성/성능 기술이다.
+
+On-die ECC는 DRAM 칩 내부에서 데이터 무결성을 보장하는 기술이다. 내부 데이터 128비트에 대해 8비트의 ECC 코드를 추가하여 총 136비트를 셀 어레이에 저장한다. READ 시 내부에서 ECC 디코딩을 수행하여 단일 비트 에러(SBE)를 자동 정정한 후 128비트만 외부로 출력한다. 이 과정은 메모리 컨트롤러에 투명(Transparent)하게 이루어진다.
+
+중요한 점은 On-die ECC가 외부에서 관찰되지 않는다는 것이다. 칩 내부에서 에러가 정정되어 나오므로, 시스템 레벨에서는 에러가 없는 것처럼 보인다. 그러나 On-die ECC의 정정 능력을 초과하는 에러(2비트 이상)는 여전히 외부로 전파된다. 따라서 On-die ECC는 시스템 레벨 ECC(DIMM 레벨 SECDED)를 대체하는 것이 아니라 보완하는 것이다.
+
+AE 관점에서 On-die ECC 때문에 DRAM 내부 에러율을 외부에서 직접 측정하기 어려워졌다. 에러 통계를 위해서는 On-die ECC의 정정 횟수를 모니터링하는 Error Logging 기능을 활용해야 한다. DDR5의 MR(Mode Register)를 통해 On-die ECC 에러 카운터에 접근할 수 있다.
+
+DFE (Decision Feedback Equalizer)는 고속 신호에서 ISI(Inter-Symbol Interference, 심벌 간 간섭)를 보상하는 수신측 이퀄라이저이다. DDR5에서 데이터 레이트가 4800MT/s 이상으로 올라가면서 채널의 주파수 의존적 손실이 커지고, 이전 비트의 잔류 에너지가 현재 비트 판독에 영향을 미친다.
+
+DFE의 동작 원리는 다음과 같다. 이전에 판독한 비트 값(1 또는 0)을 피드백하여, 해당 비트가 현재 비트에 미치는 ISI 영향을 계산하고, 수신 신호에서 이를 차감한다. DDR5의 DFE는 1-tap 또는 2-tap을 지원하며, 각 tap의 계수(coefficient)는 트레이닝 과정에서 최적값으로 설정된다.
+
+DFE의 장점은 CTLE(Continuous Time Linear Equalizer)와 달리 노이즈를 증폭시키지 않으면서 ISI만 제거한다는 것이다. 단점은 이전 비트 판독이 잘못되면 오류가 전파(Error Propagation)될 수 있다는 것이다.
+
+AE는 DDR5 시스템에서 Eye 마진이 부족할 때 DFE tap 계수를 조정하거나, DFE 트레이닝이 정상적으로 수행되었는지 확인해야 한다. DFE 트레이닝 실패는 채널 손실이 DFE 보상 범위를 초과했음을 의미할 수 있다.
+
+

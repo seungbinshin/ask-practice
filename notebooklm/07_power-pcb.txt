@@ -1,0 +1,115 @@
+[ Power Integrity & PCB 설계 ]
+==================================================
+
+--- 1. PDN 임피던스와 디커플링 ---
+
+PDN(Power Distribution Network, 전원 분배 네트워크)은 전원 소스에서 DRAM 칩까지 전력을 공급하는 경로 전체를 의미한다. PDN 임피던스가 충분히 낮아야 DRAM의 급격한 전류 변화에도 전압이 안정적으로 유지된다.
+
+PDN 임피던스 요구사항: DRAM이 동작할 때 전류가 급격히 변한다(di/dt). 이때 PDN 임피던스(ZPDN)가 높으면 전압 강하(ΔV = ZPDN × ΔI)가 커진다. JEDEC 스펙에서 VDD 허용 변동 범위는 일반적으로 ±3~5%이다. DDR5 VDD = 1.1V에서 ±5% = ±55mV이므로, 최대 전류 변화 시 전압 강하가 55mV를 넘지 않아야 한다.
+
+목표 임피던스(Target Impedance): Ztarget = ΔV_allowed / ΔI_max. 예를 들어 ΔV = 55mV, ΔI = 2A이면 Ztarget = 27.5mΩ이다. 이 임피던스를 DC부터 DRAM의 최대 동작 주파수까지 전 대역에서 유지해야 한다.
+
+멀티 스테이지 디커플링(Multi-stage Decoupling): 서로 다른 주파수 대역의 임피던스를 각 단계의 커패시터가 담당한다.
+
+(1) Bulk Capacitor (벌크 캐패시터): 수백 uF ~ 수 mF 대용량. 전해 캐패시터 또는 폴리머 캐패시터. DC ~ 수 kHz 대역의 저주파 전류 변동을 흡수한다. VRM(Voltage Regulator Module) 출력단에 배치한다.
+
+(2) MLCC (Multi-Layer Ceramic Capacitor): 0.1uF ~ 10uF. 수 kHz ~ 수백 MHz 대역을 담당한다. DRAM 칩 근처에 배치하여 중주파 노이즈를 억제한다. ESL(Equivalent Series Inductance)이 낮은 제품을 선택해야 하며, 0402/0201 사이즈를 사용한다. 반공진(Anti-resonance)을 피하기 위해 다양한 용량의 MLCC를 혼합 배치한다.
+
+(3) On-die Capacitor (온다이 캐패시터): DRAM 칩 내부의 기생 커패시턴스(수 nF). 수백 MHz 이상의 고주파 대역을 담당한다. 칩 설계에 의해 결정되므로 보드 수준에서 제어할 수 없다.
+
+각 스테이지 간 전환 주파수에서 반공진이 발생하여 임피던스가 급격히 상승할 수 있다. 이를 방지하기 위해 커패시터 용량을 적절히 분배하고, 반공진 주파수에서의 피크 임피던스가 Ztarget을 넘지 않도록 설계한다.
+
+AE는 고객의 보드에서 전원 노이즈 관련 문제(SSN에 의한 Eye 열화, 랜덤 에러)가 의심될 때, PDN 임피던스 측정(VNA 사용) 또는 전원 리플 측정(오실로스코프)을 통해 PDN 품질을 평가하고 디커플링 커패시터 추가/변경을 제안한다.
+
+
+--- 2. IR Drop과 SSN (Simultaneous Switching Noise) ---
+
+IR Drop과 SSN은 전력 무결성 문제의 두 가지 주요 현상이다.
+
+IR Drop: DC 전류에 의한 전원 경로의 전압 강하이다. 전원 핀에서 DRAM 칩까지의 경로에는 PCB 트레이스 저항, 비아 저항, 커넥터 접촉 저항, 패키지 내 배선 저항 등이 존재한다. 총 경로 저항을 RPDN이라 하면, IR Drop = I × RPDN이다.
+
+DDR5에서 On-DIMM PMIC가 도입된 이유 중 하나가 IR Drop 감소이다. DDR4에서는 메인보드의 VRM에서 DIMM까지 긴 전원 경로(수십 cm)를 거쳤지만, DDR5는 12V가 DIMM까지 전달된 후 PMIC가 DIMM 위에서 1.1V로 변환하므로 저전압 전원 경로가 매우 짧다. 12V 전달 시에는 전류가 작으므로(P = V × I에서 같은 전력에서 전압이 높으면 전류가 작음) IR Drop이 작다.
+
+SSN (Simultaneous Switching Noise, 동시 스위칭 노이즈): 여러 출력 드라이버가 동시에 스위칭할 때 발생하는 전원/그라운드 바운스이다. 출력 드라이버가 LOW→HIGH로 전환하면 VDD에서 전류를 끌어오고, HIGH→LOW로 전환하면 전류가 GND로 흐른다. 많은 DQ 핀이 동시에 같은 방향으로 전환하면, 전원/그라운드 경로의 인덕턴스(L)에 의해 ΔV = L × di/dt 만큼의 전압 변동이 발생한다.
+
+SSN의 영향:
+- 전원 바운스(VDD Bounce): 실제 VDD 전압이 순간적으로 하락하여 '1' 출력의 전압이 낮아짐
+- 그라운드 바운스(Ground Bounce): 실제 GND 전압이 순간적으로 상승하여 '0' 출력의 전압이 높아짐
+- 결과적으로 Eye의 높이(전압 마진)가 줄어듦
+
+SSN 완화 방법:
+- DBI(Data Bus Inversion): 전환되는 비트 수를 줄여 SSN 감소
+- 디커플링 커패시터: 고주파 전류를 로컬에서 공급
+- 전원/그라운드 비아 수 증가: 인덕턴스 감소(L_total = L_single / N)
+- 적절한 드라이버 임피던스(Ron): 너무 강한 드라이버는 di/dt를 증가시킴
+
+AE는 SSN 관련 문제를 진단할 때, 특정 데이터 패턴(예: 모든 DQ가 동시에 전환하는 패턴)에서만 에러가 발생하는지 확인한다. 패턴 의존적 에러는 SSN의 강력한 증거이다. DBI 설정이 올바른지, 디커플링이 충분한지를 점검한다.
+
+
+--- 3. DDR5 PCB 라우팅 규칙 ---
+
+DDR5의 고속 신호를 안정적으로 전달하기 위한 PCB 설계 규칙은 매우 엄격하다. AE는 고객의 보드 설계를 검토하고 가이드라인을 제공해야 하는 경우가 있다.
+
+임피던스 제어:
+- 싱글엔드 신호(DQ, DQS, CMD, ADDR): 특성 임피던스 50Ω ± 10%
+- 차동 신호(CK, DQS 차동쌍): 차동 임피던스 100Ω ± 10%
+- 임피던스 제어를 위해 스택업(Layer Stackup) 설계와 트레이스 폭/간격을 정밀하게 관리해야 한다
+
+길이 매칭 (Length Matching):
+- DQ-DQS 그룹 내: 같은 바이트 레인의 DQ 비트들과 DQS의 길이 차이를 ±0.5mm 이내로 관리한다. 타이밍 오차가 최소화되어야 비트별 스큐가 작다.
+- DQS-CK 매칭: DQS와 CK의 길이 차이를 제어한다. Write Leveling으로 보상 가능하지만, 보상 범위 내에 있어야 한다.
+- CA(Command/Address) 그룹 내: CA 신호 간 스큐를 최소화한다.
+
+비아 관리 (Via Management):
+- 신호 비아는 최소화하되, 필요 시 안티패드(Anti-pad) 크기를 적절히 설정
+- 비아 스텁(Via Stub)이 길면 고주파에서 공진이 발생하므로 백드릴(Back-drill)로 스텁을 제거
+- DDR5 속도에서 비아 스텁 길이는 10mil(0.25mm) 이하로 권장
+
+그라운드 스티칭 (Ground Stitching):
+- 리턴 전류 경로를 확보하기 위해 신호 비아 근처에 그라운드 비아를 배치
+- 레퍼런스 플레인 전환 시 그라운드 비아로 리턴 경로를 연결
+
+스플릿 플레인 금지 (Split Plane Prohibition):
+- 신호 트레이스 아래의 그라운드/전원 플레인에 갭(Gap)이 있으면 리턴 전류 경로가 끊어져 EMI와 크로스토크가 급증한다. 고속 DDR5 신호 경로 아래에서는 절대 플레인 분할을 하면 안 된다.
+
+기판 소재:
+- DDR4-3200까지는 일반 FR4(Dk ≈ 4.2, Df ≈ 0.02)로 가능했으나, DDR5-4800 이상에서는 저손실 소재가 필요하다.
+- Megtron 6 (Dk ≈ 3.6, Df ≈ 0.004): DDR5 고속 구간에 권장
+- ITEQ IT-170GRA, Panasonic R-5775K 등도 대안
+- 저손실 소재는 비용이 높으므로 신호 경로 레이어에만 선택적으로 적용하는 하이브리드 스택업도 가능하다.
+
+AE는 고객의 보드 설계 리뷰 시 이러한 규칙의 준수 여부를 확인하고, 위반 사항에 대해 SI 시뮬레이션 결과와 함께 수정 방향을 제안한다.
+
+
+--- 4. DDR5 On-DIMM PMIC과 EMI/EMC ---
+
+DDR5의 On-DIMM PMIC(Power Management IC)은 아키텍처적으로 큰 변화이다. DDR4에서는 메인보드의 VRM이 1.2V VDD를 직접 DIMM에 공급했지만, DDR5에서는 12V가 DIMM까지 전달되고 DIMM 위의 PMIC이 필요한 전압으로 변환한다.
+
+PMIC의 주요 출력:
+- VDD (1.1V): DRAM 코어 전원
+- VDDQ (1.1V): DQ 드라이버 전원 (VDD와 별도 공급으로 노이즈 격리)
+- VPP (1.8V): 워드라인 부스트 전압
+- VDDH (2.5V): RCD/DB 전원 (RDIMM/LRDIMM)
+
+PMIC의 장점:
+(1) IR Drop 감소: 1.1V 전원 경로가 DIMM 내로 단축되어 경로 저항에 의한 전압 강하가 극적으로 줄어든다.
+(2) 전원 효율 향상: 12V × 낮은 전류로 메인보드를 통과하므로 메인보드의 전도 손실이 줄어든다.
+(3) 전원 품질 향상: PMIC가 DRAM 칩 바로 옆에서 전압을 조정하므로 과도 응답(Transient Response)이 빠르다.
+(4) 개별 DIMM 전원 관리: 각 DIMM의 전압을 독립적으로 미세 조정할 수 있어, 마진 최적화에 유리하다.
+
+PMIC 제어: 시스템의 BMC(Baseboard Management Controller) 또는 BIOS가 I2C/I3C를 통해 PMIC를 제어한다. 전압 조정, 전류 제한, 과온 보호, 전원 시퀀싱 등을 관리한다. SK하이닉스와 MPS(Monolithic Power Systems), Renesas 등이 DDR5 PMIC를 공급한다.
+
+EMI/EMC 관련:
+EMI(Electromagnetic Interference, 전자파 간섭)는 DDR5의 고속 신호가 방사하는 전자파가 다른 시스템이나 회로에 간섭을 일으키는 것이다. DDR5-4800의 기본 주파수 2.4GHz와 그 고조파(3차 = 7.2GHz)는 상당한 방사를 일으킬 수 있다.
+
+EMI 완화 방법:
+- 스프레드 스펙트럼 클럭킹(SSC, Spread Spectrum Clocking): 클럭 주파수를 미세하게 변조하여 에너지를 분산시킨다. ±0.5% 변조가 일반적이다.
+- 적절한 실딩(Shielding)과 그라운딩
+- DBI 사용: SSN을 줄여 방사 전자파도 감소
+- 임피던스 매칭: 반사를 줄여 정재파에 의한 방사를 억제
+
+EMC(Electromagnetic Compatibility): 시스템이 전자파 환경에서 정상 동작하고, 다른 장치에 해를 주지 않는 능력이다. 각국 규제(FCC Part 15, CE Marking, KCC 등)를 만족해야 한다.
+
+AE는 고객의 EMI 테스트 실패 시, 메모리 서브시스템이 원인인지 확인하고, SSC 설정, 보드 레이아웃, 실딩 등의 개선 방안을 제안한다.
+
+

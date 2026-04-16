@@ -16,6 +16,25 @@ export const modelAnswers = {
 
   'intro-8': `설계를 하면서 가장 몰입했던 순간은, 단일 블록을 최적화할 때가 아니라 시스템 전체에서 병목을 찾아내고 다른 팀과 논의하며 해결 방향을 맞추는 순간이었습니다. 하지만 설계 직무에서는 이런 소통 경험을 하기가 극도로 제한됩니다. 대부분의 시간은 자기 모듈에 집중하게 되고, 고객이나 외부와 직접 소통하며 문제를 함께 풀어가는 기회는 거의 없습니다. 저는 기술적 역량을 갖춘 상태에서, 그 역량을 고객 접점에서 실제 가치 창출에 더 직접적으로 쓰고 싶다는 생각이 확고해졌습니다. AE는 회로 수준의 이해를 바탕으로 고객 시스템이라는 더 큰 맥락에서 문제를 다루고, 해결책을 제안하며 고객과 함께 성장하는 역할입니다. 설계 경험은 포기한 것이 아니라, AE에서 차별화된 강점이 됩니다.`,
 
+  'intro-9': `SK하이닉스여야 하는 이유는 세 가지입니다. 첫째, SUPEX라는 인재상입니다. 도달할 수 있는 최고 수준을 추구하는 문화가 제가 일해온 방식과 맞닿아 있습니다. 전 직장에서 검증용 코드를 단순히 동작하는 수준에 두지 않고 라이브러리로 고도화하여 7.08배 속도 향상을 달성한 것처럼, 기대치를 넘어서는 결과를 추구하는 것이 저의 기본 자세입니다. 둘째, 제품 경쟁력입니다. HBM 시장 점유율 1위를 포함해 DDR5, LPDDR5X, CXL까지 전 제품군에서 리더십을 가지고 있고, NVIDIA뿐 아니라 Google TPU, Amazon Trainium, AMD 등 고객이 다변화되고 있어 AE가 가장 넓은 범위에서 기여할 수 있는 환경입니다. 셋째, Full Stack AI Memory Creator라는 미래 비전입니다. Provider에서 Creator로의 전환을 선언하면서 AE의 역할이 단순 기술지원에서 고객 아키텍처를 이해한 기술 컨설턴트로 확장되고 있습니다. 소프트웨어와 하드웨어 양쪽 경험, 그리고 세 개 언어로 고객과 직접 소통해본 역량이 Creator 시대 AE에 가장 필요한 역량이라고 확신하여, 제 역량을 최대로 발휘할 수 있는 곳으로 SK하이닉스를 선택했습니다.`,
+
+  // ── Part 1: New CoC ──
+  'coc-1': `Bar Raising은 현재 수준에 안주하지 않고 더 높은 기준을 추구하는 것이라고 이해합니다. 전 직장에서 검증용으로 작성한 C언어 코드를 단순히 동작하는 수준에 두지 않고, 시뮬레이터 팀까지 쓸 수 있도록 라이브러리로 고도화하여 7.08배의 속도 향상을 달성했습니다. ULP 오차 평가 자동화에서도 처음에는 수작업 시간을 줄이는 것이 목표였지만, 더 높은 기준을 추구한 결과 커버리지 자체를 84개에서 2,500개로 30배 가까이 확장하게 되었습니다. 주어진 기대치를 넘어서 더 나은 결과를 만드는 것이 저의 기본 자세이며, 이것이 SK하이닉스가 추구하는 Bar Raising과 맞닿아 있다고 생각합니다.`,
+
+  'coc-2': `Data Driven은 감이나 경험에만 의존하지 않고 데이터를 근거로 의사결정하는 것입니다. 전 직장에서 연산기 파라미터를 선정할 때, 기존에는 수작업으로 84개 조합만 분석하여 직관적으로 판단하고 있었습니다. 저는 Streamlit 기반 시각화 도구를 만들어 2,500개 조합의 오차를 히트맵으로 정량 비교할 수 있게 했고, 이 데이터가 파라미터 선정의 공식 근거로 활용되고 있습니다. 라이브러리 고도화 과정에서도 GitHub CI에 bit-wise 테스트, ULP 테스트, pytest를 구성하여 모든 업데이트의 무결성을 데이터로 검증했습니다. AE 직무에서도 고객 이슈 대응 시 측정 데이터와 로그를 근거로 소통하는 것이 핵심이라고 생각합니다.`,
+
+  'coc-3': `One Team은 부서나 역할의 경계를 넘어 하나의 목표를 향해 협업하는 것입니다. 전 직장에서 검증 팀과 시뮬레이터 팀이 각자 독립적으로 코드를 관리하다 보니 동기화 문제가 반복되고 있었습니다. 저는 공통 라이브러리를 제안하여 양 팀이 하나의 소스를 공유하도록 구조를 바꿨고, 안정화될 때까지 팀 간 최신 상태를 꾸준히 맞춰갔습니다. JAPAN IT WEEK에서도 통역사분과 역할을 명확히 나눠서, 기술 설명은 제가, 언어적 보완은 통역사분이 담당하며 서로의 강점을 결합했습니다. AE는 고객, 설계팀, PE 사이에서 One Team의 중심에 서는 역할이라고 생각합니다.`,
+
+  'coc-4': `Innovation은 기존 방식에 머무르지 않고 구조적으로 더 나은 방법을 찾는 것입니다. 시뮬레이터 팀이 검증 코드를 복사해 쓰는 구조적 문제를 인식하고, 코드 복사가 아닌 공통 라이브러리라는 근본적으로 다른 접근을 제안했습니다. 또한 하드웨어 인턴으로 MPE 모듈을 설계하면서 기존 softmax 연산에 대한 최적화 방안을 제안하여 실제 설계에 채택된 경험이 있습니다. 작은 혁신이라도 기존 방식을 당연하게 받아들이지 않고 더 나은 구조를 고민하는 습관이 Innovation의 시작이라고 생각합니다.`,
+
+  'coc-5': `Customer Focus는 고객보다 앞서 생각하고 움직이는 자세입니다. JAPAN IT WEEK 출장 전에 참가 기업들의 주력 제품을 사전 조사하고, AI EXPO 경험을 바탕으로 상대방 기술 수준에 따른 단계별 설명을 미리 준비했습니다. 그 결과 NHN CLOUD Japan에서는 기술 통역을 전담했고, 미쓰비시 전기와는 한국 내방 미팅까지 이어갔습니다. 사내에서도 시뮬레이터 팀의 어려움을 먼저 파악하고 라이브러리를 선제적으로 제안한 것이 Customer Focus의 실천이었다고 생각합니다. AE 직무에서도 고객이 문제를 인식하기 전에 먼저 분석하고 솔루션을 제시하는 자세가 핵심입니다.`,
+
+  'coc-6': `Perfection은 끝까지 완성도를 100%로 높이고 디테일에 집중하는 것입니다. 라이브러리 리팩토링 과정에서 1~2비트 오차가 발생했을 때, 해당 케이스만 수정하는 것은 쉬웠지만 근본 원인을 반드시 파악해야 직성이 풀렸습니다. 동시에 사용자 팀에는 스페어 브랜치로 임시 대응을 먼저 전달하고, GitHub CI에 golden data를 보호하는 bit-wise 테스트를 엄격하게 구성하여 에러 발생 자체를 방지했습니다. AE가 제품 출하 전 다양한 환경에서 강건성을 최종 검증하는 파수꾼 역할을 한다는 점에서, Perfection은 AE 직무의 본질과 가장 가깝다고 생각합니다.`,
+
+  'coc-7': `저는 몰랐던 것을 알게 되는 순간에 가장 행복합니다. 최근에 프로젝트 헤일메리라는 소설을 읽고 여자친구와 이야기를 나눴는데, 작중 외계 생명체가 고압 환경에서는 고체이지만 지구 상온에서는 기체가 된다는 설정이 나옵니다. 그 이야기를 하다 보니 상변화의 조건, 압력과 온도의 관계까지 대화가 이어졌고, 소설 한 권이 과학 토론으로 확장되는 그 과정이 정말 즐거웠습니다. 여자친구와 영화를 본 뒤 서로 다른 감상을 나누는 것도 좋아하고, 어려운 보드게임에서 전략을 짜며 승부하는 것도 좋아합니다. 돌아보면 저를 움직이는 건 승부욕, 대화, 그리고 모르는 것에 대한 앎의 즐거움인 것 같습니다. 이 세 가지가 일에서도 똑같이 작동해서, 어려운 문제일수록 끝까지 파고들게 되고, 다른 사람과 관점을 나누며 더 나은 답을 찾는 과정이 즐겁습니다.`,
+
+  'coc-8': `구성원의 행복은 본질적인 업무에 집중할 수 있을 때 가장 높아진다고 생각합니다. 저는 반복 업무를 자동화하여 팀의 효율을 높인 경험이 있습니다. ULP 자동화 도구로 4시간 걸리던 작업을 대폭 줄였고, CI 테스트 구성으로 라이브러리 업데이트 시 수동 검증 부담을 없앴습니다. 또한 MPE 설계 실패 이후 세운 체계적 소통 습관은 불필요한 재작업을 방지하여 팀 전체의 시간과 에너지를 아끼는 데 기여했습니다. 입사 후에도 제가 배운 것을 문서화하고 공유하여 팀 역량을 함께 높이고, 구성원 모두가 단순 반복이 아닌 가치 있는 문제에 집중할 수 있는 환경을 만드는 데 기여하고 싶습니다.`,
+
   // ── Part 1: 나의 경험 ──
   'exp-1': `전 직장에서 C언어 시뮬레이션 라이브러리를 주도적으로 개발하고 고도화한 경험이 있습니다. 저는 검증 팀에서 연산기 모듈을 검증하기 위한 코드를 작성하고 있었는데, 시뮬레이터 팀에서는 같은 연산기 모듈을 RTL과 정확히 일치하도록 C언어로 작성하는 것에 어려움을 겪고 있었습니다. 소프트웨어 인턴 시절에도 1~2비트의 오차를 허용한 채 검증하는 시스템이 의아했는데, 근본 원인은 공유할 수 있는 라이브러리 자체가 없었던 것이었습니다. 게다가 시뮬레이터 팀이 저희 검증 코드를 그대로 가져다 쓰다 보니 동기화 문제도 발생하고 있었습니다. 그래서 제가 이 코드를 라이브러리화하겠다고 제안했고, 기존 코드를 그대로 쓰면 검증에는 문제가 없지만 전체 시스템을 모사할 때 병목이 될 수 있다고 판단하여 구조까지 고도화했습니다. 결과적으로 다양한 시나리오에서 평균 7.08배의 속도 향상을 달성했습니다. 시뮬레이터 팀과 검증 팀 사이에서 최신 상태를 꾸준히 맞춰가는 소통이 필요했지만, 안정화된 이후에는 관리가 훨씬 수월해졌습니다.`,
 
@@ -54,573 +73,407 @@ export const modelAnswers = {
 
   'team-10': `이 상황은 AE의 존재 이유와 직결된다고 생각합니다. AE는 고객 편도, 설계팀 편도 아닌 기술적 중재자입니다. 먼저 고객 환경에서의 실제 사용 조건 데이터를 수집하겠습니다. 설계팀이 "스펙 내 정상"이라고 하는 것은 표준 조건 기준일 수 있고, 고객의 실사용 조건에서는 마진이 부족할 수 있습니다. 이 간극을 데이터로 가시화하는 것이 첫 번째입니다. 설계팀에게는 고객 조건에서의 마진 데이터와 비즈니스 임팩트를 함께 전달합니다. "스펙은 맞지만, 이 고객 조건에서 마진이 얼마나 부족한지" 정량적으로 보여주면 대화가 달라집니다. 고객에게는 단기적으로 동작 조건 조정이나 workaround를 제안하고, 장기적으로는 설계 반영을 건의 중이라는 로드맵을 공유합니다. 양쪽 모두 "지고 있다"는 느낌이 아니라 "함께 해결하고 있다"는 프레임을 만드는 것이 핵심입니다.`,
 
-  // ── Part 2: 직무 지식 (tech-1 ~ tech-22: 기초/개인경험) ──
-  'tech-1': `• 1T1C: 트랜지스터(스위치) + 캐패시터(전하 저장), 전하 유무로 1/0 구분
-• 읽기: WL 활성화 → BL 전하공유 → Sense Amp이 미세 전압차 증폭 → 데이터 판별
-• Dynamic = 캐패시터 전하 누설(leakage) → 주기적 Refresh 필수 (64ms 내 전체 row)
-• 핵심 동작 흐름: ACTIVATE(Row 열기) → READ/WRITE(Column 접근) → PRECHARGE(BL 복원) → REFRESH(전하 재충전)
-• Sense Amp은 BL과 /BL 차이를 증폭하는 차동 증폭기 역할`,
 
-  'tech-2': `• 속도: DDR4 3200 MT/s → DDR5 6400+ MT/s (Prefetch 8n→16n)
-• 전압: 1.2V → 1.1V (전력 효율 개선)
-• 채널 구조: 64-bit 단일채널 → 32-bit x 2 서브채널 (독립 동작으로 효율 향상)
-• Bank 구조: 16 Bank/4 BG → 32 Bank/8 BG (동시 접근 향상)
-• 신기술: On-die ECC, Decision Feedback Equalizer(DFE), On-DIMM PMIC (전원 안정성)`,
+  // ── Part 2: 직무 지식 (tech-1 ~ tech-106) ──
 
-  'tech-3': `• 원인: 캐패시터 전하가 접합 누설전류로 시간이 지나면 소멸 → 데이터 손실
-• tREFI: Refresh 명령 간격 (~7.8us, 64ms/8192rows), 이 주기마다 일부 row 재충전
-• tRFC: 한 번의 Refresh 명령 완료에 필요한 시간 (DDR5에서 ~350ns 수준)
-• 성능 영향: Refresh 중 해당 Bank 접근 불가 → 대역폭 손실 (고용량/고온일수록 심각)
-• 고온(>85도)시 tREFI 절반(32ms)으로 단축 → Refresh penalty 2배`,
+  // AE 기초 (tech-1~5)
+  'tech-1': `• 메모리 반도체는 단품 정상이어도 고객 시스템(보드, SoC, BIOS)과 조합 시 비정상 동작 가능
+• 원인: SI(Signal Integrity) 마진 차이, 타이밍 파라미터 해석 차이, ODT/Vref 설정 불일치
+• AE의 호환성 검증 = 고객 시스템 환경에서 DRAM이 안정 동작하는지 실장평가로 확인
+• 검증 범위: 부팅, Training 마진, 온도 코너(고온/저온), 장기 스트레스, 성능 벤치마크
+• 호환성 미검증 → 양산 후 필드 불량 → 고객 신뢰 상실 + RMA 비용 → AE 검증이 품질의 최종 관문`,
 
-  'tech-4': `• 같은 BG 내 Bank 연속 접근 시 긴 지연(tCCD_L), 다른 BG 접근 시 짧은 지연(tCCD_S)
-• BG간 독립 동작으로 인터리빙 → 실효 대역폭 향상
-• DDR4: 4 BG (4 Bank/BG), DDR5: 8 BG (4 Bank/BG) → BG 2배로 인터리빙 기회 증가
-• 고속 데이터 전송 시 BG 교차 접근 패턴이 대역폭 극대화의 핵심`,
+  'tech-2': `• 단품 레벨: DRAM 칩 자체의 셀 불량, Weak Cell, Retention 불량 등 → PE/테스트 엔지니어 영역
+• 시스템 레벨: 보드 SI, ODT 미스매치, Training 마진 부족, 열 환경, BIOS 설정 오류 등
+• 핵심 차이: 단품 Pass여도 시스템에서 Fail 가능 (채널 손실, 반사, 크로스토크, SSN)
+• 예시: 단품 Shmoo 마진 충분 → 2DPC 구성에서 stub 증가 → Eye 닫힘 → Training 실패
+• AE 역할: 시스템 레벨 문제를 DRAM 이슈 vs 플랫폼 이슈로 분리하여 근본 원인 특정`,
 
-  'tech-5': `• 현상: 특정 Row 반복 ACTIVATE → 인접 Row 셀의 전하 간섭 → 비트 플립 발생
-• 미세공정(20nm 이하)에서 셀 간 간격 축소로 취약성 급증
-• 대응: TRR(Target Row Refresh) - 공격 감지 후 인접 row 선제 Refresh
-• ECC로 비트 에러 검출/교정, pTRR(probabilistic TRR) 등 추가 완화 기법
+  'tech-3': `• AE = 고객 시스템에서 메모리 최종 동작 검증 ("화룡점정"), 실장평가 + 응용 Solution 개발
+• PE = 단품 수준 제품 안정화, 웨이퍼 수율 관리, 공정 파라미터 최적화
+• AE 업무: 온도/전압/스트레스 실장평가, BIOS/FW/FPGA 활용 검증 도구 개발, 고객 디버깅
+• PE 업무: 마진 테스트, 웨이퍼 스크리닝, 공정 변동 관리, 수율 개선
+• 핵심 차이: PE는 "좋은 DRAM 만들기", AE는 "고객 시스템에서 완벽히 동작하게 만들기"`,
+
+  'tech-4': `• AI 메모리 시장 폭발: HBM 수요 2025년 130%+ 성장, cHBM 맞춤 설계 확대
+• 고객 다변화: NVIDIA 외 Google TPU, Amazon Trainium, AMD, Meta → 각기 다른 아키텍처, 전담 AE 필요
+• 제품 복잡도: DDR5/LPDDR6/HBM4/CXL/PIM 동시 전개 → 시스템 이해 인력 부족
+• Full Stack AI Memory Creator 비전: Provider → Creator 전환, 고객과 공동 설계 → AE 역할 대폭 확대
+• 조직 확대: 2026년 미주 HBM 전담 기술 조직 신설, 글로벌 AI 리서치 센터 신설`,
+
+  'tech-5': `• 핵심 역량 1: 시스템 레벨 사고 — 단품이 아닌 고객 시스템 전체 맥락에서 문제 파악
+• 핵심 역량 2: 데이터 기반 디버깅 — 로그 분석, Shmoo Plot, Eye diagram으로 정량적 원인 분석
+• 핵심 역량 3: 고객 소통 — 기술 이슈를 고객 수준에 맞게 전달, 신뢰 구축
+• [본인 경험] 시스템 레벨: MPU-VPU mismatch를 Roofline model로 분석 → 근본 원인 도출
+• [본인 경험] 고객 소통: AI EXPO/JAPAN IT WEEK/SEMICON Europa에서 3개 언어로 기술 소통`,
+
+  // DRAM 기초 (tech-10~16)
+  'tech-10': `• 1T1C 구조: 1 Transistor(스위치) + 1 Capacitor(전하 저장), 전하 유무로 1/0 구분
+• 읽기: Word Line 활성화 → Bit Line 전하공유 → Sense Amp이 미세 전압차(~50-200mV) 증폭
+• 쓰기: Sense Amp 통해 셀에 데이터 기록, 읽기는 파괴적(Destructive Read) → 읽기 후 복원 필수
+• Dynamic = 캐패시터 전하 누설(Leakage) → 주기적 Refresh 필수 (64ms 내 전체 Row)
+• 4대 동작: ACTIVATE(Row 열기) → READ/WRITE(Column 접근) → PRECHARGE(BL 복원) → REFRESH`,
+
+  'tech-11': `• 원인: 캐패시터 전하가 접합/서브스레숄드/유전체 누설로 시간 경과 시 소멸 → 데이터 손실
+• tREFI: Refresh 명령 간격 (~7.8us = 64ms/8192rows), 이 주기마다 일부 Row 재충전
+• tRFC: 한 번의 Refresh 완료 시간 (용량 클수록 길어짐, DDR5 ~295ns All Bank)
+• 성능 영향: Refresh 중 해당 Bank 접근 불가 → 대역폭 손실, Refresh overhead = tRFC/tREFI
+• 고온(>85도)시 tREFI 절반(32ms)으로 단축 → Refresh penalty 2배, DDR5 Same Bank Refresh로 완화`,
+
+  'tech-12': `• tCL(CAS Latency): READ 명령 → 첫 데이터 출력까지의 클럭 수 (DDR5-4800: ~40clk)
+• tRCD(RAS to CAS Delay): ACTIVATE → READ/WRITE 가능까지 대기 시간
+• tRP(Row Precharge): PRECHARGE 후 다음 ACTIVATE까지 비트라인 복원 시간
+• tRAS(Row Active Time): ACTIVATE → PRECHARGE까지 최소 시간, tRAS >= tRCD + tCL
+• 핵심 관계: Page Miss latency = tRP + tRCD + tCL, Page Hit = tCL만, tRC = tRAS + tRP`,
+
+  'tech-13': `• 같은 BG 내 Bank 연속 접근 시 긴 지연(tCCD_L), 다른 BG 접근 시 짧은 지연(tCCD_S)
+• 이유: BG 내부 데이터 경로 공유 → BG간 교차 접근으로 인터리빙 시 실효 대역폭 향상
+• DDR4: 4 BG × 4 Bank = 16 Bank, DDR5: 8 BG × 4 Bank = 32 Bank
+• DDR5 BG 수 2배 이유: Prefetch 8n→16n으로 내부 코어 접근 시간 제약 증가 → BG 수 확대로 보상
+• AE 관점: 고객 워크로드의 BG Conflict 비율 분석 → 주소 매핑 변경으로 대역폭 최적화 제안`,
+
+  'tech-14': `• 현상: 특정 Row 반복 ACTIVATE → 인접 Row 셀의 전하 간섭 → 비트 플립(Bit Flip) 발생
+• 원인: 미세공정(20nm 이하)에서 셀 간 간격 축소로 전기장 간섭 취약성 급증
+• HW 대응: TRR(Target Row Refresh) — 공격 감지 후 인접 Row 선제 Refresh
+• 추가 대응: pTRR(probabilistic TRR), ECC로 비트 에러 검출/교정, Refresh 관리 강화
 • 보안 이슈: Rowhammer 공격으로 권한 상승 등 악용 가능 → HW 레벨 대응 필수`,
 
-  'tech-6': `• Eye width: 타이밍 마진 (수평 개구부), 클수록 Setup/Hold 여유 큼
-• Eye height: 전압 마진 (수직 개구부), 클수록 노이즈 내성 우수
-• 열화 요인: Jitter(타이밍 불확실성), ISI(심볼간 간섭), Crosstalk(인접 신호 간섭)
-• BER 기반 마진 판단: Eye mask 규격 대비 Pass/Fail, 10^-12 BER 수준 요구
-• AE 실무: 고객 시스템에서 Eye 마진 확보 여부가 안정 동작의 핵심 판단 기준`,
+  'tech-15': `• 통신 구조: CPU IMC(Memory Controller) → PHY(물리 인터페이스) → 채널 → DIMM → DRAM
+• 명령 흐름: IMC가 CA(Command/Address) 신호로 ACT/RD/WR/PRE 명령 발행
+• 데이터 흐름: DQ(데이터)와 DQS(스트로브)가 Source Synchronous 방식으로 전송
+• DDR 전송: DQS 양쪽 에지(상승+하강)에 각 1비트씩 전송, DDR5 BL16 = 16비트 연속
+• Training: 부팅 시 IMC-PHY가 Write Leveling, Read/Write Training, Vref Training 수행하여 최적 타이밍 결정`,
 
-  'tech-7': `• 정의: DRAM 다이 내부에 종단 저항을 배치하여 전송선 끝 임피던스 매칭
-• 목적: 신호 반사 억제 → Eye diagram 품질 개선, 타이밍 마진 확보
-• 반사 발생 원리: 전송선 끝 임피던스 불일치(Z_L != Z_0) → 반사파 발생
-• DDR4/5에서 MRS로 프로그래밍 가능: RTT_NOM, RTT_WR, RTT_PARK 각각 조절
-• 1DPC/2DPC, 읽기/쓰기 상황별 최적 ODT 값이 다름 → BIOS/AE 튜닝 대상`,
+  'tech-16': `• 채널(Channel): IMC와 DIMM을 연결하는 독립 데이터 경로, DDR5는 서브채널당 32-bit
+• 랭크(Rank): 메모리 컨트롤러가 동시에 접근하는 DRAM 칩 세트, CS(Chip Select)로 선택
+• 구성 예: x8 DRAM 4개 = 1 Rank (4×8=32bit), 2R DIMM = 앞뒤 각 1 Rank
+• 채널 인터리빙: 연속 주소를 채널 간 분배 → 대역폭 극대화
+• 랭크 인터리빙: 한 Rank ACT 중 다른 Rank READ → 파이프라이닝으로 효율 향상, 단 Rank 증가 시 SI 열화`,
 
-  'tech-8': `• 임피던스 불연속점에서 발생: Via, 커넥터, PCB 분기점, stub
-• 반사 계수: Gamma = (Z_L - Z_0) / (Z_L + Z_0), 불일치 클수록 반사 큼
-• 개방(Z_L=무한대): +1 양반사, 단락(Z_L=0): -1 음반사
-• DDR5 주파수(3.2GHz+)에서는 모든 트레이스가 전송선처럼 동작
-• 해결: 임피던스 매칭(ODT), Via 최소화, controlled impedance 라우팅`,
+  // DDR4/DDR5 (tech-20~24)
+  'tech-20': `• 속도: DDR4 3200 MT/s → DDR5 6400+ MT/s (Prefetch 8n→16n)
+• 전압: 1.2V → 1.1V (전력 약 16% 절감, P = C×V²×f)
+• 채널 구조: 64-bit 단일채널 → 32-bit × 2 서브채널 (독립 동작으로 효율 향상)
+• Bank 구조: 16 Bank/4 BG → 32 Bank/8 BG (인터리빙 기회 증가)
+• 신기술: On-die ECC, DFE(이퀄라이저), On-DIMM PMIC, BL16, CA Training`,
 
-  'tech-9': `• Fly-by topology: CK/CMD가 DIMM 내 각 칩에 순차 도달 → 칩마다 CK skew 발생
-• Write Leveling 목적: 각 Byte lane의 DQS를 해당 칩의 CK 상승 엣지에 정렬
-• 동작: 컨트롤러가 DQS를 순차 지연시키며 DRAM이 CK 엣지 감지 → 최적 딜레이 결정
-• DDR3부터 도입, BIOS POST 과정에서 부팅 시마다 수행
-• 이후 Read/Write Training, Vref Training의 전제 조건이 됨`,
+  'tech-21': `• 구조: DDR5는 채널당 32-bit × 2개 독립 서브채널 (DDR4: 64-bit 단일채널)
+• 장점 1: 두 서브채널이 다른 주소에 동시 접근 → Fine-grained Access, 메모리 접근 효율 향상
+• 장점 2: BL16 × 32bit = 64Bytes = 캐시라인 크기 정확히 일치 → 캐시 효율 극대화
+• 장점 3: 서브채널별 독립 Refresh 가능 → 가용성 향상
+• AE 관점: 서브채널별 독립 Training/마진 검증 필요, 서브채널 간 성능 편차 발생 시 디버깅`,
 
-  'tech-10': `• 1단계 - 증상 분류: 부팅 불가 / 간헐적 ECC 에러 / 성능 저하 구분
-• 2단계 - 로그 분석: BIOS Training log, OS 이벤트 로그, PMU Training log 확인
-• 3단계 - 환경 변수 격리: DIMM 교체, 슬롯 변경, 온도/전압 조건 변경하며 재현 조건 확립
-• 4단계 - 마진 확인: Shmoo Plot으로 전압x타이밍 동작 마진 시각화
-• 5단계 - 원인 특정 후 대책 수립: DRAM 이슈 vs 플랫폼 이슈 vs SI 이슈 판별`,
+  'tech-22': `• 도입 이유: 미세공정 → DRAM 셀 내부 에러율 증가 → 칩 자체적으로 먼저 교정 필요
+• On-die ECC: 내부 128bit 데이터 + 8bit ECC = 136bit 저장, SEC(단일 비트 교정) 수행 후 128bit 출력
+• 시스템 ECC: 메모리 컨트롤러 단에서 SECDED(Single-Error Correct, Double-Error Detect)
+• 한계: On-die ECC 교정은 외부에서 관찰 불가(Silent Correction) → 에러율 추적 어려움
+• AE 관점: On-die ECC가 시스템 ECC를 대체하지 않음(보완), 에러 모니터링은 MR 기반 Error Log 활용`,
 
-  'tech-11': `• 구조: TSV(관통비아)로 DRAM 다이 4~16층 수직 적층, 최하단에 Base Logic Die
-• 인터페이스: 1024-bit 와이드 I/O → DDR 대비 대역폭 10배+ (HBM3E: 1.2TB/s)
-• 패키징: 2.5D CoWoS 인터포저 위에 SoC와 HBM을 나란히 배치
-• 장점: 높은 대역폭, 낮은 전력(짧은 배선), 작은 폼팩터
-• AI 가속기 필수: LLM 추론/학습의 대역폭 병목을 해결하는 핵심 메모리`,
+  'tech-23': `• DDR5 PMIC: 12V를 DIMM까지 전달 → On-DIMM PMIC가 VDD 1.1V, VDDQ 1.1V, VPP 1.8V로 변환
+• 장점: IR drop 감소(전원 경로 단축), 전압 정밀도 향상, 개별 DIMM 전원 관리 가능
+• AE 고려사항 1: PMIC-메인보드 호환성 이슈 (PMIC 벤더별 차이, I2C/I3C 통신 문제)
+• AE 고려사항 2: DIMM 위 발열원 추가 → 열 관리 필요, EMI 규격 확인
+• AE 고려사항 3: 전압 마진 테스트 시 PMIC 출력 정밀도/과도 응답 특성 확인 필수`,
 
-  'tech-12': `• 정의: 실리콘 다이를 수직으로 관통하는 전기 연결 (직경 ~5-10um)
-• 장점: Wire bonding 대비 경로 극단 단축 → 기생 저항/인덕턴스 감소 → 고대역폭, 저전력
-• HBM의 핵심 기술: 다이 적층 간 데이터/전원/접지 연결 담당
-• 제조 과제: 높은 종횡비(Aspect Ratio) 에칭, 다이 간 정밀 정렬, Cu 충전 공정
-• 활용: HBM, 3D IC, CMOS Image Sensor 등 적층 반도체 전반`,
+  'tech-24': `• 서버 = 24/7 무중단 운영, 단일 비트 에러도 금융/클라우드 서비스 장애로 직결
+• ECC 방식: SECDED (Single-Error Correct, Double-Error Detect) — 1비트 교정, 2비트 검출
+• DDR5 RDIMM: 데이터 32bit + ECC 8bit = 40bit per 서브채널, ECC 칩 별도 탑재
+• On-die ECC와 협력: DRAM 내부 1차 교정 → 외부로 나온 에러를 시스템 ECC가 2차 교정
+• AE 역할: ECC 에러 로그 분석(CE/UCE 빈도, 위치), 에러 패턴으로 DRAM vs SI 문제 구분`,
 
-  'tech-13': `• 정의: JEDEC 표준을 넘어 고객 맞춤으로 설계된 Custom HBM
-• 차이점: 핀 수 감소 → 확보된 면적(25%)에 추가 로직 탑재, I/O 전력 70%+ 절감
-• 배경: 고객마다 다른 SoC 아키텍처와 요구사항 → 표준 규격으로는 최적화 한계
-• SK하이닉스 Provider → Creator 전환의 핵심 제품 (고객과 공동 설계)
-• AE 역할 변화: 표준 스펙 지원 → 고객 아키텍처 이해 기반 맞춤 설계 컨설팅`,
+  // Signal Integrity (tech-30~33)
+  'tech-30': `• Eye width(수평 개구부): 타이밍 마진, 클수록 Setup/Hold 여유, DDR5-4800 1UI = 208ps
+• Eye height(수직 개구부): 전압 마진, 클수록 노이즈 내성 우수, 최소 100mV 이상 확보 필요
+• 열화 요인: Jitter(타이밍 불확실성), ISI(심볼간 간섭), Crosstalk(인접 신호 간섭), 반사
+• BER 기반 마진 판단: Eye Mask 규격 대비 Pass/Fail, 10^-12 BER 수준 요구
+• AE 실무: 오실로스코프로 Eye 측정, 마진 부족 시 ODT/Vref/DFE 조정으로 개선 제안`,
 
-  'tech-14': `• Creator 비전: 고객의 과제를 함께 해결하고 기대를 초과하는 메모리 파트너
-• Full Stack: cHBM(AI Training) + AI-D(DDR5, AI 서버) + AI-N(NAND, 스토리지) 전 영역
-• AE 역할 변화: 단순 기술지원(Provider) → 고객 칩 아키텍처 이해 기반 기술 컨설턴트
-• 고객 다변화: NVIDIA 외 Google TPU, Amazon Trainium, AMD, Broadcom 등 → AE가 최전선
-• 본인 강점 연결: AI 워크로드 실무 경험 + 시스템 레벨 분석 역량으로 고객 소통 가능`,
+  'tech-31': `• 정의: DRAM 다이 내부에 프로그래밍 가능한 종단 저항 배치 → 전송선 임피던스 매칭
+• 목적: 신호 반사 억제 → Eye diagram 품질 개선, 타이밍/전압 마진 확보
+• 설정값: RTT_NOM(일반 종단), RTT_WR(쓰기 시 종단), RTT_PARK(비활성 Rank 상시 종단)
+• 구성별 최적값 상이: 1DPC/2DPC, 1R/2R에 따라 ODT 조합 달라짐 → MRS로 설정
+• AE 역할: SI 마진 부족 시 ODT Sweeping으로 최적 RTT 조합 탐색, Shmoo Plot으로 검증`,
 
-  'tech-15': `• 비트/셀: SLC(1) / MLC(2) / TLC(3) / QLC(4), 전압 레벨 수 2^n
-• 내구성(P/E cycle): SLC ~100K > MLC ~10K > TLC ~3K > QLC ~1K
-• 속도: SLC 최고 → QLC 최저 (전압 레벨 정밀 판별 필요할수록 느림)
-• 용도: SLC=Enterprise 캐시, TLC=Consumer SSD, QLC=Read-heavy/Archive
-• Pseudo-SLC(pSLC): TLC/QLC를 SLC 모드로 사용하여 캐시 영역 확보`,
+  'tech-32': `• 발생 조건: 임피던스 불연속점 — Via, 커넥터, PCB 분기점, Stub, DRAM 패드
+• 반사 계수: Gamma = (Z_L - Z_0) / (Z_L + Z_0), 불일치 클수록 반사 증가
+• 개방(Z_L=무한대): +1 완전 양반사, 단락(Z_L=0): -1 완전 음반사
+• DDR5 주파수(2.4GHz+)에서 6mm 이상 트레이스는 전송선으로 동작 → 반사 영향 큼
+• 해결: ODT로 임피던스 매칭, Via 최소화/백드릴, Controlled impedance 라우팅`,
 
-  'tech-16': `• 목적: NAND 블록별 P/E 사이클을 균등 분배 → 특정 블록 조기 사망 방지
-• Dynamic WL: 쓰기 요청을 상대적으로 P/E 적은 블록에 분산
-• Static WL: Cold data(변경 안 되는 데이터)도 주기적으로 이동하여 전체 균등화
-• FTL(Flash Translation Layer)이 논리-물리 블록 매핑 관리하며 WL 수행
-• Over-Provisioning(OP)과 함께 SSD 수명 연장의 핵심 기법`,
+  'tech-33': `• 고속 DDR5에서 SI 열화 → Eye 마진 감소 → 간헐적 비트 에러, Training 실패
+• SI 열화 원인: 채널 손실(도체/유전체), 반사, 크로스토크, 지터, SSN
+• 시스템 영향: 1비트 에러 → ECC 교정 가능이지만, 누적 시 UCE → 시스템 크래시
+• AE 관점: 고객 보드 SI 시뮬레이션 검토, PCB 라우팅 가이드 제공, ODT/DFE 최적화
+• 중요성: 메모리 속도 증가(DDR5 8800MT/s+)에 따라 SI 문제가 AE 업무의 핵심으로 부상`,
 
-  'tech-17': `• 2D NAND 한계: 15nm 이하 미세화 시 셀간 간섭, 전하 보존력 저하, 신뢰성 하락
-• 3D NAND 해결: 수직 적층으로 셀 크기에 여유 → 간섭 감소, 용량 증가
-• 장점: 용량 증가(층수 x), 내구성 향상(셀 크기 여유), 비트당 전력 감소
-• 과제: 높은 종횡비(HAR) 에칭, 200+층 적층 시 구조 변형/정렬 난이도
-• SK하이닉스 현황: 238단 양산, 300+단 개발 중 → 업계 기술 리더십`,
+  // Training & 검증 (tech-40~45)
+  'tech-40': `• 배경: Fly-by topology에서 CK가 DIMM 내 각 칩에 순차 도달 → 칩마다 CK skew 발생
+• 목적: 각 Byte lane의 DQS 상승 에지를 해당 칩의 CK 상승 에지에 정렬
+• 동작: 컨트롤러가 DQS를 순차 지연 → DRAM이 CK 에지 감지 → 0→1 전환점 = 최적 딜레이
+• 필수성: DDR3부터 도입, BIOS POST 시 매 부팅마다 수행, Read/Write Training의 전제 조건
+• 실패 원인: CK-DQS skew가 보상 범위 초과, CK/DQS 신호 품질 열화(SI 문제)`,
 
-  'tech-18': `• 기존 문제: RTL을 그대로 C++로 Literal porting → 불필요한 cycle-accurate 연산으로 시뮬레이션 극도로 느림
-• 핵심 전환: Architectural modeling 접근 — 동작 의미(기능)만 보존하고 불필요한 HW 세부사항 제거
-• 구체적 최적화: 중복 연산 제거, 데이터 구조 재설계, 벤치마크 기반 병목 분석 후 집중 개선
-• 결과: 7.08배 속도 향상 → Streamlit 자동화 도구와 결합하여 2,500개 파라미터 평가 가능
-• AE 연결: "시스템 수준에서 무엇이 본질인지 파악하는 역량" — 고객 시스템 레벨 검증에서도 동일한 사고방식 필요`,
+  'tech-41': `• SPD 읽기: I2C/I3C로 DIMM 사양(타이밍/전압/용량) 파악 → 메모리 컨트롤러 설정 결정
+• MRS 설정: Mode Register에 BL, CL, ODT, 드라이브 강도 등 동작 파라미터 프로그래밍
+• Write Leveling: Fly-by CK skew 보상, DQS-CK 정렬 (가장 먼저 수행)
+• Read/Write Training: DQ-DQS 타이밍 최적화, 비트별 Per-bit Deskew
+• Vref Training: 신호 판별 기준 전압 캘리브레이션 → Eye height 중앙점 결정`,
 
-  'tech-19': `• 문제 발견: MPU(연산부) 처리량과 VPU(벡터부) 메모리 접근 속도 간 throughput mismatch 확인
-• Roofline model 개념: 연산 강도(Arithmetic Intensity) = 연산량/데이터 이동량, 이 값에 따라 Compute-bound vs Memory-bound 결정
-• 수식 도출: 연산량/대역폭 비율로 균형점 산출 → 이 지점에서 두 자원이 모두 포화되는 최적 설계점
-• 설계 반영: 32-lane parallelism 활용 row-level latency hiding으로 병목 해소
-• AE 연결: 고객 시스템에서도 메모리 대역폭이 성능 병목인 경우가 대부분 → 동일한 분석 프레임워크 적용 가능`,
+  'tech-42': `• 정의: DIMM 기판 위 EEPROM(DDR5: SPD5 Hub)에 저장된 모듈 사양 정보
+• 저장 정보: 타이밍(CL, tRCD, tRP 등), 전압, 용량, 제조사, 온도 등급, Rank 구성
+• BIOS 활용: POST 시 SPD 읽어 메모리 컨트롤러 자동 설정 (Plug & Play)
+• DDR5 진화: SPD Hub = I3C 기반 허브 + 온도 센서 + 이벤트 알림(In-Band Interrupt)
+• AE 활용: 모듈 미인식/속도 이상 시 SPD 내용 확인, XMP/EXPO 프로필 호환성 검증`,
 
-  'tech-20': `• 배경: Adder tree가 전체 연산기 면적의 32% 차지 → PPA 개선 효과 큰 타겟
-• 기존 시도 한계: Dadda tree, 교수님/논문 추천 구조 → 해당 4nm 공정에서는 오히려 개선 안됨
-• 해결 방법: 7:3, 5:3, 3:2 compressor를 조합한 7가지 구조를 직접 RTL 구현 후 합성/비교
-• 결과: 최적 구조에서 전력 4.08% 면적 1.19% 절감, 타이밍 위반 없음
-• 교훈: 공정/설계 조건에 따라 최적 구조가 다름 → 이론적 최적과 실제 최적은 다를 수 있다는 실험적 검증의 중요성`,
+  'tech-43': `• 정의: X축=타이밍, Y축=전압, 각 교차점에서 Pass/Fail을 표시한 2D 마진 맵
+• 목적: 메모리 동작 마진을 시각적으로 한눈에 파악, 동작점이 Pass 영역 중앙에 있는지 확인
+• AE 활용: PVT 코너별(고온/저온/상온) 비교, 마진 부족 방향 파악 → 원인 추정
+• 마진 부족 시 대응: 타이밍 완화, Vref 조정, ODT 변경, PCB 개선 제안
+• 측정 방법: BIOS Training 코드 기반 스위핑, FPGA 기반 자동 측정, Intel RMT 도구`,
 
-  'tech-21': `• 경험: AI EXPO KOREA, JAPAN IT WEEK에서 HyperAccel AI 가속기 부스 운영
-• 준비: 참가 기업 사전 조사, 예상 질문 리스트 작성, 일본어 대응 준비
-• 성과: 미쓰비시 전기 내방 미팅으로 연결 → 기술 전시에서 비즈니스 기회 창출
-• 역량: 기술을 고객 관점(성능, 전력, 비용)으로 재구성하여 설명하는 능력 체득
-• AE 연결: AE = 고객의 언어로 기술을 전달하는 역할, 고객 니즈 파악 → 솔루션 제안의 흐름을 현장에서 체험`,
-
-  'tech-22': `• 상황: 코로나로 대면 행사 불가 → S.LSI 후원 철회 위기, 비대면 전환 결정 필요
-• 이해관계자별 가치: 운영진(학술적 성과), 후원사(채용 브랜딩, 비용효율), 참가자(실질적 경험, 네트워킹)
-• 조율 방법: 참가자 사전 설문으로 니즈 파악, 후원사에 비대면 비용 절감 효과 제시, 조별활동 중심으로 참가자 만족도 확보
-• 결과: 14개교 68명 참가, 새벽 3시까지 토론할 만큼 높은 몰입도 달성
-• AE 연결: AE도 고객/PE/설계팀 사이에서 각기 다른 이해관계를 조율 → 공동 목표 아래 각자 가치를 존중하는 소통 역량`,
-
-  // ── Part 2: 직무 지식 (tech-23 ~ tech-37: BIOS/FW/시나리오) ──
-  'tech-23': `• 전체 흐름: SPD 읽기(DIMM 사양 파악) → MRS 설정(동작 모드 구성) → Training 순차 수행
-• Write Leveling: Fly-by topology의 CK skew 보상, DQS-CK 정렬 (가장 먼저)
-• Read/Write Training: DQ-DQS 타이밍 최적화, 각 Byte lane별 최적 딜레이 탐색
-• Vref Training: 신호 판별 기준 전압 캘리브레이션 (Eye height 중심점 결정)
-• 순서가 중요: 이전 단계의 결과가 다음 단계의 전제 조건 (WL 없이 RD/WR Training 불가)`,
-
-  'tech-24': `• 정의: DIMM 기판 위 EEPROM에 저장된 메모리 모듈 사양 정보
-• 저장 정보: 타이밍 파라미터(CL, tRCD, tRP 등), 전압, 용량, 제조사, 온도 등급, Rank 구성
-• BIOS 활용: POST 시 SPD를 읽어 메모리 컨트롤러를 자동 설정 (Plug & Play)
-• XMP/EXPO 프로필: SPD 내 별도 영역에 오버클럭 세팅 저장
-• AE 활용: 고객 시스템 호환성 검증, SPD 값 수정으로 최적 동작 조건 탐색, 이슈 디버깅 시 SPD 정보 확인 필수`,
-
-  'tech-25': `• 정의: X축=타이밍, Y축=전압, 각 교차점에서 Pass/Fail을 표시한 2D 맵
-• 목적: 메모리 동작 마진을 시각적으로 한눈에 파악
-• AE 활용: 마진 넓이로 안정성 판단, 고객 시스템 조건에서 충분한 마진 확보 여부 검증
-• PVT 코너별 비교: Process/Voltage/Temperature 조건 변화에 따른 마진 변동 추적
-• 마진 부족 시 대응: 타이밍 완화, 전압 조정, ODT 변경, PCB 개선 제안 등`,
-
-  'tech-26': `• 목적: 고객 SoC 테이프아웃 전에 DRAM 사전 검증 → NPI(신규 제품 도입) 기간 단축
-• 구성: FPGA에 메모리 컨트롤러 + PHY 구현하여 DRAM과 직접 통신
-• 장점: 파라미터 유연 변경(타이밍, 전압, Training 알고리즘), 다양한 시나리오 빠른 반복
-• AE 연결: 고객 SoC 나오기 전 문제 조기 발견 → 양산 일정 리스크 감소
-• 한계: 실제 SoC 대비 동작 속도/타이밍 정확도 차이 존재 → 실리콘 검증도 병행 필수`,
-
-  'tech-27': `• 1단계: BIOS 변경 이력 확인 — MRS 설정, 타이밍 파라미터, ODT 값 변경 여부
+  'tech-44': `• 1단계: BIOS 변경 이력 확인 — MRS 설정, 타이밍 파라미터, ODT 값 변경 여부 파악
 • 2단계: Training log 분석 — 어느 단계(WL/RD/WR/Vref)에서 실패하는지 특정
 • 3단계: 격리 테스트 — 해당 DIMM을 다른 슬롯으로, 다른 DIMM을 해당 슬롯으로 교차 확인
 • 4단계: Shmoo Plot 비교 — 이전 BIOS vs 현재 BIOS에서 마진 변화 시각화
-• 5단계: 원인 특정 후 대응 — BIOS 팀에 변경 영향 공유, 권장 설정값 제시, 필요 시 롤백 테스트`,
+• 5단계: 원인 특정 → BIOS 팀에 변경 영향 공유, 권장 설정값 제시, 필요 시 롤백 테스트`,
 
-  'tech-28': `• memtest86: OS 없이 부팅하여 메모리 셀 패턴 테스트 → 하드웨어 결함 검출 (에러 발생 시 사용)
-• Intel MLC(Memory Latency Checker): 대역폭/지연시간 벤치마크 → 성능 분석 및 병목 파악
-• PMU Training log: 메모리 컨트롤러의 Training 과정 상세 기록 → 어느 단계에서 문제인지 추적
+  'tech-45': `• memtest86: OS 없이 부팅하여 메모리 셀 패턴 테스트 → HW 결함(Stuck bit 등) 검출
+• Intel MLC: 메모리 대역폭/지연시간 벤치마크 → 성능 병목 분석, BW-Latency 곡선 측정
+• PMU Training log: 메모리 컨트롤러 Training 과정 상세 기록 → 단계별 마진 추적
 • 사용 시점: 에러 → memtest86, 성능 이슈 → MLC, Training 실패 → PMU log
-• AE 실무: 증상별 적합한 도구 선택이 디버깅 효율의 핵심`,
+• AE 핵심: 증상별 적합한 도구 선택이 디버깅 효율의 핵심, 도구 결과 교차 분석`,
 
-  'tech-29': `• JEDEC 표준: 모든 시스템에서 보장되는 기본 동작 스펙 (예: DDR5-4800)
-• XMP(Intel) / EXPO(AMD): 메모리 제조사가 검증한 더 높은 성능 오버클럭 프로필
-• 저장: SPD EEPROM 내 별도 영역에 타이밍/전압/주파수 프로필 기록
-• AE 관점: 고객 플랫폼에서 XMP/EXPO 프로필 호환성/안정성 검증 필수
-• 실무: 고객 보드별 최적 프로필 추천, XMP 사용 시 Training 마진 감소 가능성 사전 고지`,
+  // 고객 대응 (tech-50~56)
+  'tech-50': `• 1순위: 증상 분류 — 부팅 불가 / 간헐적 ECC 에러 / 성능 저하 중 어디에 해당하는지
+• 2순위: 환경 정보 수집 — 시스템 구성(CPU/보드/BIOS 버전), DIMM 구성, OS, 온도 조건
+• 3순위: 로그 확인 — BIOS 시리얼 로그, ECC 에러 로그(mcelog/rasdaemon), 이벤트 로그
+• 4순위: 격리 테스트 — DIMM 교체/슬롯 이동으로 문제가 DIMM vs 보드/슬롯 어디를 따라가는지
+• 핵심: 고객에게 즉시 "확인 중" 커뮤니케이션 + 체계적 로그 수집 → 감정적 대응 방지`,
 
-  'tech-30': `• 워크로드 분석: LLM 추론 = 대규모 순차 읽기, 높은 BW 요구, 특정 메모리 영역 반복 접근
-• 가설1 (열): 지속 고부하 → 온도 상승 → tREFI 절반 → Refresh 마진 부족 → 간헐적 에러
-• 가설2 (Row Hammer): 특정 KV-cache/Weight 영역 반복 ACTIVATE → 인접 row 비트 플립
-• 가설3 (SI): 높은 데이터 전환 빈도에서 ISI/Crosstalk 증가 → 패턴 의존적 Eye 열화
-• 디버깅: 온도 모니터링, ECC 에러 주소 패턴 분석, 해당 온도 조건 Shmoo Plot, 워크로드 패턴별 재현 테스트`,
+  'tech-51': `• 1단계 증상 분류: 부팅 실패(재현 용이) / 간헐적 에러(재현 어려움) / 성능 저하
+• 2단계 로그 분석: BIOS Training log, PMU log, OS ECC 로그 → 에러 위치(채널/Rank/Byte) 특정
+• 3단계 환경 변수 격리: DIMM 교체, 슬롯 변경, 속도 하향, 전압 조정, 온도 의존성 확인
+• 4단계 마진 확인: Shmoo Plot으로 전압×타이밍 동작 마진 시각화, PVT 코너별 비교
+• 5단계 원인 특정: DRAM 자체(교체 시 해결) vs SI(ODT 조정) vs 열(에어플로우) vs BIOS 설정`,
 
-  'tech-31': `• 핵심 차이: 2DPC는 신호 경로 길어지고 부하(load) 증가, stub 효과 발생 → SI 열화
-• 원인: 반사 증가, Eye 마진 감소 → Write Leveling 또는 Vref Training에서 마진 부족
-• 해결1: ODT 값 재조정 (2DPC 전용 RTT_NOM/WR/PARK 세팅)
-• 해결2: BIOS 타이밍 완화(CL/tRCD 여유), CA/CS 드라이브 강도 조정
-• AE 대응: 1DPC vs 2DPC Shmoo Plot 비교 데이터 제시, PCB 라우팅 검토 협업`,
+  'tech-52': `• 간헐적 오류 = AE 디버깅 중 가장 어려운 유형, 재현 조건 확립이 핵심
+• 접근 1: 에러 로그 패턴 분석 — 특정 주소/DQ/시간대에 집중되는지, 랜덤인지 확인
+• 접근 2: 스트레스 조건 강화 — 고온 강제, 전압 마진 축소, 높은 트래픽 부하로 재현 유도
+• 접근 3: 장기 모니터링 — ECC CE(Correctable Error) 카운터 추적, 누적 패턴 분석
+• 접근 4: 통계적 접근 — 다수 시스템에서 동일 DIMM lot 에러율 비교, 불량 집중 여부 확인`,
 
-  'tech-32': `• 온도: Commercial(0~85도) vs Automotive(-40~125도), 극한 환경 동작 보장
-• 인증: AEC-Q100 필수, PPAP(양산 승인) 프로세스, Safety 표준 ISO 26262 준수
-• 수명: 15년+ 보장 (차량 수명과 동일), 일반 제품 대비 5~10배 긴 수명 요구
-• 품질: Zero-defect 목표, ppm 단위 불량률 관리
-• AE 주의점: 고온에서 Refresh 마진/Retention 검증 강화, 고객 인증 프로세스 숙지, 장기 신뢰성 데이터 제공`,
+  'tech-53': `• 지연 원인 파악: 기술적 이슈(Training 실패, 마진 부족) vs 프로세스 이슈(샘플 부족, 일정 충돌)
+• 기술적 지연 시: 문제 근본 원인 빠르게 분석 → workaround 제시(타이밍 완화, ODT 조정 등)
+• 프로세스 지연 시: 본사-FAE 간 일정 재조율, 고객에게 진행 상황 투명하게 공유
+• 고객 신뢰 유지: 정기 업데이트 미팅 설정, 중간 결과라도 공유하여 진행 가시성 확보
+• 대안 제시: 부분 인증(특정 속도 등급 먼저 완료) 또는 유사 플랫폼 인증 결과 레퍼런스 제공`,
 
-  'tech-33': `• 이론 대역폭 산출 후 실측과 비교: DDR5-4800 x 64bit x 2ch = 이론값 대비 70%
-• 메모리 컨트롤러: 스케줄링 정책(Open/Close page), 채널/Rank 인터리빙 설정 확인
-• Page Hit Rate: Row buffer 재활용률 낮으면 잦은 ACTIVATE/PRECHARGE → 대역폭 손실
-• Refresh Penalty: tRFC 동안 Bank 접근 불가, 고용량 DIMM일수록 tRFC 길어짐
-• 소프트웨어: NUMA 설정, 메모리 할당 패턴, 채널 편중 여부 확인 → Intel MLC로 정량 측정 후 컨트롤러 설정 검토 제안`,
+  'tech-54': `• 감정적 대응 금지: 타사 비하 대신 객관적 데이터로 대응
+• 동일 조건 재현: 고객의 벤치마크 환경(워크로드, 설정)을 정확히 파악 → 동일 조건에서 SK 제품 테스트
+• 성능 분석: Intel MLC 등으로 대역폭/레이턴시 정량 비교, 차이 원인 분석(BIOS 설정, ODT, Rank 구성)
+• 강점 부각: 동일 성능이면 전력 효율, 마진 안정성, 장기 신뢰성 등 차별점 데이터 제시
+• 필요 시: 본사 설계팀에 성능 개선 검토 요청, 차기 제품 로드맵 공유로 장기 관계 구축`,
 
-  'tech-34': `• 원인: TSV 적층으로 열 집중, 인터포저 열전도 제한, 하단 다이가 상단 열에 영향
-• 영향: 온도 상승 → Refresh 마진 감소, Retention 저하, Thermal throttling(자동 성능 제한)
-• 시스템 대책: 방열판/Heat spreader 설계 최적화, TIM(열전도 재료) 고성능화, 워크로드 분산 스케줄링
-• 구조적 대책: 열전도 비아(Thermal TSV) 추가, MR-MUF(Mass Reflow Molded Underfill) 방열 개선
-• AE 역할: 고객 시스템의 열 조건 파악, 동작 마진 검증(고온 Shmoo), 열 시뮬레이션 결과 기반 동작 조건 협의`,
+  'tech-55': `• 즉시 거절 금지: 고객 요구의 기술적 배경과 비즈니스 동기를 먼저 파악
+• 기술적 한계 설명: JEDEC 표준 범위, 물리적 제약(SI 마진, 열, 전력)을 데이터로 제시
+• 대안 제시: 요구 사양의 핵심 목적을 달성할 수 있는 대안적 접근 방안 제안
+• 내부 에스컬레이션: 설계팀과 논의하여 차기 제품에 반영 가능 여부 검토, 로드맵에 반영
+• 고객 관계 유지: "불가능"이 아닌 "이렇게 하면 가능" 프레임으로 전환`,
 
-  'tech-35': `• 배경: 미세공정 → DRAM 셀 내부 에러율 증가 → DRAM 자체적으로 먼저 교정 필요
-• On-die ECC: DRAM 내부에서 128bit 데이터 + 8bit ECC = 136bit로 자체 교정 (외부에 투명)
-• 시스템 ECC: 메모리 컨트롤러 단에서 SECDED(Single-Error Correct, Double-Error Detect) 수행
-• 한계: On-die ECC 교정은 외부에서 관찰 불가(Silent correction) → 에러율 추적/모니터링 어려움
-• AE 관점: 고객에게 On-die ECC 동작 방식 설명, 시스템 ECC와의 관계 안내, 에러 리포팅 방법론 제시`,
+  'tech-56': `• 핵심 원칙: 사실 기반(Fact-based), 주관적 판단 배제, 데이터와 측정 결과로 뒷받침
+• 정량적 표현: "마진 부족" → "Byte 3 Read Eye 마진 85ps, 스펙 120ps 대비 29% 부족"
+• 구조화: 요약 → 테스트 환경 → 증상 → 분석 과정 → 근본 원인 → 해결책/권장사항
+• 독자 맞춤: HW 엔지니어(기술 디테일), PM(일정/영향 범위), 경영진(비즈니스 임팩트) 별도
+• 원인-결과 구분: 증상(Symptom)과 근본 원인(Root Cause)을 명확히 분리하여 기술`,
 
-  'tech-36': `• 전압/전력: DDR5 1.1V vs LPDDR5 1.05V → LPDDR이 전력 효율 우수 (배터리 구동 최적)
-• 폼팩터: DDR5는 DIMM 슬롯, LPDDR5는 PoP/BGA (기판 직접 실장, 소형화)
-• 대역폭: DDR5 최대 6400+ MT/s, LPDDR5X 최대 8533 Mbps (높은 주파수 가능)
-• 추천: 서버/데스크톱 → DDR5(확장성, 대용량), 모바일/노트북/차량/AI Edge → LPDDR5(저전력, 소형)
-• AE 관점: 고객 시스템의 전력 예산, 성능 요구, 폼팩터 제약을 종합 분석하여 최적 제품 추천`,
+  // 시스템 (tech-60~63)
+  'tech-60': `• 전력 모드 활용: Active Power-Down, Precharge Power-Down, Self-Refresh 적극 활용
+• PASR(Partial Array Self-Refresh): 사용 영역만 Refresh → 나머지 전력 차단, 50%+ 절감
+• DVFSC: 워크로드에 따라 주파수/전압 실시간 변환 (LPDDR5X), 유휴 시 저속/저전압
+• DBI(Data Bus Inversion): 전환 비트 수 최소화 → SSN 감소 + 종단 전류 감소 → 전력 절약
+• AE 역할: 고객 워크로드 시나리오별 전력 상태 체류 비율 분석 → 최적 전력 모드 조합 제안`,
 
-  'tech-37': `• 길이 매칭: DQ-DQS 그룹 내 +-5mil 이내 (위반 시 Setup/Hold 타이밍 위반)
-• 임피던스 제어: 50ohm Single-ended / 100ohm Differential (위반 시 신호 반사 발생)
-• Via 최소화: Via transition마다 임피던스 불연속 → Ground stitching via로 리턴 경로 확보
-• Split plane 금지: 참조 평면 분할 위 라우팅 시 리턴 경로 끊김 → EMI 발생, 신호 왜곡
-• 기판 소재: DDR5 주파수(3.2GHz+)에서는 Megtron 6 등 저손실 소재 필요 → 손실 커지면 Eye 열화`,
+  'tech-61': `• 고온 영향: 셀 누설전류 증가(10도당 ~2배) → Retention 저하, tREFI 단축, 마진 축소
+• 저온 영향: 트랜지스터 특성 변화, 동작 속도 변동, 센스앰프 마진 변화
+• PVT 코너 검증: Worst Case = Slow Process + Low Voltage + High Temperature
+• AE 역할: 온도 챔버에서 고온(85°C+)/저온(-40°C) Shmoo Plot 비교 → 마진 확보 확인
+• 필수 이유: 필드 환경(서버룸, 차량 엔진룸)은 상온이 아님 → 양산 전 극한 조건 검증 필수`,
 
-  // ── Part 2: 직무 지식 (tech-38 ~ tech-75: HBM 심화/SI/PI/딥 기술/SK하이닉스) ──
-  'tech-38': `• HBM3E: 9.8Gb/s/pin, 12Hi 36GB, 현재 양산 중 (주요 AI 가속기 탑재)
-• HBM4: 11.7Gbps, 16층 48GB, 2026.2 양산 예정 → 로직 다이에 커스텀 로직 통합 가능
-• cHBM 연결: HBM4에서 고객 맞춤 설계 가능성 대폭 확대 → 표준품 경쟁 넘어 차별화
+  'tech-62': `• 병목(Bottleneck): 시스템 성능을 제한하는 가장 느린 구간
+• 메모리 병목: CPU 연산 속도 >> 메모리 접근 속도 → Memory Wall 문제 (AI에서 특히 심각)
+• 해결 1: HBM(1024-bit 와이드 I/O, 1.2TB/s+) → 대역폭 병목 해소
+• 해결 2: PIM(메모리 내부 연산) → 데이터 이동 자체 제거
+• 해결 3: CXL Memory Pooling(용량 확장) + 채널/Rank 인터리빙 + 캐시 최적화`,
+
+  'tech-63': `• 워크로드 의존적: 정답은 "둘 다 중요하지만 워크로드에 따라 우선순위가 다름"
+• 대역폭 중요: AI 학습/HPC → 대량 데이터 스트리밍, GPU/가속기 환경, HBM이 해답
+• Latency 중요: 서버 DB/트랜잭션 처리 → 랜덤 접근 위주, Page Miss 최소화가 핵심
+• LLM 추론: 디코딩 단계는 Memory-bound(대역폭), 프리필 단계는 Compute-bound
+• AE 관점: Roofline model로 고객 워크로드의 Compute vs Memory bound 여부 분석 → 최적 메모리 제품 제안`,
+
+  // HBM & 차세대 (tech-70~76)
+  'tech-70': `• 구조: TSV(관통비아)로 DRAM 다이 4~16층 수직 적층, 최하단에 Base Logic Die
+• 인터페이스: 1024-bit 와이드 I/O, 16채널 × 64bit → DDR 대비 대역폭 10배+ (HBM3E: 1.2TB/s)
+• 패키징: 2.5D CoWoS 인터포저 위에 SoC와 HBM 나란히 배치, 미세 배선으로 고밀도 연결
+• 장점: 높은 대역폭, 낮은 전력(짧은 TSV 배선으로 pJ/bit 절감), 작은 폼팩터
+• AI 필수: LLM 추론/학습의 메모리 대역폭 병목을 해결하는 핵심 메모리`,
+
+  'tech-71': `• 정의: JEDEC 표준을 넘어 고객 맞춤으로 베이스 로직 다이를 설계한 Custom HBM
+• 차이점: 상부 DRAM 스택 동일 + 베이스 다이를 고객(NVIDIA/Google 등) 요구에 맞춤 설계
+• 기대 효과: 불필요 I/O 제거 → 확보된 면적에 추가 로직 탑재, I/O 전력 70%+ 절감
+• HBM4부터 본격 적용: TSMC 12nm/5nm 공정으로 베이스 다이 제조, NVIDIA/Google과 공동 설계
+• AE 역할 변화: 표준 스펙 지원 → 고객 아키텍처 이해 기반 맞춤 설계 컨설팅으로 확대`,
+
+  'tech-72': `• HBM3E: 9.8Gbps/pin, 1024-bit, 12Hi 36GB 양산, 스택당 ~1.25TB/s
+• HBM4: 11.7Gbps, 2048-bit(2배 확대 핵심), 12Hi/16Hi, 스택당 ~2TB/s, 2026.2 양산 시작
+• cHBM 연결: HBM4에서 베이스 다이 커스터마이징 본격화 → 표준품 경쟁 넘어 차별화
 • AI 시장 영향: LLM 모델 크기 기하급수 증가 → 용량+대역폭 동시 요구, HBM4가 해답
-• HBM4E: 2027년 양산, AI 가속기 시장 40% 점유 전망`,
+• HBM4E(2027): ~12.8Gbps, 하이브리드 본딩(Cu-Cu 직접 접합) 최초 적용, 20Hi 적층 가능`,
 
-  'tech-39': `• NVIDIA: 최고 대역폭/용량 요구, 성숙한 CUDA 생태계 → 가장 엄격한 SI 검증 요구
-• Google TPU: 자체 아키텍처 → 표준과 다른 메모리 접근 패턴, 인터페이스 맞춤 필요
-• Amazon Trainium: 비용 효율 + 대용량(144GB HBM3E) → TCO 최적화 관점 기술 지원
-• AMD MI: 19.6TB/s 극한 대역폭 → SI 과제 극대화, 열/전력 관리 기술 지원 필요
-• AE 역할 변화: 표준 대응 → 각 고객 칩 아키텍처 깊이 이해 → cHBM 공동 설계 협업 필수`,
+  'tech-73': `• Full Stack = cHBM(AI Training) + AI-D(DDR5/CXL, AI 서버) + AI-N(NAND, 스토리지) 전 영역
+• AE 역할 1: cHBM — 고객 칩 아키텍처 깊이 이해, 베이스 다이 공동 설계 기술 컨설팅
+• AE 역할 2: AI-D — MRDIMM/CXL/PIM 등 신규 제품의 고객 시스템 검증, Memory Wall 극복 솔루션 제안
+• AE 역할 3: 고객 다변화(NVIDIA/Google/AWS/AMD/Meta) → 각 고객 전담 AE 필요
+• Provider → Creator 전환에서 AE = 고객 최전선에서 기술 파트너십 구축하는 핵심 조직`,
 
-  'tech-40': `• CoWoS(Chip-on-Wafer-on-Substrate): TSMC의 2.5D 패키징, 실리콘 인터포저 위에 HBM+SoC 배치
-• 인터포저 역할: 미세 배선(µm급)으로 1024-bit 와이드 인터페이스 연결
-• SI 과제: 인터포저 배선 길이 → 신호 감쇠/Crosstalk, Microbump 피치 축소 → 수율 과제
-• 대안 기술: TSMC InFO, Samsung I-Cube 등 경쟁 패키징 존재
-• AE 관점: 고객 패키징 환경(CoWoS vs 대안) 이해하고 그에 맞는 SI 검증 수행 필요`,
-
-  'tech-41': `• 경쟁 현황: 시장 경쟁 심화, 기술 격차만으로는 장기 우위 유지 어려움
-• AE 차별화: 고객 시스템 깊이 이해 → cHBM 맞춤 설계 → 고객 Lock-in 효과 창출
-• 빠른 대응 속도: 이슈 발생 → 근본 원인 분석 → 해결까지의 시간 자체가 핵심 경쟁력
-• AE 조직 확대: 고객 다변화(NVIDIA 외 Google/AWS/AMD/Meta) → 전담 AE 인력 필요성 급증
-• 2026년 미주 HBM 전담 기술 조직 신설 → AI 고객 밀착 지원 전략의 실행`,
-
-  'tech-42': `• HBM3E: 9.8Gbps × 1024bit / 8 = 1,254 GB/s ≈ 1.2TB/s
-• DDR5-4800: 4.8Gbps × 64bit / 8 = 38.4 GB/s
-• 비율: HBM3E가 DDR5 대비 약 32배 대역폭
-• AI 필수 이유: LLM 파라미터 수십~수백 GB, Transformer 어텐션 = 메모리 대역폭 병목
-• 추가 장점: HBM은 TSV 경로 짧아 pJ/bit 낮음 → 전력 효율도 우수`,
-
-  'tech-43': `• DFE 필요성: DDR5 5GHz+ → 채널 손실 심각, ISI 증가 → Eye diagram 닫힘
-• 동작 원리: 이전 비트 판정 결과를 피드백 → 현재 비트의 ISI 성분 제거
-• 구현 위치: DRAM 수신단에서 구현, MRS로 DFE tap 계수 설정
-• 효과: Eye width/height 개선 → 타이밍/전압 마진 확보
-• AE 관점: 고객 채널 조건에 맞는 DFE tap 계수 최적화 설정 지원`,
-
-  'tech-44': `• PDN 역할: 안정적 전압 공급, 임피던스 높으면 IR drop + SSN(동시 스위칭 노이즈) 발생
-• Multi-stage decoupling: Bulk Cap(저주파) → MLCC(중주파) → On-die Cap(고주파) 각 대역 커버
-• DDR5 특수성: On-DIMM PMIC 도입 (12V → 1.1V 변환), 기존 대비 PDN 구조 근본 변경
-• SSN 문제: 다수 DQ 동시 스위칭 시 전압 강하 → 데이터 에러 유발 가능
-• AE 관점: 고객 보드 PDN 임피던스 프로파일 분석, PMIC 위치/용량/decoupling 배치 검토`,
-
-  'tech-45': `• NEXT(Near-End Crosstalk): 구동 끝에서 발생, 에너지 양방향 결합
-• FEXT(Far-End Crosstalk): 원단에서 발생, 에너지 전파 방향으로 결합
-• DDR5에서 심각한 이유: 고주파(5GHz+) + 고밀도 배선 → 전자기 결합 증가
-• 최소화 방법: 간격 확보(3W 룰), Ground guard trace, 차동 신호 사용, 길이 매칭
-• AE 관점: 고객 PCB 리뷰 시 Crosstalk 시뮬레이션 결과 확인 및 개선 가이드 제공`,
-
-  'tech-46': `• Deterministic Jitter: ISI, Duty Cycle Distortion, Crosstalk 유발 → 예측/보상 가능
-• Random Jitter: 열잡음, 전원잡음 → Gaussian 분포, BER로만 정량화
-• Total Jitter: TJ = DJ + n × RJ (n은 BER 목표에 따라 결정, BER 10⁻¹² → n≈14)
-• Eye 영향: Jitter 증가 → Eye width 축소 → Setup/Hold 타이밍 마진 감소
-• AE 관점: 오실로스코프로 Jitter 측정 → DJ/RJ 분해 분석 → 원인별 대응 제안`,
-
-  'tech-47': `• 데이터 파싱/구조화: Python/Pandas로 로그 포맷 파악 → DataFrame 구조화 (주소, 시간, Pass/Fail, 온도)
-• 패턴 분석: 특정 Row/Bank/Column 집중 → Row Hammer 의심, 특정 시간대 집중 → 열 상관관계
-• 시각화: 히트맵으로 불량 분포, Shmoo Plot 자동 생성 → 직관적 패턴 파악
-• 자동화: CI/CD 파이프라인에 통합하여 매 테스트마다 자동 분석 리포트 생성
-• [본인 경험] Streamlit ULP 자동화 도구 개발: 수작업 84개 → 2,500개 자동 분석, Python/Pandas 기반`,
-
-  'tech-48': `• 접근 패턴: Sequential(최대 BW 측정) vs Random(실제 워크로드 모사) 모두 측정
-• R/W 비율 및 데이터 크기: Read-only/Write-only/Mixed, L1/L2/L3 캐시 넘는 크기로 DRAM 직접 측정
-• 멀티스레드/NUMA: 채널/Rank 인터리빙 효과, 소켓별 로컬/리모트 메모리 구분 측정
-• 측정 지표: BW, Latency, BW-Latency curve → 실제 워크로드 병목 구간 식별
-• [본인 경험] 연산-대역폭 균형점(Roofline) 수식 도출 경험 → 벤치마크 결과 해석 능력 보유`,
-
-  'tech-49': `• 자동화 대상 선정 기준: 반복적, 시간 소모적, 휴먼 에러 발생 가능한 작업 우선
-• 우선순위 1: Shmoo Plot 자동 생성/비교 — 다수 조건(전압/온도/타이밍)에서 반복 필요
-• 우선순위 2: 테스트 리포트 자동화 — 고객 제출용 정형 보고서, 수작업 시 시간 낭비
-• 우선순위 3: 회귀 테스트 — BIOS 설정 변경 시 자동 재검증 + Pass/Fail 자동 판정
-• [본인 경험] Streamlit ULP 자동화(84→2,500개), C++ 라이브러리 7.08x 속도 향상 경험`,
-
-  'tech-50': `• tCL(CAS Latency): READ 명령 → 첫 데이터 출력까지의 클럭 수
-• tRCD: ACTIVATE → READ/WRITE 가능까지 대기 시간
-• tRP: Row Precharge (Row 닫기) 소요 시간
-• 관계식: tRAS ≥ tRCD + tCL, Page Miss latency = tRP + tRCD + tCL (vs Page Hit = tCL만)
-• 성능 영향: 타이밍 작을수록 빠르지만 안정성 감소 → AE는 고객 시스템에 최적 타이밍 프로파일 제안`,
-
-  'tech-51': `• Open Page: Row 활성 유지 → Page Hit 시 tCL만 소요 (같은 Row 재접근 시 이득)
-• Close Page: 즉시 Precharge → Page Miss 비용 균일화, Page Hit 이득 없음
-• 워크로드 매핑: 스트리밍/순차접근 → Open Page, 서버/랜덤접근 → Close Page
-• 하이브리드: 실제 컨트롤러는 Adaptive 정책으로 워크로드에 따라 동적 전환
-• AE 관점: 고객 워크로드 특성 분석 → 메모리 컨트롤러 스케줄링 설정 추천`,
-
-  'tech-52': `• IDD0: Active-Precharge 반복 전류 (기본 동작 전력 기준)
-• IDD2P: Precharge Powerdown 전류 (대기 최소 전력)
-• IDD4R/W: READ/WRITE burst 전류 (최대 동작 전력)
-• IDD5: Refresh 전류 (주기적 Refresh 소모, 고온에서 증가)
-• AE 활용: 고객 워크로드별 각 상태 체류 비율 × IDD값 = 총 전력 예측 → 시스템 열/전력 설계 지원`,
-
-  'tech-53': `• Vref: DQ 신호를 1/0으로 판별하는 기준 전압, Eye diagram에서 수직 중심선
-• 필요성: 채널 조건(보드, 트레이스, 부하)에 따라 최적 Vref가 다름, 고정값으로는 마진 부족
-• Training 과정: Vref 값을 스윕하며 Pass/Fail 판별 → Eye height 정중앙을 최적값으로 설정
-• 잘못된 Vref: Eye height 마진 감소 → BER 증가 → 간헐적 데이터 에러 (재현 어려움)
-• DDR5: Host/DRAM 양쪽 Vref 독립 조정 가능 → AE는 고객 시스템에서 양쪽 Vref 마진 검증`,
-
-  'tech-54': `• Active: ACTIVATE 후 Row 열림, Read/Write 가능, 전력 최대 (IDD0)
-• Idle/Precharge Standby: Row 닫힘, 명령 대기 상태 (IDD2N)
-• Power-Down: CKE Low로 진입, Active PD(Row 열린 채) / Precharge PD(Row 닫힘, IDD2P 최소)
-• Self-Refresh: 외부 클럭 불필요, DRAM 자체 Refresh, 가장 저전력 (IDD6)
-• AE 관점: 고객 시스템 전력 프로파일에 따라 Power-Down/Self-Refresh 정책 추천`,
-
-  'tech-55': `• 동작 순서: READ 명령(CK 상승 엣지) → tCL 대기 → DQS 프리앰블 → DQS 토글 + DQ 데이터 전송
-• DDR 전송: DQS 양쪽 엣지(상승+하강)에 각 1비트씩 전송 → Burst Length 16 = 16비트 연속
-• Prefetch 16n 의미: 내부 배열에서 16비트를 한번에 읽어 I/O 핀으로 직렬 전송 (내부 클럭 < 외부 데이터레이트)
-• DDR4 대비: DDR4는 8n Prefetch → DDR5는 2배로 더 높은 데이터레이트 실현
-• AE 관점: DQS-DQ 파형 관계 이해 → 오실로스코프 측정 시 프리앰블/포스트앰블 확인 필수`,
-
-  'tech-56': `• Fly-by: CK/CA 신호가 DIMM 위 칩들을 순서대로 경유 → stub 최소화로 SI 우수
-• T-branch: 분기점에서 동시 도달 목표이나 실제로는 stub 반사 심각 (고주파에서 열화)
-• Fly-by 문제: 첫 칩과 마지막 칩 사이 CK skew 발생 → DQS-CK 정렬 불일치
-• 해결: Write Leveling으로 각 칩별 DQS-CK 딜레이 보정 (DDR3부터 채택)
-• AE 관점: DIMM 슬롯 위치별 마진 차이 이해, Training 결과에서 칩별 skew 해석`,
-
-  'tech-57': `• MRS 정의: DRAM 내부 Mode Register에 동작 파라미터 설정 (MR0~MR5 등)
-• 주요 설정: MR0(BL/CL), MR1(ODT/드라이브 강도), MR2(Write CL), MR3(Vref), MR5(DFE tap)
-• AE 조정 상황: SI 마진 부족 → ODT 값 변경, Eye 개선 → DFE tap 조정, Training 마진 → Ron 변경
-• 설정 방법: BIOS에서 MRS 값 변경 → JEDEC 허용 범위 내에서만 조정
-• 주의점: 부적절한 MRS 값 → Training 실패 또는 동작 불안정, 반드시 마진 테스트 병행`,
-
-  'tech-58': `• ZQ Cal 목적: DRAM 출력 드라이버/ODT 임피던스를 외부 정밀 저항(240Ohm) 기준으로 보정
-• PVT 변동: Process(공정 편차), Voltage(전압 변동), Temperature(온도 변화) → 임피던스 drift 발생
-• ZQCL(Long): 초기화 시 전체 캘리브레이션 / ZQCS(Short): 주기적 짧은 재보정
-• 임피던스 부정확 시: 반사 증가 → Eye 열화 → SI 마진 감소
-• AE 관점: 고온 환경(서버 85°C+)에서 ZQ Cal 주기 조정 제안, PI 안정성 확보`,
-
-  'tech-59': `• Rank 정의: 64-bit 폭을 채우는 DRAM 칩 세트, CS(Chip Select)로 선택
-• Multi-rank 장점: 용량 증가(2R=2배), Rank 인터리빙 → 대역폭/효율 향상
-• SI 영향: Rank 많을수록 버스 부하 증가, stub 증가 → Eye 열화 → 최대 속도 제한
-• ODT 설정: 활성 Rank vs 비활성 Rank ODT를 다르게 설정 (RTT_NOM, RTT_PARK 분리)
-• AE 관점: 고객 시스템 Rank 구성별 최대 지원 속도 안내, 2DPC×2R 등 까다로운 구성 마진 검증`,
-
-  'tech-60': `• 이론 계산: 4800MT/s × 8Bytes × 2ch = 76.8 GB/s
-• 실측 60-70%: 약 46~54 GB/s (30-40% 손실 발생)
-• DRAM 손실: Refresh penalty(~5-10%), Page Miss(tRP+tRCD 오버헤드), Bank 충돌, 명령 슬롯 경쟁
-• SW 손실: NUMA 미설정, 캐시 오염, 비정렬 접근, 컨트롤러 스케줄링 비효율
-• AE 활용: Intel MLC 등으로 측정 → 손실 원인별 분석 → 고객에게 최적화 방안 제안`,
-
-  'tech-61': `• DDR5: 32-bit × 2 독립 서브채널 (DDR4: 64-bit 단일 채널)
-• 장점 1: 두 서브채널이 다른 주소 동시 접근 → 메모리 접근 효율 향상
-• 장점 2: BL16 × 32bit = 64Bytes = 캐시라인 크기 정확히 일치
-• 장점 3: 서브채널별 독립 Refresh 가능 → 가용성 향상
-• AE 관점: 서브채널별 독립 마진 검증 필요, Training 결과도 서브채널별 분리 확인`,
-
-  'tech-62': `• DRAM: DDR5 RDIMM/MRDIMM(서버), UDIMM(PC), 1c 6세대 6.4Gbps 개발
-• 모바일: LPDDR5X 24GB 양산, LPDDR6 1c 세계 최초 개발, 차량용 ASIL-D 인증
-• HBM: HBM3E 12Hi 36GB 양산, HBM4 2026.2 양산 (점유율 62%)
-• NAND: 321단 QLC SSD(PQC21), PCIe Gen5 U.2(PS1012) → 데이터센터/소비자
-• 실적: 매출 97조, 영업이익 47조 역대 최대, D램 점유율 38%로 업계 1위`,
-
-  'tech-63': `• AE = 시스템 레벨 최종 검증 ("화룡점정"), 양산 직전 고객 시스템 환경에서 동작 검증
-• PE = 단품 수준 제품 안정화, 웨이퍼 수율 관리, 공정 최적화
-• AE 실장평가: 온도/전압/구동시간 등 다양한 변수 조건에서 메모리 동작 검증
-• AE 추가 역할: FW/BIOS/FPGA 활용 검증 도구(응용 Solution) 개발
-• 핵심 차이: PE는 "좋은 메모리 만들기", AE는 "고객 시스템에서 완벽히 동작하게 만들기"`,
-
-  'tech-64': `• 5단계: 웨이퍼 테스트 → 마진 테스트 → 온도 코너(고온85°C/저온-40°C) → 기능 테스트 → 실장평가
-• AE 담당: 실장평가 단계 — 실제 고객 시스템 환경에서 메모리 최종 검증
-• AE 역할: 퀄리피케이션 계획/샘플 계획 수립, Design Win 확보용 샘플 제공
-• 이슈 관리: 불량 원인 분석 → 본사 피드백, PCN/ECN 관리, RMA/FA 프로세스 운영
-• 목표: 양산 전 잠재 불량 제거 + 고객 시스템에서의 안정성 보증`,
-
-  'tech-65': `• AI 메모리 폭발: HBM 수요 2025년 130%+ 성장, 시장 규모 급팽창
-• 고객 다변화: NVIDIA 외 Google/AWS/MS/AMD/Meta → 각기 다른 아키텍처, 전담 AE 필요
-• cHBM 전환: 범용 → 맞춤형, 고객과 공동 설계 → AE 역할 대폭 확대
-• 제품 복잡도: DDR5/LPDDR6/HBM4/CXL/PIM 동시 전개 → 시스템 이해 인력 부족
-• 조직 확대: 2026년 미주 HBM 전담 기술 조직 신설, Full Stack AI Memory Creator 비전 실행`,
-
-  'tech-66': `• AI-D 3축: O(MRDIMM/LPDDR5R, TCO 절감), B(CXL/PIM, Memory Wall 극복), E(로보틱스/모빌리티 확장)
-• AI-N 3축: P(초고성능 SSD), B(HBF 표준화, HBM 적층 구조 적용), D(QLC PB급 용량)
-• AI-D Breakthrough: CMM(CXL Memory Module) + PIM으로 메모리 벽 해결이 핵심
-• AE 역할: 각 신규 제품군의 고객 시스템 검증, 특히 CXL/PIM은 시스템 레벨 이해 필수
-• 전략 의미: 단순 메모리 공급자 → Full Stack AI Memory Creator로 진화`,
-
-  'tech-67': `• DRAM: 휘발성, 빠른 Random access(~10ns), 1T1C 구조, Refresh 필요, 고가
-• NAND: 비휘발성, 느림(~100us), Floating Gate/CTF, 블록 단위 소거, 저가
-• 역할 분담: DRAM = CPU의 빠른 작업 공간, NAND/SSD = 영구 데이터 저장
-• 메모리 계층: Register → Cache → DRAM → SSD → HDD (속도↓ 용량↑ 비용↓)
-• AI 시대: DRAM 대역폭이 연산 병목, NAND 용량이 데이터셋/체크포인트 저장 병목`,
-
-  'tech-68': `• Memory Wall: 연산 속도 발전 >> 메모리 속도 발전, AI에서 특히 심각
-• LLM 추론: 수십~수백GB 파라미터를 매 토큰마다 로드, 디코딩은 Memory-bound
-• SK하이닉스 대응 1: HBM4(2048-bit 인터페이스, 2TB/s) + cHBM(불필요 데이터 이동 감소)
-• SK하이닉스 대응 2: PIM/GDDR6-AiM(메모리 내부 연산, 데이터 이동 자체 제거)
-• SK하이닉스 대응 3: CXL Memory(메모리 풀링으로 용량 확장) → AE는 각 솔루션의 시스템 적용 검증`,
-
-  'tech-69': `• 서버: 안정성 최우선, ECC 필수, DDR5 RDIMM/MRDIMM, 24/7 가동 → Refresh 마진 충분해야
-• AI 가속기: 극한 대역폭(HBM3E/4), 열 관리 과제, cHBM 맞춤 최적화
-• 모바일: 저전력 최우선(LPDDR5X/6), PoP/BGA 패키지, 배터리 수명 직결
-• 차량: -40~125°C 극한 온도, 15년+ 수명, AEC-Q100, Zero-defect, ISO 26262 ASIL-D
-• AE는 각 시장의 고유 요구사항을 이해하고 맞춤 검증 수행`,
-
-  'tech-70': `• 본사 AE(이천): 제품 개발 실장평가, FW/BIOS/FPGA 응용 Solution 개발, 시스템 성능 분석
-• 해외 FAE(미주/일본/중국): 고객 1차 기술 인터페이스, 로드맵 제공, 퀄리피케이션/RMA 관리
-• 협업 구조: FAE가 고객 요구 수집 → 본사 AE가 평가/분석 → 결과를 FAE 경유 고객 전달
-• 2026년 변화: 미주에 HBM 전담 기술 조직 신설 → 주요 AI 고객 대상 신속 대응 체계
-• AE 지원자 관점: 본사 AE로 시작해 해외 법인 파견 가능성, 글로벌 경험 기회`,
-
-  'tech-71': `• PIM 개념: 데이터가 있는 곳(메모리 내부)에서 연산 → 데이터 이동 비용 제거
-• GDDR6-AiM: LLM 어텐션 Matrix-Vector 곱을 메모리 내부에서 수행, AiMX 카드로 제품화
-• Memory Wall 해결: DRAM→GPU 데이터 이동이 병목 → 메모리에서 직접 처리로 전력/지연 절감
-• AE 검증 과제: 기존(데이터 전송 정확성만) → PIM(연산 결과 정확성도 검증 필요, 새 방법론)
-• 시스템 통합: 호스트 GPU + PIM 협업 동작 검증, 소프트웨어 스택 호환성까지 확인`,
-
-  'tech-72': `• CXL: PCIe 기반 캐시 코히어런트 인터커넥트, CPU와 외부 메모리 간 직접 연결
+  'tech-74': `• CXL = PCIe 기반 캐시 코히어런트 인터커넥트, CPU와 외부 메모리 직접 연결
 • 장점 1: Memory Pooling → 여러 서버가 메모리 공유 → 활용률 대폭 향상
-• 장점 2: 용량 확장 → CPU 소켓당 DIMM 슬롯 한계 극복
-• CMM: SK하이닉스의 CXL 2.0 기반 메모리 모듈, AI-D Breakthrough 전략 핵심 제품
+• 장점 2: 용량 확장 → CPU 소켓당 DIMM 슬롯 한계 극복, 대용량 메모리 구성 가능
+• CMM: SK하이닉스 CXL 2.0 기반 메모리 모듈, AI-D Breakthrough 전략 핵심 제품
 • AE 과제: CXL 프로토콜 검증 + 기존 DDR과 공존 시 성능/안정성 검증, 새로운 메모리 계층 최적화`,
 
-  'tech-73': `• 시스템 레벨 사고: 메모리 단품이 아닌 고객 시스템 전체 맥락에서 문제 파악
-  → [경험] MPU-VPU mismatch 시스템 레벨 분석으로 근본 원인 도출
-• 고객 소통: 기술 이슈를 고객이 이해할 수 있는 언어로 전달하는 능력
-  → [경험] AI EXPO Seoul/JAPAN IT WEEK 부스 운영, 미쓰비시 전기 기술 논의
-• 문제 해결: 데이터 기반 체계적 디버깅, 끈기 있는 실험적 접근
-  → [경험] PPA 최적화 7가지 구조 실험, Streamlit 자동화 도구 개발
-• 끈기와 호기심: 정답이 없는 상황에서도 포기하지 않고 최선의 해답 도출`,
+  'tech-75': `• PIM 개념: 데이터가 있는 곳(메모리 내부)에서 연산 → 데이터 이동 비용 제거
+• GDDR6-AiM: LLM 어텐션 Matrix-Vector 곱을 메모리 내부에서 수행, AiMX 카드로 제품화
+• Memory Wall 해결: DRAM→GPU 데이터 이동이 병목 → 메모리에서 직접 처리로 전력/지연 절감
+• AE 검증 과제: 기존(데이터 전송 정확성만) → PIM(연산 결과 정확성도 검증 필요)
+• 시스템 통합: 호스트 GPU + PIM 협업 동작 검증, 소프트웨어 스택 호환성까지 확인 필요`,
 
-  'tech-74': `• 배경: HBM4는 AI칩 위에 적층 → 단품 테스트만으로는 통합 후 문제 검출 불가
-• 기존 한계: 메모리 단품 테스트 장비는 GPU와의 상호작용, TSV 결함, 열 관련 불량 검증 불가
-• 자체 개발 의미: 메모리+AI칩 통합 환경에서 시스템 레벨 결함 식별 가능
-• AE 역할 확대 상징: "단품 검증 지원" → "시스템 통합 검증"으로 AE 업무 범위 확장
-• TSMC 협력: 패키징 공정 포함한 End-to-End 검증 체계 구축`,
+  'tech-76': `• 서버: 안정성 최우선, ECC 필수, DDR5 RDIMM/MRDIMM, 24/7 가동, Refresh 마진 충분해야
+• AI 가속기: 극한 대역폭(HBM3E/4), 열 관리 과제, cHBM 맞춤 최적화, TSV 적층 검증
+• 모바일: 저전력 최우선(LPDDR5X/6), PoP/BGA 패키지, PASR/DPD/DVFSC 활용, 배터리 수명 직결
+• 차량: -40~125°C 극한 온도, 15년+ 수명, AEC-Q100/ISO 26262 ASIL-D, Zero-defect
+• AE는 각 시장 고유 요구사항 이해 → 맞춤 검증 수행 + 최적 제품 구성 제안`,
 
-  'tech-75': `• 시장 위치: 2025년 매출 97조, 영업이익 47조 역대 최대, D램 점유율 38%로 업계 1위 달성
-• HBM: 점유율 62% 압도적 1위, 엔비디아 HBM 물량 71% 공급
-• 강점: HBM 기술 선도(2년+), cHBM으로 맞춤형 전환, 고객 밀착 지원 문화, Full Stack AI Memory 비전
-• 시장 경쟁 심화: 경쟁사 HBM4 추격, 1c 공정 과감 적용 등 기술 격차 축소 시도 중
-• 과제: EUV 투자 확대, cHBM 고객 확보 가속, 차세대 패키징 기술 확보`,
+  // NAND (tech-80~82)
+  'tech-80': `• DRAM: 휘발성, 빠른 Random access(~10ns), 1T1C 구조, Refresh 필요, 고가/GB
+• NAND: 비휘발성, 느림(~100us read), Floating Gate/CTF, 블록 단위 소거, 저가/GB
+• 역할 분담: DRAM = CPU의 빠른 작업 공간(Main Memory), NAND/SSD = 영구 데이터 저장(Storage)
+• 메모리 계층: Register → Cache → DRAM → SSD → HDD (속도↓ 용량↑ 비용↓)
+• AI 시대: DRAM 대역폭 = 연산 병목, NAND 용량 = 데이터셋/체크포인트 저장 병목 → 둘 다 필수`,
 
-  // ── AE 심화: 모듈 부품·호스트·FPGA·GDDR·LPDDR·Qualification ──
-  'tech-76': `• RCD(Registering Clock Driver): CA/CK 신호를 호스트로부터 수신→버퍼링→각 DRAM에 재구동, 호스트 부하 경감
-• DB(Data Buffer): DQ/DQS 신호를 호스트↔DRAM 사이에서 중계, 신호 재생성으로 Eye 마진 확보
-• DDR4 vs DDR5: DDR4는 RCD만 RDIMM에, DB는 LRDIMM에만 / DDR5는 RCD+DB 모두 RDIMM에 탑재
-• 이유: DDR5 고속화(4800~8800MT/s)로 SI 마진 감소→DB 없이는 다수 DRAM 직접 구동 불가
-• DDR5 RCD 특징: 서브채널 A/B를 독립적으로 관리, AE는 RCD FW 버전과 BIOS 호환성 확인 필수`,
+  'tech-81': `• SLC(1bit/셀): P/E ~100K, 최고속, 엔터프라이즈 캐시용
+• MLC(2bit/셀): P/E ~10K, 속도/내구 균형, 서버 SSD
+• TLC(3bit/셀): P/E ~3K, 가성비 최적, Consumer SSD 주류
+• QLC(4bit/셀): P/E ~1K, 최저가/최대용량, Read-heavy/Archive 워크로드
+• 트레이드오프: 비트/셀 증가 → 전압 레벨 수 증가(2^n) → 마진↓ 내구성↓ 속도↓ 비용↓`,
 
-  'tech-77': `• DDR4: 메인보드 VRM이 1.2V를 긴 PCB 트레이스로 DIMM에 공급 → IR drop·노이즈 문제
-• DDR5: 12V를 DIMM 커넥터까지 전달 → On-DIMM PMIC가 1.1V로 변환 → 전달 거리 최소화
-• 전압 레일: VDD(1.1V, 코어 로직), VDDQ(1.1V, I/O 드라이버), VPP(1.8V, 워드라인 부스트)
-• PMIC 장점: 전압 정밀도↑, IR drop↓, 전력 효율↑ / 과제: DIMM 위 발열, EMI 관리
-• AE 관점: PMIC 호환성 이슈(DIMM-메인보드 간), 전압 마진 테스트, EMI 규격 확인`,
+  'tech-82': `• 문제: NAND P/E 사이클 수명 제한 → 특정 블록만 집중 사용 시 조기 사망
+• Dynamic WL: 쓰기 요청을 P/E 횟수 적은 블록에 우선 분산 (Hot data 분산)
+• Static WL: Cold data(변경 안 되는 데이터)도 주기적으로 고마모 블록으로 이동 → 전체 균등화
+• FTL(Flash Translation Layer)이 논리-물리 블록 매핑 관리하며 WL 수행
+• Over-Provisioning(OP)과 함께 SSD 수명 연장의 핵심 기법, WAF(Write Amplification) 최소화 목표`,
 
-  'tech-78': `• DDR4 SPD: I2C EEPROM(512B), 타이밍·전압·제조사 정보 저장하는 단순 저장소
-• DDR5 SPD Hub: I3C 기반 허브 디바이스, EEPROM(1KB+) + 온도 센서(TS) + 이벤트 알림 통합
-• I3C 장점: I2C 대비 고속, In-Band Interrupt→온도 임계치 초과 시 호스트에 즉시 알림
-• AE 활용: 모듈 식별, JEDEC/XMP 타이밍 프로파일 확인, SPD Write Protection 관리
-• 디버깅: 모듈 미인식·속도 이상 시 SPD 내용 읽어 BIOS 해석과 일치 여부 검증`,
+  // 개인 경험 (tech-90~92)
+  'tech-90': `• 기존 문제: RTL을 그대로 C로 Literal porting → 불필요한 cycle-accurate 연산으로 극도로 느림
+• 핵심 전환: Architectural modeling — 동작 의미(기능)만 보존, 불필요한 HW 세부사항 제거
+• 구체적 최적화: 중복 연산 제거, 데이터 구조 재설계, 벤치마크 기반 병목 분석 후 집중 개선
+• 결과: 다양한 시나리오에서 평균 7.08배 속도 향상, Streamlit 자동화와 결합하여 2,500개 파라미터 평가
+• AE 연결: "시스템 수준에서 본질을 파악하는 역량" — 고객 시스템 검증에서도 동일한 사고방식 적용`,
 
-  'tech-79': `• IMC 역할: 명령 스케줄링(R/W/ACT/PRE 순서), 주소 매핑, Refresh 관리, ECC 처리, Power State 제어
-• PHY 역할: CA/DQ/DQS 물리 신호 송수신, DLL 기반 타이밍, Tx/Rx 이퀄라이저, 임피던스 캘리브레이션
-• IMC-PHY 연결: DFI(DDR PHY Interface) 표준 인터페이스
-• Training 분담: PHY=DLL 지연 스윕·DQS-CK 정렬·Vref 스윕 실행 / IMC=시퀀스 제어·Pass/Fail 판정·최적값 저장
-• AE 관점: Training 실패 시 DRAM 측(MRS 조정) vs 호스트 측(BIOS 업데이트) 원인 구분이 디버깅 핵심`,
+  'tech-91': `• 문제 발견: MPU(연산부) 처리량과 VPU(벡터부) 메모리 접근 속도 간 throughput mismatch
+• Roofline model: Arithmetic Intensity = 연산량/데이터 이동량, 이 값에 따라 Compute-bound vs Memory-bound 결정
+• 수식 도출: 연산량/대역폭 비율로 균형점 산출 → 두 자원이 모두 포화되는 최적 설계점
+• 설계 반영: 32-lane parallelism 활용 row-level latency hiding으로 메모리 접근 병목 해소
+• AE 연결: 고객 시스템에서 메모리 대역폭이 성능 병목인 경우 동일한 Roofline 분석 프레임워크 적용`,
 
-  'tech-80': `• Pre-Si: 고객 SoC 테이프아웃 전, FPGA에 메모리 컨트롤러+PHY 구현→DRAM과 직접 통신→프로토콜 검증
-• Post-Si: 실제 칩 나온 후 시스템 환경에서 최종 검증
-• FPGA 장점: RTL 수정 가능→파라미터 튜닝 자유, 테이프아웃 불필요→빠른 반복, 다양한 테스트 패턴
-• AE 시나리오: (1)신규 DDR5 속도 등급 선행 검증, (2)고객 이슈를 FPGA에서 격리 디버깅, (3)RCD/DB FW 호환성 사전 검증
-• BIST(Built-In Self-Test): FPGA 내장 자가진단 로직으로 자동 Pass/Fail 판정`,
+  'tech-92': `• AI EXPO Seoul(한국어): HyperAccel AI 가속기 기술 설명, 고객 수준별 맞춤 응대
+• JAPAN IT WEEK(일본어): 전체 부스 기술 응대 전담, 미쓰비시 전기 내방 미팅으로 연결
+• SEMICON Europa(영어): 스웨덴 스타트업과 기술 논의, 글로벌 반도체 생태계 경험
+• 3개 언어 기술 소통 역량: 상대방 기술 수준에 맞춰 설명 깊이 조절하는 능력 체득
+• AE 연결: AE = 고객의 언어로 기술을 전달하는 역할, 글로벌 고객 대응에 직접 활용 가능`,
 
-  'tech-81': `• GDDR6: NRZ 시그널링, 14~18Gbps, x16/x32 인터페이스, 범용 GPU/게이밍
-• GDDR6X: PAM4(4레벨→2비트/심볼), 21~24Gbps, RTX 3090/4090 등 하이엔드 GPU
-• GDDR7: PAM3(3레벨→1.5비트/심볼), 32Gbps+, Eye height PAM4 대비 50% 개선
-• GDDR vs HBM: 비용 효율적+On-board 직접 실장(모듈 없음) vs 극한 대역폭+2.5D 패키징(고가)
-• AE 특수성: On-board→PCB SI 검증이 곧 AE 업무, 고객 보드 설계 단계부터 참여, PAM 시그널링은 Eye 마진 작아 이퀄라이저 최적화 중요`,
+  // 고급/응용 (tech-93~106)
+  'tech-93': `• 데이터 파싱: Python/Pandas로 로그 포맷 파악 → DataFrame 구조화(주소, 시간, Pass/Fail, 온도)
+• 패턴 분석: 특정 Row/Bank/Column 집중 → Row Hammer 의심, 특정 시간대 → 열 상관관계
+• 시각화: 히트맵으로 불량 분포, Shmoo Plot 자동 생성 → 직관적 패턴 파악
+• 자동화: CI/CD 파이프라인 통합, 매 테스트마다 자동 분석 리포트 생성
+• [본인 경험] Streamlit ULP 자동화 도구: 수작업 84개 → 2,500개 자동 분석, Python/Pandas 기반`,
 
-  'tech-82': `• Self-Refresh: 외부 클럭 없이 데이터 유지, 전체 어레이 Refresh
-• PASR(Partial Array Self-Refresh): 사용 영역만 Refresh, 나머지 전력 차단→Self-Refresh 대비 50%+ 절감
-• DPD(Deep Power Down): 모든 내부 전력 차단→데이터 소실→최저 전력→복귀 시 완전 재초기화
-• DVFSC: LPDDR5X 고유, 워크로드에 따라 주파수·전압 실시간 변환→전력 최적화
-• 모바일: 배터리 수명의 30%+ 메모리 관련, 차량: 주차 대기 SR/시동 시 빠른 복귀 → AE는 시나리오별 최적 모드 조합 제안`,
+  'tech-94': `• 우선순위 1: Shmoo Plot 자동 생성/비교 — 다수 조건(전압/온도/타이밍)에서 반복, 수동 시 수시간
+• 우선순위 2: 테스트 리포트 자동화 — 고객 제출용 정형 보고서, Jinja2 템플릿으로 HTML/PDF 생성
+• 우선순위 3: 회귀 테스트 — BIOS 설정 변경 시 자동 재검증 + Pass/Fail 자동 판정
+• 선정 기준: 반복적 + 시간 소모적 + 휴먼 에러 가능한 작업 우선
+• [본인 경험] C 라이브러리 7.08x 속도 향상 + Streamlit 자동화(84→2,500개) → 프로그래밍 역량 입증`,
 
-  'tech-83': `• Grade 0: -40~150°C (엔진룸/파워트레인) — 메모리 칩에는 거의 사용 안 함
-• Grade 1: -40~125°C (일반 차량 전장, ADAS) — 차량용 DRAM 주 타깃
-• Grade 2: -40~105°C (차체 전자장치)
-• Grade 3: -40~85°C (실내/인포테인먼트)
-• 인증 요구: 1000시간+ 스트레스(HTOL/TC/THB), Zero-defect(ppm 관리), PPAP(양산 승인)
-• ASIL 연계: ASIL A~D(D 최고), ADAS/자율주행→ASIL-B~D, ECC 필수, 고장 검출 커버리지 요구
-• SK하이닉스 LPDDR5X ASIL-D 인증 완료 → 자율주행 공급 가능`,
+  'tech-95': `• 핵심 원인: 2DPC = 신호 경로 길어지고 부하(load) 증가, Stub 효과 → SI 열화
+• SI 영향: 반사 증가, Eye 마진 감소 → Write Leveling 또는 Vref Training에서 마진 부족
+• 해결 1: ODT 값 재조정 — 2DPC 전용 RTT_NOM/WR/PARK 세팅 최적화
+• 해결 2: BIOS 타이밍 완화(CL/tRCD 여유), CA/CS 드라이브 강도 조정, 속도 등급 하향 검토
+• AE 대응: 1DPC vs 2DPC Shmoo Plot 비교 데이터 제시, PCB 라우팅 검토 협업`,
 
-  'tech-84': `• ES(Engineering Sample): 개발 초기, 기능 검증 목적, 스펙 일부 미달 가능
-  → AE: 기본 동작 확인, 잠재 이슈 조기 발견, Technical Bulletin으로 제한사항 안내
-• QS(Qualification Sample): 양산 공정·품질 동등, 고객 정식 인증용
-  → AE: 온도/전압/스트레스 종합 Qualification, Qualification Report 작성·제출
-• MP(Mass Production): 인증 완료→양산 납품→Design Win 확보
-  → AE: 양산 초기 모니터링, PCN/ECN 관리
-• FAE 협업: FAE(고객 접점 샘플 전달·결과 수집) ↔ 본사 AE(분석·판정)`,
+  'tech-96': `• 가설1 (열): AI 지속 고부하 → 온도 상승 → tREFI 절반 → Refresh 마진 부족 → 간헐적 에러
+• 가설2 (Row Hammer): LLM KV-cache/Weight 영역 반복 ACTIVATE → 인접 Row 비트 플립
+• 가설3 (SI): 높은 데이터 전환 빈도에서 ISI/Crosstalk 증가 → 패턴 의존적 Eye 열화
+• 디버깅: 온도 모니터링, ECC 에러 주소 패턴 분석, 해당 온도 조건 Shmoo Plot
+• 핵심: AI 워크로드 특유의 접근 패턴(대규모 순차 읽기, 특정 영역 반복)을 고려한 분석`,
 
-  'tech-85': `• 벤치마크: memtest86(HW 결함 검출), Intel MLC(대역폭/지연 측정), STREAM(대역폭), AIDA64(종합)
-• 시뮬: HSPICE(회로 레벨), ADS(RF/고속 신호), HyperLynx(PCB SI), Sigrity PowerSI(PDN 임피던스)
-• 계측: 오실로스코프(Eye diagram), BERT(BER 정량, 10^-12 기준), Logic Analyzer(프로토콜 디버깅)
-• 로그: PMU Training log(단계별 마진), BIOS 시리얼 로그(POST 에러), Intel RMT(비트별 마진)
-• AE 흐름: 이슈→벤치마크(현상 확인)→로그(원인 추정)→계측(물리 확인)→시뮬(개선안 검증)`,
+  'tech-97': `• 이론 대역폭 산출: 데이터레이트 × 채널 폭 × 채널 수 → 실측과 비교하여 손실률 확인
+• DRAM 측 손실: Refresh penalty(~5-10%), Page Miss(tRP+tRCD 오버헤드), Bank 충돌, tFAW 제한
+• 컨트롤러 측: 스케줄링 정책(Open/Close Page), 채널/Rank 인터리빙 설정, BG Conflict 비율
+• SW 측: NUMA 미설정, 캐시 오염, 비정렬 접근, TLB Miss에 의한 추가 메모리 접근
+• AE 대응: Intel MLC로 BW-Latency 측정 → 손실 원인별 분석 → 컨트롤러/BIOS 설정 최적화 제안`,
 
-  'tech-86': `• 1단계 현상 파악: memtest86로 에러 패턴 분류 (주소별? DQ별? Rank별? 고정 vs 랜덤?)
-• 2단계 로그 분석: BIOS 시리얼/PMU Training log → 어떤 Training 단계에서 마진 부족?
-• 3단계 물리 측정: 오실로스코프로 Eye diagram (JEDEC Mask 대비 마진), BERT로 BER 정량 (10^-12 이하 정상)
-• 4단계 원인 분류: Timing→Training 재수행 / 전압→Vref 재조정 / SI→ODT 변경·PCB 확인 / DRAM→교체 테스트
-• 5단계 조치: MRS 설정 조정, BIOS 업데이트 권고, 필요 시 DIMM RMA 진행`,
+  'tech-98': `• 이론 대역폭: 4800MT/s × 8Bytes × 2ch = 76.8 GB/s
+• 실측 60-70%: 약 46~54 GB/s → 30-40% 손실 발생
+• DRAM 손실: Refresh penalty(~5-10%), Page Miss 오버헤드, Bank/BG 충돌, 명령 슬롯 경쟁
+• SW 손실: NUMA 미설정, 캐시 오염, 비정렬 접근, 컨트롤러 스케줄링 비효율
+• AE 활용: Intel MLC/STREAM으로 측정 → 각 손실 요인 정량 분석 → 고객에게 최적화 방안 제안`,
 
-  'tech-87': `• JESD79-5(DDR5): 타이밍 파라미터, AC/DC 전기 스펙, 동작 모드, MRS, Eye Mask 등 포괄 정의
-• JESD209(LPDDR5/5X): 저전력 모드(DPD/PASR), PoP 스펙, DVFSC 등 모바일 특화
-• JESD235(HBM3/3E): TSV 스펙, 1024-bit 인터페이스, 열 특성, 인터포저 요구사항
-• AE 활용: (1)측정값 JEDEC 내 판정, (2)고객 분쟁 시 표준 근거, (3)XMP/EXPO vs JEDEC 범위 구분, (4)스펙 개정 영향 분석
-• SK하이닉스는 JEDEC 이사회 멤버 → 표준 제정 직접 참여, AE 현장 경험이 차기 표준에 반영 가능`,
+  'tech-99': `• 목적: 양산 전 극한 조건에서 잠재 불량 노출 → 필드 불량률 최소화
+• 스트레스 조건: 고온(85-105°C) + 저온(-40°C), 전압 마진 축소, 장시간 연속 구동
+• 테스트 종류: HTOL(고온 동작 수명), TC(온도 사이클), THB(고온 고습), ESD
+• AE 역할: 고객 시스템 환경에서의 스트레스 테스트 설계, PVT 코너 마진 확보 확인
+• Worst Case = Slow Process + Low Voltage + High Temperature → 이 조건에서 마진 있어야 양산 가능`,
 
-  'tech-88': `• Stack-up: PCB 층수/유전체/동박 두께 설계 → 신호층과 GND 기준층 배치가 특성 임피던스 결정
-• 임피던스 제어: DDR5 DQ ~40Ω 목표, 임피던스 연속성 깨지면 반사 → Eye 열화
-• 설계 핵심: 신호층 인접 GND 기준층, 유전체 두께로 임피던스 조절, via stub 최소화
-• Void: 유전체 내 기포 → 국부 임피던스 불연속 → 반사·크로스토크 → 간헐적 BER 상승
-• Delamination: 층간 박리 → 유전체 두께 변화 → 특정 DQ 라인 Eye 열화 → AE는 TDR 측정·단면 분석 요청`,
+  'tech-100': `• 오실로스코프: DQ/DQS 파형 측정, Eye diagram 캡처, 타이밍/전압 마진 정량 분석
+• 로직 애널라이저: 다채널 디지털 신호 동시 캡처, DRAM 명령 시퀀스 프로토콜 레벨 디버깅
+• 오실로스코프 활용: Eye Mask 대비 Pass/Fail 판정, 프리앰블/포스트앰블 확인, Jitter 분석
+• 로직 애널라이저 활용: Training 시퀀스 검증, 명령 타이밍 위반 탐지, 프로토콜 준수 확인
+• AE 필수 도구: SI 문제의 물리적 증거 확보, 로그만으로 추정한 원인을 실측으로 확인/검증`,
 
-  'tech-89': `• NAND Flash 셀 구조: Control Gate - Oxide - Floating Gate(또는 CTF) - Tunnel Oxide - Channel
-• 데이터 저장 원리: Floating Gate에 전자를 가두면 Vth(문턱전압)가 변화 → 전자 유무로 1/0 구분
-• 프로그램(쓰기): WL에 고전압(~20V) 인가 → FN Tunneling으로 전자가 터널 산화막 통과 → FG에 갇힘 → Vth 상승
-• 읽기: WL에 기준전압(Vread) 인가 → Vth < Vread이면 전류 흐름(1), Vth > Vread이면 전류 차단(0)
-• 소거: 기판(P-well)에 고전압 인가 → FG의 전자가 기판으로 빠져나감 → Vth 원복 → 블록 단위 소거
-• CTF(Charge Trap Flash): FG 대신 Si₃N₄ 절연층에 전하 트래핑 → 3D NAND에 적합(층간 간섭 적음)
-• MLC/TLC/QLC: 여러 Vth 레벨을 구분해 한 셀에 2/3/4비트 저장 → 레벨 많을수록 마진↓ 내구성↓`,
+  'tech-101': `• BER = 전송된 총 비트 중 에러 비트 비율, 정상 기준 10^-12 이하
+• 1단계: memtest86/BIOS 로그로 에러 패턴 파악 (주소별? DQ별? Rank별? 고정 vs 랜덤?)
+• 2단계: PMU Training 로그로 마진 부족 단계 확인 (어떤 Training에서 마진 작은지)
+• 3단계: 오실로스코프로 Eye diagram 측정 (JEDEC Mask 대비 마진), BERT로 BER 정량
+• 4단계: 원인 분류 → Timing 문제→Training 재수행 / SI→ODT 변경 / DRAM→교체·RMA`,
 
-  'tech-90': `• Sense Amp 역할: BL(Bit Line)과 /BL의 미세 전압차(수십mV)를 감지해 VDD 또는 0V로 증폭
-• Overdrive 방식: Sense Amp 활성화 초기에 VDD보다 높은 전압(VDD+α, 통상 VDDH)을 인가
-• 왜 필요한가: 미세공정화→셀 캐패시턴스↓→BL 전하공유 후 전압차 극히 작음 → 정상 VDD로는 증폭 속도 부족
-• 동작 순서: ACTIVATE → BL 전하공유 → Overdrive 전압으로 Sense Amp 구동(빠른 초기 증폭) → 정상 VDD로 복귀
-• 효과: 초기 증폭 속도 향상 → tRCD(Row-to-Column Delay) 단축 → 전체 메모리 성능 향상
-• 주의: Overdrive 전압이 너무 높거나 오래 유지되면 게이트 산화막 스트레스 → 신뢰성 저하
-• AE 관점: 마진 테스트 시 Sense Amp 동작 마진이 온도/전압에 따라 변화 → 고온에서 마진 축소 경향 이해 필요`,
+  'tech-102': `• 목적: 고객 SoC 테이프아웃 전 DRAM 사전 검증 → NPI 기간 단축, 이슈 조기 발견
+• 구성: FPGA에 메모리 컨트롤러 + PHY 구현 → DRAM과 직접 통신
+• 장점: 파라미터 자유 변경(타이밍/ODT/Vref), RTL 수정 가능, 빠른 반복, Shmoo 자동 생성
+• AE 시나리오: 신규 속도 등급 선행 검증, 고객 이슈 격리 디버깅, RCD/DB FW 호환성 사전 검증
+• 한계: 실제 SoC 대비 동작 속도/타이밍 정확도 차이 → Post-Si 실리콘 검증 병행 필수`,
 
-  'tech-91': `• MCR DIMM = Multiplexer Combined Ranks DIMM: 모듈 구조 혁신으로 서버 DRAM 성능 도약
-• 핵심 원리: 기존 1개 Rank에서 64B 전송 → MCR DIMM은 2개 Rank 동시 작동, 데이터 버퍼가 128B로 통합 전송
-• 성능: 8Gbps 이상 달성 (기존 DDR5 서버 DRAM 4.8Gbps 대비 80%+ 향상), 세계 최고속 서버용 DRAM
-• 혁신 포인트: 단품 속도를 높이는 기존 방식이 아닌, 모듈 아키텍처 변경으로 성능 도약 (세대당 ~800Mbps 향상의 한계를 돌파)
-• 글로벌 협업: Intel(서버 CPU) + Renesas(데이터 버퍼 IC) + SK하이닉스(DRAM 모듈/통합 설계)
-• 개발 난제: 선례 없는 제품→새로운 테스트 환경/프로그램을 처음부터 구축, 조직 내 도전적 방향 설득 필요
-• 전략적 의미: AI/클라우드 시대 CPU-메모리 병목 해소, 서버 메모리 시장 기술 리더십 확보
-• AE 관점: 데이터 버퍼 포함 시스템 레벨 검증, 2-Rank 동시 동작 시 SI/타이밍 과제, 기존에 없던 테스트 방법론 개발`,
+  'tech-103': `• ES(Engineering Sample): 개발 초기, 기능 검증 목적 → AE: 기본 동작 확인, 제한사항 Technical Bulletin 안내
+• QS(Qualification Sample): 양산 동등 품질, 고객 정식 인증용 → AE: 온도/전압/스트레스 종합 Qualification Report 작성
+• MP(Mass Production): 인증 완료 → 양산 납품, Design Win 확보 → AE: 양산 초기 모니터링, PCN/ECN 관리
+• FAE 협업: FAE(고객 접점 샘플 전달/결과 수집) ↔ 본사 AE(분석/판정/Report 작성)
+• HBM 특수: 시스템 레벨 테스트 장비 자체 개발, TSMC 협력 패키징 포함 End-to-End 검증`,
 
-  'tech-92': `• PAM3 = Pulse Amplitude Modulation 3-level: 신호를 3개 전압 레벨(-1, 0, +1)로 인코딩
-• NRZ(기존) vs PAM3: NRZ는 2레벨(0,1)로 클럭당 1비트, PAM3는 3레벨로 클럭당 log₂3 ≈ 1.58비트 전송
-• GDDR7에서 채택: 32Gbps+ 달성, 기존 GDDR6(NRZ 기반) 대비 대역폭 약 2배
-• 왜 PAM4가 아닌 PAM3?: PAM4(4레벨)는 마진이 더 작아 구현 난이도↑, PAM3는 성능과 구현 복잡도의 균형점
-• 장점: 같은 주파수(Nyquist rate)에서 58% 더 높은 데이터레이트, 핀당 대역폭 극대화
-• 단점: Eye diagram이 3단으로 분리→각 Eye 높이가 NRZ 대비 ~1/2로 축소, SNR 마진↓, 노이즈 민감
-• AE 검증 과제: 3레벨 Eye diagram 분석 방법론 변경, DFE/CTLE 이퀄라이제이션 최적화 필수, 기존 NRZ 기반 장비/측정 방법 업데이트, 고온/저전압에서 마진 확인 특히 중요`,
+  'tech-104': `• DRAM: DDR5 RDIMM/MRDIMM(서버), LPDDR5X/6(모바일), 1c 6세대 양산 램프업
+• HBM: HBM3E 12Hi/16Hi 양산, HBM4 2026.2 세계 최초 양산, 점유율 50%+ (피크 62%)
+• NAND/SSD: 321단 QLC SSD(PQC21), PCIe Gen5 U.2(PS1012), 238단→300+단 개발
+• 시장: 매출 97조, 영업이익 47조 역대 최대, D램 점유율 38%로 업계 1위
+• 타깃: 서버/AI(HBM+DDR5), 모바일(LPDDR6), 차량(ASIL-D), 데이터센터(SSD)`,
+
+  'tech-105': `• MCR DIMM = Multiplexer Combined Ranks DIMM: 모듈 아키텍처 혁신으로 서버 DRAM 성능 도약
+• 핵심 원리: 2개 Rank 동시 작동 → Data Buffer가 128B로 통합 전송 → 기존 단일 Rank 64B 대비 2배
+• 성능: 8Gbps+ 달성 (기존 DDR5 서버 4.8Gbps 대비 80%+ 향상), 세계 최고속 서버용 DRAM
+• 혁신: 단품 속도 향상이 아닌 모듈 아키텍처 변경으로 세대당 ~800Mbps 한계 돌파
+• 글로벌 협업: Intel(서버 CPU) + Renesas(Data Buffer IC) + SK하이닉스(DRAM 모듈/통합 설계)`,
+
+  'tech-106': `• 기술 선도 유지: MR-MUF/하이브리드 본딩 등 패키징 기술 선점 → 경쟁사 추격 시간 확보
+• cHBM 고객 Lock-in: AE가 고객 칩 아키텍처 깊이 이해 → 맞춤 설계 컨설팅 → 전환 비용 극대화
+• 빠른 대응 속도: 이슈 발생 → 근본 원인 분석 → 해결까지 시간 자체가 핵심 경쟁력
+• 고객 다변화 지원: NVIDIA 외 Google/AWS/AMD/Meta 각 전담 AE → 동시 다발적 Qualification 수행
+• AE 조직 확대: 2026년 미주 HBM 전담 기술 조직, 시스템 레벨 테스트 장비 자체 개발 → AE가 품질 최전선`,
 }
